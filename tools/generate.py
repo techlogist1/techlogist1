@@ -672,6 +672,13 @@ def gen_ticker():
     inner_x = PADX + 2 * CH
     y = PADY + LH
 
+    newest = items[0]
+    frozen = f"{newest[1]} · {newest[2]}"
+    if len(frozen) > cols - 7:
+        # break on a word, not mid-token -- a frozen frame that ends "has a"
+        # reads as a truncation bug rather than a deliberate still
+        frozen = frozen[: cols - 8].rsplit(" ", 1)[0] + " …"
+
     parts = [
         line(y, [("fr", rule("RECENT COMMITS", cols, "newest first"))], cols),
         f'<clipPath id="cl"><rect x="{inner_x:.1f}" y="{y + 4}" '
@@ -681,6 +688,12 @@ def gen_ticker():
         f'<text class="dm" x="{inner_x:.1f}" y="{y + LH}" '
         f'textLength="{2 * n * CH:.1f}" lengthAdjust="spacing">'
         f'{esc(seg)}{esc(seg)}</text></g></g>',
+        # A stopped marquee freezes at an arbitrary character and reads as a
+        # broken image. Reduced motion gets a purpose-built frame instead: the
+        # newest commit, whole, ending where it should.
+        '<g class="frz">'
+        + line(y + LH, [("fr", "│  "), ("dm", frozen), ("fr", "│")], cols)
+        + '</g>',
         line(y + LH * 2,
              [("fr", foot(cols, f"{len(items)} commits across "
                                 f"{len(repos)} repositories"))], cols),
@@ -694,7 +707,10 @@ def gen_ticker():
    not the CH this file assumes. */
 @keyframes roll{{from{{transform:translateX(0)}}to{{transform:translateX(-{n * CH:.1f}px)}}}}
 .mv{{animation:roll {max(30, n // 8)}s linear infinite}}
-@media (prefers-reduced-motion: reduce){{ .mv{{animation:none}} }}
+.frz{{display:none}}
+@media (prefers-reduced-motion: reduce){{
+  .mv{{display:none}} .frz{{display:block}}
+}}
 """
     return svg_doc(w_px, h_px, "Recent commits",
                    "A scrolling ticker of the most recent commit subjects across "
