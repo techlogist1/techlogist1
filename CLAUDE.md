@@ -70,6 +70,33 @@ carried the identical slogan and was changed with it.
 
 ---
 
+## Balance — three projects and a person, not one project
+
+**No element on this page may be an argument for a single repository.** This is
+easy to violate without noticing, because one project is always the easiest to
+draw. It happened: the hero animated a log line being normalised, the integrity
+panel closed by saying a hash chain was "the thing ulpf builds for logs", and the
+stats panel ranked "Rust, bytes" above "TypeScript, bytes". Three separate
+elements, each defensible alone, and together they made a page about ulpf with a
+timer app attached. A stranger reading it would have said "security logging".
+
+The reason it happened is worth keeping: **log parsing won on being the most
+visually tractable thing on the account, not on being representative.** Whenever
+a candidate for a shared surface is obviously easier to build for one project
+than the others, that is the warning, not the argument.
+
+The test, applied to the whole page rather than to one panel: **a stranger reads
+it top to bottom and is asked what he builds. If any single repository is the
+obvious answer, it is not fixed.** All three should surface, and so should the
+person.
+
+What this does *not* forbid is real per-repository data. `inflight.svg` sorts by
+commits ahead and ulpf currently sits at the top with the longest bar; that is a
+measurement with an honest sort order, not an argument. The line to hold is
+between showing a number and making a case.
+
+---
+
 ## Aesthetic direction
 
 **Monochrome. White and greys on near-black.** A clean terminal, not a CRT
@@ -215,19 +242,33 @@ reads as a slot machine.
 - **At most one element animates continuously**, and it is the hero. The commit
   ticker was cut and the activity graph was cut.
 
-### The hero is a transmutation
+### The hero is a rearrangement
 
-**One thing visibly becoming another, with the intermediate states legible.**
-Three log lines — nginx combined, JSON lines, RFC3164 syslog — are carried stage
-by stage into one common schema: timestamp located, timestamp normalised, level
-resolved, source resolved, fields aligned. Whatever run *just* resolved is drawn
-in `.hi` and the rest in `.dm`, which is the only emphasis on the panel and means
-exactly one thing.
+**One line of noise becoming two statements, with every intermediate legible.**
+Two true sentences — *"I decide what it should do"* and *"Claude Code does the
+typing"* — are interleaved character by character and then separated by merge
+rounds. A character drawn in `.hi` came from the first sentence and one in `.dm`
+from the second, so even the fully tangled frame reads as two things caught
+together rather than as noise. That colour is the mechanism made visible; it is
+the only emphasis on the panel and it means exactly one thing.
 
-**The three rows are two slots out of phase**, so they are never at the same
-stage. That is the whole difference between a pipeline in flight and a slideshow:
-at any moment one line is raw, one is half-resolved and one is done, so the shape
-of the transformation is legible without waiting for a cycle.
+**Nothing is added and nothing is removed.** Every character needed to read the
+final frame is on screen in the first one, in a different place. That is what
+keeps this outside the banned text-reveal family: nothing accumulates and nothing
+is uncovered, only rearranged.
+
+It is deliberately **not about any one repository** — see § Balance. It is about
+the author, twice: the sentences say how the work actually gets made, and the
+mechanism is the thing that was in plain sight all along, which is his taste in
+films rather than a property of any project.
+
+**Use merge rounds, not de-interleaving.** De-interleaving a block is *not* the
+inverse of interleaving it; built that way the frames never resolve, and the
+first version of this shipped-looking animation ended on gibberish. Two adjacent
+blocks that are each already `[A-part, B-part]` merge into one such block by
+swapping their middle two quarters. `gen_hero()` asserts that round `ROUNDS-1`
+reproduces `SAY_A` exactly and raises if it does not, which keeps the last good
+hero committed rather than publishing nonsense.
 
 Mechanically it is N discrete slots sharing **one** keyframe, separated by
 `animation-delay`. Cheaper than N keyframe blocks, and the **hard cut** at the
@@ -260,6 +301,30 @@ compared rather than argued about:
   `lengthAdjust="spacing"` corrects the gaps between glyphs, not glyph width, so
   a 46-long run of `U+2581..U+2587` pushed the closing rule outside the panel.
 
+### Rejected: the log normaliser — it made the page about one repo
+
+The hero that replaced rule 110 carried three log lines into one schema. It was
+a good animation and it is not coming back, because it made the whole page an
+argument for ulpf; see § Balance. **A generic pipeline is not the fix** — a
+pipeline is that same shape wearing a costume. The replacement had to be a
+different kind of operation, and a rearrangement is one.
+
+Two rivals were built for the replacement, rasterised at 847px and rejected on
+what the pixels showed rather than on argument:
+
+- **A watch escapement** — continuous mainspring torque becoming a counted beat.
+  Defeated by its own physics at this frame budget: to see a *count* change you
+  need many beats, and many beats per loop makes the balance swing too fast to
+  draw in discrete cells. Twelve frames showed a dot sliding along a line and a
+  number that moved twice, with `= 47 min` never changing at all. The escape
+  wheel's one-cell shifts were invisible. It was a mechanism diagram with a
+  slider, which is rule 110's failure in a different costume.
+- **A pruned decision tree** — four answers to "where should your data live?",
+  eliminated one per frame. Its freeze frame was the most legible thing built
+  all round, but the motion is a bullet list being crossed off, every
+  intermediate is the same kind of state as the last, and it spends the top of
+  the page arguing against three alternatives instead of saying what is true.
+
 ### Ruled out — do not reintroduce these
 
 The first hero used a scanline sweep plus a staggered fade-in. Both are the
@@ -272,8 +337,8 @@ character is.
 A SHA-256 avalanche was also built and **disqualified**: frozen for
 reduced-motion it is just a hash, so its entire meaning lives in the animation.
 That is the general test — **if a concept is meaningless in its reduced-motion
-freeze frame, it is not a candidate.** The transmutation passes it: frozen, it is
-the finished normalised table.
+freeze frame, it is not a candidate.** The rearrangement passes it: frozen, it is
+the two separated sentences.
 - Everything else animates **once on load and settles**, or is static. The
   activity graph wipes in left-to-right once. The stats, releases and chain panels
   do not animate at all — they are dense with text, and motion made them harder
@@ -370,10 +435,10 @@ the browser. Rasterise at 847 and at 309, not at natural size.
 
 | file | what it is | data source | animates |
 |---|---|---|---|
-| `hero.svg` | terminal frame; three log formats becoming one schema | none — hand-authored | the transmutation (continuous) |
+| `hero.svg` | terminal frame; one interleaved line separating into two | none — hand-authored | the rearrangement (continuous) |
 | `inflight.svg` | commits ahead of each repo's newest tag | REST `releases`, `tags`, `compare` | bars grow once |
 | `stats.svg` | real counts from the API | REST `stats/contributors`, `languages`, `releases` | no |
-| `chain.svg` | recent commits as a verified hash chain | REST `commits` incl. parents | no |
+| `chain.svg` | PROVENANCE — recent commits as a verified hash chain | REST `commits` incl. parents | no |
 | `badge-*.svg` | clickable technology pills | none, static | no |
 | `rel-*.svg` | release state per repo, glyph-encoded | REST `releases`, `tags` | no |
 
@@ -383,10 +448,22 @@ surface from the one image that must never break. The live panel is
 `inflight.svg`.
 
 `chain.svg` is the one that isn't a standard profile widget. Git is already a
-digest-chained provenance store — every commit names its parent's hash — which is
-structurally the thing ulpf builds for logs. The generator walks the real chain and
-**actually verifies** each link rather than illustrating one, and prints the count
-of links checked and broken.
+digest-chained provenance store — every commit names its parent's hash — and the
+generator walks the real chain and **actually verifies** each link rather than
+illustrating one, printing the count of links checked and broken.
+
+It used to close by saying that chain was "the thing ulpf builds for logs", which
+made a panel in the middle of the page an argument for one repository. The
+mechanism is git's and every repository listed is in it equally, so the panel now
+says only what it checked, and is titled **PROVENANCE** rather than INTEGRITY.
+
+`stats.svg` had the same fault in miniature: rows reading "Rust, bytes" and
+"TypeScript, bytes" ranked one project's language above the others'. Languages
+are now an **alphabetical set** with no byte counts, which carries no ordering
+claim — and a per-language byte count was in any case a second copy of the
+primary language GitHub prints on every pinned card. The cut is **a tenth of all
+bytes**, not a top-N: at 4% Shell qualified by 294 bytes out of 5.3 million, so
+one commit could add or drop a language with nothing on the page explaining why.
 
 ### What GitHub already renders — checked, not assumed
 

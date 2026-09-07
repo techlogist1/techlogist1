@@ -113,6 +113,32 @@ Three defects found by rasterising and by watching the file in a browser:
   so the ASCII frame measures ~88% of the canvas there and 96% in a browser. A
   rasteriser artifact, **not** a defect — confirmed in Chrome before acting.
 
+**Fifth pass — the page had become a page about one repo.**
+
+Counted rather than felt: the hero animated log parsing, the integrity panel
+closed by calling a hash chain "the thing ulpf builds for logs", the stats panel
+ranked "Rust, bytes" above "TypeScript, bytes", and "Currently building" named
+only ulpf. Four elements, each defensible alone; together a stranger would have
+said "security logging engineer who also wrote a timer app". See CLAUDE.md
+§ Balance for the rule that stops it recurring, including *why* it happened —
+log parsing won on being the easiest thing on the account to draw.
+
+- **The hero is now a rearrangement**, not a pipeline, because a generic pipeline
+  is the log animation wearing a costume. Two sentences interleaved character by
+  character, separating by merge rounds; nothing added, nothing removed. Two
+  rivals were built and rasterised at 847px first — a watch escapement and a
+  pruned decision tree — and both are recorded in CLAUDE.md with why they lost.
+- **INTEGRITY → PROVENANCE**, with the ulpf sentence gone. The mechanism is
+  git's; every repository listed is in it equally.
+- **Languages are an alphabetical set**, no byte counts, cut at a tenth of all
+  bytes. At 4% Shell qualified by 294 bytes out of 5.3 million.
+- **"Currently building" covers all three**, one line each, from real recent work.
+
+Found by rasterising the animated file rather than the stills: the first merge
+operator was a de-interleave, which is *not* the inverse of an interleave — the
+animation resolved into gibberish. `gen_hero()` now asserts the separation and
+raises rather than shipping it.
+
 ## Open / not done by me
 
 - **Pinned repositories cannot be set through any API** (see above). The profile

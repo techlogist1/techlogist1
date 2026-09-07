@@ -269,77 +269,98 @@ def frame_css(nslots, cycle, phases):
     return "\n".join(css)
 
 
-# Three real log formats and the stages that carry each one into a common
-# schema. Each tuple is the row at that stage, split so the run that *just*
-# resolved can be drawn in .hi and the rest in .dm -- that is the only place
-# emphasis is used here, and it means exactly one thing: this field just landed.
+# Two true sentences about how this gets built, interleaved character by
+# character. Read as one line they are noise; the characters then separate into
+# the two statements that were there the whole time. Nothing is ever added and
+# nothing is ever removed -- every character on screen in the last frame is on
+# screen in the first one, in a different place.
 #
-# Hand-authored sample records, deliberately. Nothing on this panel claims to be
-# live; the live panel is SHIPPED below. Seeding these from the API would add a
-# failure surface to the hero for no gain, and the hero is the one image on the
-# page that must never break.
-NORMALISE = [
-    [  # nginx combined
-        ('127.0.0.1 - [08/Sep/2026:04:17:09] "GET /v1" 200', None),
-        ('[08/Sep/2026:04:17:09]', '  127.0.0.1 "GET /v1" 200'),
-        ('2026-09-08 04:17:09', '  127.0.0.1 "GET /v1" 200'),
-        ('2026-09-08 04:17:09  ', 'info', '  127.0.0.1 "GET /v1" 200'),
-        ('2026-09-08 04:17:09  info  ', 'http', '  GET /v1 200'),
-    ],
-    [  # json lines
-        ('{"ts":"2026-09-08T04:17:11Z","lvl":"warn","m":"retry"}', None),
-        ('"2026-09-08T04:17:11Z"', '  {"lvl":"warn","m":"retry"}'),
-        ('2026-09-08 04:17:11', '  {"lvl":"warn","m":"retry"}'),
-        ('2026-09-08 04:17:11  ', 'warn', '  {"m":"retry"}'),
-        ('2026-09-08 04:17:11  warn  ', 'app ', '  retry'),
-    ],
-    [  # rfc3164 syslog
-        ('Sep  8 04:17:14 host sshd[441]: Accepted pubkey', None),
-        ('[Sep  8 04:17:14]', '  host sshd[441]: Accepted pubkey'),
-        ('2026-09-08 04:17:14', '  host sshd[441]: Accepted pubkey'),
-        ('2026-09-08 04:17:14  ', 'info', '  sshd[441]: Accepted pubkey'),
-        ('2026-09-08 04:17:14  info  ', 'sshd', '  Accepted pubkey'),
-    ],
-]
-STAGES = 5
-HOLD = 2                       # slots the finished record sits still
-SLOTS = STAGES + HOLD
+# This is deliberately NOT about any one repository. An earlier hero animated a
+# log line being normalised, which was the easiest thing on the account to draw
+# and turned the whole page into an argument for ulpf. A pipeline is that same
+# shape wearing a costume, so this is not a pipeline: it is a rearrangement.
+#
+# Hand-authored, and nothing on this panel claims to be live. The live panel is
+# IN FLIGHT below. Giving the hero a data source would put a failure surface on
+# the one image that must never break.
+SAY_A = "I decide what it should do      "
+SAY_B = "Claude Code does the typing     "
+ROUNDS = 6                     # round 0 fully interleaved, round 5 separated
+HOLD = 4                       # slots the separated pair sits still
+SLOTS = ROUNDS + HOLD
 
 
-def _norm_cells(li, stage):
-    spec = NORMALISE[li][min(stage, STAGES - 1)]
-    cells = [("fr", "│   ")]
-    if len(spec) == 2 and spec[1] is None:
-        cells.append(("dm", spec[0]))
-    elif len(spec) == 2:
-        cells += [("hi", spec[0]), ("dm", spec[1])]
-    else:
-        cells += [("dm", spec[0]), ("hi", spec[1]), ("dm", spec[2])]
+def _unshuffle(stage):
+    """The interleaved sequence after `stage` merge rounds.
+
+    One merge round per step, NOT a de-interleave -- de-interleaving a block is
+    not the inverse of interleaving it, and using it produces frames that never
+    resolve. Two adjacent blocks that are each already [A-part, B-part] merge
+    into one such block by swapping their middle two quarters. That is what
+    makes the intermediate states real: runs of each sentence appear and grow,
+    so the middle of the transformation is legible instead of being a wipe.
+    """
+    seq = [x for pair in zip([(0, c) for c in SAY_A], [(1, c) for c in SAY_B])
+           for x in pair]
+    n, b = len(seq), 4
+    for _ in range(min(stage, ROUNDS - 1)):
+        q, out = b // 4, []
+        for s in range(0, n, b):
+            blk = seq[s:s + b]
+            out += blk[:q] + blk[2 * q:3 * q] + blk[q:2 * q] + blk[3 * q:]
+        seq, b = out, b * 2
+    return seq
+
+
+def _say_cells(half, stage):
+    """One of the two rows at one stage, run-length coloured by source.
+
+    The colour is the mechanism made visible rather than decoration: a
+    character drawn in .hi came from the first sentence and one in .dm from the
+    second, so even the fully interleaved frame reads as two things tangled
+    together rather than as noise.
+    """
+    seq = _unshuffle(stage)
+    part = seq[:len(SAY_A)] if half == 0 else seq[len(SAY_A):]
+    cells, cur, buf = [("fr", "│    ")], None, ""
+    for src, ch in part:
+        cls = "hi" if src == 0 else "dm"
+        if cls != cur:
+            if buf:
+                cells.append((cur, buf))
+            cur, buf = cls, ch
+        else:
+            buf += ch
+    if buf:
+        cells.append((cur, buf))
     cells.append(("fr", "│"))
     return cells
 
 
 def gen_hero():
-    """The hero. A transmutation: three log lines in three different formats
-    becoming one schema, field by field.
+    """The hero. One line of interleaved noise separating into two statements.
 
-    Why a transmutation rather than a texture. The previous hero ran cellular
-    automaton rule 110 seeded by the contribution year. It was a real mechanism
-    and it was derived from real data, but it read as a field of noise behind
-    the text -- it never resolved into anything, and at the width GitHub renders
-    the hero on a phone its 10px glyphs came out around 5px, which is mush.
-    Every project here is a transformation of one representation into another,
-    so the hero shows one happening.
+    What it is about. Nothing on this page may be an argument for a single
+    repository, and the previous hero -- a log line being normalised -- made the
+    whole page one. This is true of the author instead: the work here is deciding
+    what a thing should do, and the typing is driven rather than done. It is also
+    true of the mechanism, which is the point of choosing it: two things that
+    looked like one noisy thing were always two, and every character needed to
+    read them was on screen from the first frame.
 
-    The three rows are two slots out of phase with each other, so they are never
-    at the same stage. That is the difference between a pipeline in flight and a
-    slideshow: at any moment one line is raw, one is half-resolved and one is
-    done, and the shape of the whole thing is legible without waiting.
+    Why this one won. Two rivals were built and rasterised at the real 847px
+    column first. A watch escapement -- continuous torque becoming a counted
+    beat -- was defeated by its own physics at this frame budget: to see a count
+    change you need many beats, and many beats per loop makes the balance swing
+    too fast to draw discretely, so twelve frames showed a dot sliding along a
+    line and a number moving twice. A pruned decision tree read as a bullet list
+    being crossed off, and spent the hero arguing against three alternatives.
 
     Deliberately NOT: typewriter reveal, matrix rain, blinking cursor, glow
-    pulse, scanline sweep, generic fade-in. This is substitution in place -- the
-    row is replaced by another complete row -- not text accumulating, which is
-    what makes it a different thing from a typewriter.
+    pulse, scanline sweep, generic fade-in, rule 110. Nothing accumulates here
+    and nothing is revealed -- the full character set is present in every frame
+    and only its arrangement changes, which is what makes this a different thing
+    from a text reveal.
     """
     art = [
         [("fr", "┌─ "), ("hi", "LOKAVYA SINGH"), ("fr", " "),
@@ -358,7 +379,7 @@ def gen_hero():
          ("body", "a log parser that keeps the original bytes"), ("fr", "│")],
         [("fr", "│"), ("fr", "│")],
     ]
-    head = "├─ three log formats becoming one schema "
+    head = "├─ nothing is added and nothing is removed "
     art.append([("fr", head + "─" * (COLS - len(head) - 2) + "─┤")])
 
     ty, LH2 = 44, 20
@@ -366,30 +387,37 @@ def gen_hero():
     base = len(art)
     rows.append(line(ty + base * LH2, [("fr", "│"), ("fr", "│")], COLS))
 
-    cycle, phases = 9.8, []
-    for li in range(3):
-        ry = ty + (base + 1 + li) * LH2
+    # Guard, not decoration: if the merge rounds ever stop separating cleanly
+    # the animation resolves into gibberish, which is worse than not animating.
+    # Raising here leaves the last good hero.svg committed and turns the run red.
+    if "".join(c for _, c in _unshuffle(ROUNDS - 1)[:len(SAY_A)]) != SAY_A:
+        raise RuntimeError("unshuffle does not separate; hero would be gibberish")
+
+    cycle, phases = 9.0, []
+    for half in range(2):
+        ry = ty + (base + 1 + half) * LH2
         for sl in range(SLOTS):
-            cls = f"n{li}{sl}"
-            # Base state is the LAST slot, which is the finished record. A
-            # renderer with no animation support, and reduced-motion, both land
-            # on the completed table rather than on a half-parsed line.
+            cls = f"s{half}{sl}"
+            # Base state is the LAST slot, the separated pair. A renderer with
+            # no animation support, and reduced motion, both land on the two
+            # readable sentences rather than on a frame of noise.
             op = "" if sl == SLOTS - 1 else ' opacity="0"'
             rows.append(f'<g class="{cls}"{op}>'
-                        + line(ry, _norm_cells(li, sl), COLS) + "</g>")
-            phases.append((cls, (sl - li * 2) * cycle / SLOTS))
+                        + line(ry, _say_cells(half, sl), COLS) + "</g>")
+            phases.append((cls, sl * cycle / SLOTS))
 
-    n = base + 4
+    n = base + 3
     rows.append(line(ty + n * LH2, [("fr", "│"), ("fr", "│")], COLS))
     rows.append(line(ty + (n + 1) * LH2,
-                     [("fr", foot(COLS, "this is what ulpf does"))], COLS))
+                     [("fr", foot(COLS, "the characters only change places"))],
+                     COLS))
 
     css = (frame_css(SLOTS, cycle, phases)
            + "\n@media (prefers-reduced-motion: reduce){"
-           + "".join(f".n{li}{sl}{{animation:none;opacity:0}}"
-                     for li in range(3) for sl in range(SLOTS - 1))
-           + "".join(f".n{li}{SLOTS-1}{{animation:none;opacity:1}}"
-                     for li in range(3))
+           + "".join(f".s{half}{sl}{{animation:none;opacity:0}}"
+                     for half in range(2) for sl in range(SLOTS - 1))
+           + "".join(f".s{half}{SLOTS-1}{{animation:none;opacity:1}}"
+                     for half in range(2))
            + "}")
 
     w_px = int(COLS * CH + PADX * 2)
@@ -397,11 +425,12 @@ def gen_hero():
     return svg_doc(
         w_px, h_px,
         "Lokavya Singh — desktop apps that run on your own computer",
-        "A terminal frame. Three log lines in three different formats -- nginx, "
-        "JSON and syslog -- are carried stage by stage into one common schema, "
-        "each row a stage out of phase with the others. Three projects: flint, a "
-        "timer whose every mode is a plugin; vysted, a finance terminal an AI "
-        "agent can drive; ulpf, a log parser that keeps the original bytes.",
+        "A terminal frame. Two sentences -- \"I decide what it should do\" and "
+        "\"Claude Code does the typing\" -- are interleaved character by "
+        "character and separate back into two readable lines; nothing is added "
+        "or removed at any point. Three projects: flint, a timer whose every "
+        "mode is a plugin; vysted, a finance terminal an AI agent can drive; "
+        "ulpf, a log parser that keeps the original bytes.",
         css, "\n".join(rows))
 
 
@@ -520,8 +549,22 @@ def gen_stats():
     opened = datetime.fromisoformat(created.replace("Z", "+00:00"))
     yrs = (datetime.now(timezone.utc) - opened).days / 365.25
 
-    def kb(n):
-        return f"{n/1000:.0f}k" if n >= 10000 else f"{n:,}"
+    # Languages as an unordered set, not a leaderboard. Two rows reading
+    # "Rust, bytes" and "TypeScript, bytes" ranked one repository's language
+    # above the others' and tilted the whole panel toward the Rust project --
+    # and a byte count per language is in any case a second copy of the primary
+    # language GitHub already prints on every pinned card. Alphabetical, so the
+    # order carries no claim.
+    # A tenth of all bytes, not a top-N and not a lower bar. At 4% Shell
+    # qualified by 294 bytes out of 5.3 million, so one commit could add or drop
+    # a language from the panel with nothing on the page explaining why; a tenth
+    # separates the three languages these projects are actually written in from
+    # the tooling around them by more than an order of magnitude.
+    tot = sum(langs.values()) or 1
+    keep = sorted(k for k, v in langs.items() if v * 10 >= tot)
+    while len(" · ".join(keep)) > 40 and len(keep) > 1:
+        keep.remove(min(keep, key=lambda k: langs[k]))     # drop the smallest
+    langline = " · ".join(keep)
 
     rows = [
         ("commits, public repos", f"{commits:,}"),
@@ -530,8 +573,7 @@ def gen_stats():
         ("longest daily streak", f"{best} days"),
         ("releases published", f"{releases}"),
         ("public repositories", f"{len(repos)}"),
-        ("Rust, bytes", kb(langs.get("Rust", 0))),
-        ("TypeScript, bytes", kb(langs.get("TypeScript", 0))),
+        ("main languages", langline),
         ("account opened", f"{opened:%b %Y} ({yrs:.1f} yrs)"),
     ]
 
@@ -553,15 +595,21 @@ def gen_stats():
                       [("fr", foot(cols, "counted from the API at build time"))], cols))
     return svg_doc(w_px, h_px, "By the numbers",
                    "Real counts from the GitHub API: commits, lines added, "
-                   "contributions, longest streak, releases, repositories, "
-                   "language bytes and account age.",
-                   "", "\n".join(parts))
+                   "contributions, longest streak, releases published, public "
+                   f"repositories, the languages used ({langline}) and account "
+                   "age.", "", "\n".join(parts))
 
 
 def gen_chain():
     """Git is already a digest-chained provenance store: every commit names its
-    parent's hash. That is structurally the thing ulpf builds for logs, so walk
-    the real chain and actually verify the links rather than illustrating one."""
+    parent's hash. Walk the real chain and actually verify the links rather than
+    illustrating one.
+
+    This panel used to close by saying the chain was "the thing ulpf builds for
+    logs", which made it an argument for one repository sitting in the middle of
+    a page that is meant to hold three. The mechanism is git's, every repository
+    listed here is in it equally, and the panel now says only what it checked.
+    """
     repos = public_repos()
     rows, links, broken = [], 0, 0
     for r in repos[:4]:
@@ -580,11 +628,11 @@ def gen_chain():
         rows.append((r["name"], shas))
 
     if not rows:
-        return no_data("INTEGRITY", "fewer than two commits available to chain")
+        return no_data("PROVENANCE", "fewer than two commits available to chain")
 
-    prose = ("every commit names its parent's digest, so a branch is a hash "
-             "chain a stranger can re-verify. that is the thing ulpf builds "
-             f"for logs. {links} links checked, {broken} broken.")
+    prose = ("every commit names its parent's digest, so each branch above is a "
+             "hash chain a stranger can re-walk without trusting this page. "
+             f"{links} links checked here, {broken} broken.")
     cols = COLS
     words, wrapped, cur = prose.split(), [], ""
     for wd in words:
@@ -601,7 +649,7 @@ def gen_chain():
     h_px = int(PADY + LH * (nrows + 1) + 12)
     y = PADY + LH
     verdict = "chain ok" if broken == 0 else f"{broken} BROKEN"
-    parts = [line(y, [("fr", rule("INTEGRITY", cols, verdict))], cols)]
+    parts = [line(y, [("fr", rule("PROVENANCE", cols, verdict))], cols)]
     n = 0
     for name, shas in rows:
         n += 1
@@ -624,7 +672,7 @@ def gen_chain():
     n += 1
     parts.append(line(y + LH * n, [("fr", foot(cols, "verified at build time"))], cols))
     return svg_doc(w_px, h_px,
-                   f"Commit chain — {links} links verified, {broken} broken",
+                   f"Provenance — {links} links verified, {broken} broken",
                    f"The most recent commits in each public repository shown as a "
                    f"hash chain, each commit naming its parent. {links} links "
                    f"verified, {broken} broken.", "", "\n".join(parts))

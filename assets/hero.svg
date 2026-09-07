@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 556 382" width="556" height="382" role="img" aria-labelledby="t d" xml:space="preserve">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 556 362" width="556" height="362" role="img" aria-labelledby="t d" xml:space="preserve">
 <title id="t">Lokavya Singh — desktop apps that run on your own computer</title>
-<desc id="d">A terminal frame. Three log lines in three different formats -- nginx, JSON and syslog -- are carried stage by stage into one common schema, each row a stage out of phase with the others. Three projects: flint, a timer whose every mode is a plugin; vysted, a finance terminal an AI agent can drive; ulpf, a log parser that keeps the original bytes.</desc>
+<desc id="d">A terminal frame. Two sentences -- &quot;I decide what it should do&quot; and &quot;Claude Code does the typing&quot; -- are interleaved character by character and separate back into two readable lines; nothing is added or removed at any point. Three projects: flint, a timer whose every mode is a plugin; vysted, a finance terminal an AI agent can drive; ulpf, a log parser that keeps the original bytes.</desc>
 <style>
 .glass{fill:#0E0E10}
 .edge{fill:none;stroke:#26262B;stroke-width:1}
@@ -26,31 +26,30 @@ text{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Cascadia 
 }
 
 @keyframes slot{
-  0%{opacity:1} 14.2857%{opacity:1}
-  14.2858%{opacity:0} 100%{opacity:0}
+  0%{opacity:1} 10.0000%{opacity:1}
+  10.0001%{opacity:0} 100%{opacity:0}
 }
-.n00{animation:slot 9.8s linear -9.800s infinite}
-.n01{animation:slot 9.8s linear -8.400s infinite}
-.n02{animation:slot 9.8s linear -7.000s infinite}
-.n03{animation:slot 9.8s linear -5.600s infinite}
-.n04{animation:slot 9.8s linear -4.200s infinite}
-.n05{animation:slot 9.8s linear -2.800s infinite}
-.n06{animation:slot 9.8s linear -1.400s infinite}
-.n10{animation:slot 9.8s linear -2.800s infinite}
-.n11{animation:slot 9.8s linear -1.400s infinite}
-.n12{animation:slot 9.8s linear -9.800s infinite}
-.n13{animation:slot 9.8s linear -8.400s infinite}
-.n14{animation:slot 9.8s linear -7.000s infinite}
-.n15{animation:slot 9.8s linear -5.600s infinite}
-.n16{animation:slot 9.8s linear -4.200s infinite}
-.n20{animation:slot 9.8s linear -5.600s infinite}
-.n21{animation:slot 9.8s linear -4.200s infinite}
-.n22{animation:slot 9.8s linear -2.800s infinite}
-.n23{animation:slot 9.8s linear -1.400s infinite}
-.n24{animation:slot 9.8s linear -9.800s infinite}
-.n25{animation:slot 9.8s linear -8.400s infinite}
-.n26{animation:slot 9.8s linear -7.000s infinite}
-@media (prefers-reduced-motion: reduce){.n00{animation:none;opacity:0}.n01{animation:none;opacity:0}.n02{animation:none;opacity:0}.n03{animation:none;opacity:0}.n04{animation:none;opacity:0}.n05{animation:none;opacity:0}.n10{animation:none;opacity:0}.n11{animation:none;opacity:0}.n12{animation:none;opacity:0}.n13{animation:none;opacity:0}.n14{animation:none;opacity:0}.n15{animation:none;opacity:0}.n20{animation:none;opacity:0}.n21{animation:none;opacity:0}.n22{animation:none;opacity:0}.n23{animation:none;opacity:0}.n24{animation:none;opacity:0}.n25{animation:none;opacity:0}.n06{animation:none;opacity:1}.n16{animation:none;opacity:1}.n26{animation:none;opacity:1}}</style>
+.s00{animation:slot 9.0s linear -9.000s infinite}
+.s01{animation:slot 9.0s linear -8.100s infinite}
+.s02{animation:slot 9.0s linear -7.200s infinite}
+.s03{animation:slot 9.0s linear -6.300s infinite}
+.s04{animation:slot 9.0s linear -5.400s infinite}
+.s05{animation:slot 9.0s linear -4.500s infinite}
+.s06{animation:slot 9.0s linear -3.600s infinite}
+.s07{animation:slot 9.0s linear -2.700s infinite}
+.s08{animation:slot 9.0s linear -1.800s infinite}
+.s09{animation:slot 9.0s linear -0.900s infinite}
+.s10{animation:slot 9.0s linear -9.000s infinite}
+.s11{animation:slot 9.0s linear -8.100s infinite}
+.s12{animation:slot 9.0s linear -7.200s infinite}
+.s13{animation:slot 9.0s linear -6.300s infinite}
+.s14{animation:slot 9.0s linear -5.400s infinite}
+.s15{animation:slot 9.0s linear -4.500s infinite}
+.s16{animation:slot 9.0s linear -3.600s infinite}
+.s17{animation:slot 9.0s linear -2.700s infinite}
+.s18{animation:slot 9.0s linear -1.800s infinite}
+.s19{animation:slot 9.0s linear -0.900s infinite}
+@media (prefers-reduced-motion: reduce){.s00{animation:none;opacity:0}.s01{animation:none;opacity:0}.s02{animation:none;opacity:0}.s03{animation:none;opacity:0}.s04{animation:none;opacity:0}.s05{animation:none;opacity:0}.s06{animation:none;opacity:0}.s07{animation:none;opacity:0}.s08{animation:none;opacity:0}.s10{animation:none;opacity:0}.s11{animation:none;opacity:0}.s12{animation:none;opacity:0}.s13{animation:none;opacity:0}.s14{animation:none;opacity:0}.s15{animation:none;opacity:0}.s16{animation:none;opacity:0}.s17{animation:none;opacity:0}.s18{animation:none;opacity:0}.s09{animation:none;opacity:1}.s19{animation:none;opacity:1}}</style>
 <defs>
   <pattern id="sl" width="6" height="6" patternUnits="userSpaceOnUse">
     <rect width="6" height="3" fill="#000"/>
@@ -60,7 +59,7 @@ text{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Cascadia 
     <stop offset="100%" stop-color="#000" stop-opacity=".34"/>
   </radialGradient>
 </defs>
-<rect class="glass" width="556" height="382" rx="8"/>
+<rect class="glass" width="556" height="362" rx="8"/>
 <text x="22" y="44" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">┌─ </tspan><tspan class="hi">LOKAVYA SINGH</tspan><tspan class="fr"> </tspan><tspan class="fr">─────────────────────────────</tspan><tspan class="dm"> JAIPUR · IN </tspan><tspan class="fr">─┐</tspan></text>
 <text x="22" y="64" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│                                                           </tspan><tspan class="fr">│</tspan></text>
 <text x="22" y="84" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│</tspan><tspan class="dm">   </tspan><tspan class="hi">Desktop apps that run on your own computer              </tspan><tspan class="fr">│</tspan></text>
@@ -70,32 +69,31 @@ text{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Cascadia 
 <text x="22" y="164" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│</tspan><tspan class="dm">   </tspan><tspan class="dm">&gt; </tspan><tspan class="hi">vysted  </tspan><tspan class="body">a finance terminal an AI agent can drive      </tspan><tspan class="fr">│</tspan></text>
 <text x="22" y="184" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│</tspan><tspan class="dm">   </tspan><tspan class="dm">&gt; </tspan><tspan class="hi">ulpf    </tspan><tspan class="body">a log parser that keeps the original bytes    </tspan><tspan class="fr">│</tspan></text>
 <text x="22" y="204" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│                                                           </tspan><tspan class="fr">│</tspan></text>
-<text x="22" y="224" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">├─ three log formats becoming one schema ───────────────────┤</tspan></text>
+<text x="22" y="224" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">├─ nothing is added and nothing is removed ─────────────────┤</tspan></text>
 <text x="22" y="244" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│                                                           </tspan><tspan class="fr">│</tspan></text>
-<g class="n00" opacity="0"><text x="22" y="264" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│   </tspan><tspan class="dm">127.0.0.1 - [08/Sep/2026:04:17:09] &quot;GET /v1&quot; 200        </tspan><tspan class="fr">│</tspan></text></g>
-<g class="n01" opacity="0"><text x="22" y="264" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│   </tspan><tspan class="hi">[08/Sep/2026:04:17:09]</tspan><tspan class="dm">  127.0.0.1 &quot;GET /v1&quot; 200         </tspan><tspan class="fr">│</tspan></text></g>
-<g class="n02" opacity="0"><text x="22" y="264" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│   </tspan><tspan class="hi">2026-09-08 04:17:09</tspan><tspan class="dm">  127.0.0.1 &quot;GET /v1&quot; 200            </tspan><tspan class="fr">│</tspan></text></g>
-<g class="n03" opacity="0"><text x="22" y="264" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│   </tspan><tspan class="dm">2026-09-08 04:17:09  </tspan><tspan class="hi">info</tspan><tspan class="dm">  127.0.0.1 &quot;GET /v1&quot; 200      </tspan><tspan class="fr">│</tspan></text></g>
-<g class="n04" opacity="0"><text x="22" y="264" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│   </tspan><tspan class="dm">2026-09-08 04:17:09  info  </tspan><tspan class="hi">http</tspan><tspan class="dm">  GET /v1 200            </tspan><tspan class="fr">│</tspan></text></g>
-<g class="n05" opacity="0"><text x="22" y="264" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│   </tspan><tspan class="dm">2026-09-08 04:17:09  info  </tspan><tspan class="hi">http</tspan><tspan class="dm">  GET /v1 200            </tspan><tspan class="fr">│</tspan></text></g>
-<g class="n06"><text x="22" y="264" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│   </tspan><tspan class="dm">2026-09-08 04:17:09  info  </tspan><tspan class="hi">http</tspan><tspan class="dm">  GET /v1 200            </tspan><tspan class="fr">│</tspan></text></g>
-<g class="n10" opacity="0"><text x="22" y="284" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│   </tspan><tspan class="dm">{&quot;ts&quot;:&quot;2026-09-08T04:17:11Z&quot;,&quot;lvl&quot;:&quot;warn&quot;,&quot;m&quot;:&quot;retry&quot;}  </tspan><tspan class="fr">│</tspan></text></g>
-<g class="n11" opacity="0"><text x="22" y="284" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│   </tspan><tspan class="hi">&quot;2026-09-08T04:17:11Z&quot;</tspan><tspan class="dm">  {&quot;lvl&quot;:&quot;warn&quot;,&quot;m&quot;:&quot;retry&quot;}      </tspan><tspan class="fr">│</tspan></text></g>
-<g class="n12" opacity="0"><text x="22" y="284" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│   </tspan><tspan class="hi">2026-09-08 04:17:11</tspan><tspan class="dm">  {&quot;lvl&quot;:&quot;warn&quot;,&quot;m&quot;:&quot;retry&quot;}         </tspan><tspan class="fr">│</tspan></text></g>
-<g class="n13" opacity="0"><text x="22" y="284" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│   </tspan><tspan class="dm">2026-09-08 04:17:11  </tspan><tspan class="hi">warn</tspan><tspan class="dm">  {&quot;m&quot;:&quot;retry&quot;}                </tspan><tspan class="fr">│</tspan></text></g>
-<g class="n14" opacity="0"><text x="22" y="284" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│   </tspan><tspan class="dm">2026-09-08 04:17:11  warn  </tspan><tspan class="hi">app </tspan><tspan class="dm">  retry                  </tspan><tspan class="fr">│</tspan></text></g>
-<g class="n15" opacity="0"><text x="22" y="284" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│   </tspan><tspan class="dm">2026-09-08 04:17:11  warn  </tspan><tspan class="hi">app </tspan><tspan class="dm">  retry                  </tspan><tspan class="fr">│</tspan></text></g>
-<g class="n16"><text x="22" y="284" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│   </tspan><tspan class="dm">2026-09-08 04:17:11  warn  </tspan><tspan class="hi">app </tspan><tspan class="dm">  retry                  </tspan><tspan class="fr">│</tspan></text></g>
-<g class="n20" opacity="0"><text x="22" y="304" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│   </tspan><tspan class="dm">Sep  8 04:17:14 host sshd[441]: Accepted pubkey         </tspan><tspan class="fr">│</tspan></text></g>
-<g class="n21" opacity="0"><text x="22" y="304" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│   </tspan><tspan class="hi">[Sep  8 04:17:14]</tspan><tspan class="dm">  host sshd[441]: Accepted pubkey      </tspan><tspan class="fr">│</tspan></text></g>
-<g class="n22" opacity="0"><text x="22" y="304" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│   </tspan><tspan class="hi">2026-09-08 04:17:14</tspan><tspan class="dm">  host sshd[441]: Accepted pubkey    </tspan><tspan class="fr">│</tspan></text></g>
-<g class="n23" opacity="0"><text x="22" y="304" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│   </tspan><tspan class="dm">2026-09-08 04:17:14  </tspan><tspan class="hi">info</tspan><tspan class="dm">  sshd[441]: Accepted pubkey   </tspan><tspan class="fr">│</tspan></text></g>
-<g class="n24" opacity="0"><text x="22" y="304" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│   </tspan><tspan class="dm">2026-09-08 04:17:14  info  </tspan><tspan class="hi">sshd</tspan><tspan class="dm">  Accepted pubkey        </tspan><tspan class="fr">│</tspan></text></g>
-<g class="n25" opacity="0"><text x="22" y="304" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│   </tspan><tspan class="dm">2026-09-08 04:17:14  info  </tspan><tspan class="hi">sshd</tspan><tspan class="dm">  Accepted pubkey        </tspan><tspan class="fr">│</tspan></text></g>
-<g class="n26"><text x="22" y="304" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│   </tspan><tspan class="dm">2026-09-08 04:17:14  info  </tspan><tspan class="hi">sshd</tspan><tspan class="dm">  Accepted pubkey        </tspan><tspan class="fr">│</tspan></text></g>
-<text x="22" y="324" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│                                                           </tspan><tspan class="fr">│</tspan></text>
-<text x="22" y="344" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">└────────────────────────────────── this is what ulpf does ─┘</tspan></text>
-<rect class="scan" x="0" y="-12" width="556" height="406" fill="url(#sl)"/>
-<rect class="vig" width="556" height="382" rx="8" fill="url(#vig)"/>
-<rect class="edge" x=".5" y=".5" width="555" height="381" rx="8"/>
+<g class="s00" opacity="0"><text x="22" y="264" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="hi">I</tspan><tspan class="dm">C</tspan><tspan class="hi"> </tspan><tspan class="dm">l</tspan><tspan class="hi">d</tspan><tspan class="dm">a</tspan><tspan class="hi">e</tspan><tspan class="dm">u</tspan><tspan class="hi">c</tspan><tspan class="dm">d</tspan><tspan class="hi">i</tspan><tspan class="dm">e</tspan><tspan class="hi">d</tspan><tspan class="dm"> </tspan><tspan class="hi">e</tspan><tspan class="dm">C</tspan><tspan class="hi"> </tspan><tspan class="dm">o</tspan><tspan class="hi">w</tspan><tspan class="dm">d</tspan><tspan class="hi">h</tspan><tspan class="dm">e</tspan><tspan class="hi">a</tspan><tspan class="dm"> </tspan><tspan class="hi">t</tspan><tspan class="dm">d</tspan><tspan class="hi"> </tspan><tspan class="dm">o</tspan><tspan class="hi">i</tspan><tspan class="dm">e</tspan><tspan class="hi">t</tspan><tspan class="dm">s                       </tspan><tspan class="fr">│</tspan></text></g>
+<g class="s01" opacity="0"><text x="22" y="264" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="hi">I </tspan><tspan class="dm">Cl</tspan><tspan class="hi">de</tspan><tspan class="dm">au</tspan><tspan class="hi">ci</tspan><tspan class="dm">de</tspan><tspan class="hi">de</tspan><tspan class="dm"> C</tspan><tspan class="hi"> w</tspan><tspan class="dm">od</tspan><tspan class="hi">ha</tspan><tspan class="dm">e </tspan><tspan class="hi">t </tspan><tspan class="dm">do</tspan><tspan class="hi">it</tspan><tspan class="dm">es                       </tspan><tspan class="fr">│</tspan></text></g>
+<g class="s02" opacity="0"><text x="22" y="264" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="hi">I de</tspan><tspan class="dm">Clau</tspan><tspan class="hi">cide</tspan><tspan class="dm">de C</tspan><tspan class="hi"> wha</tspan><tspan class="dm">ode </tspan><tspan class="hi">t it</tspan><tspan class="dm">does                       </tspan><tspan class="fr">│</tspan></text></g>
+<g class="s03" opacity="0"><text x="22" y="264" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="hi">I decide</tspan><tspan class="dm">Claude C</tspan><tspan class="hi"> what it</tspan><tspan class="dm">ode does                       </tspan><tspan class="fr">│</tspan></text></g>
+<g class="s04" opacity="0"><text x="22" y="264" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="hi">I decide what it</tspan><tspan class="dm">Claude Code does                       </tspan><tspan class="fr">│</tspan></text></g>
+<g class="s05" opacity="0"><text x="22" y="264" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="hi">I decide what it should do                             </tspan><tspan class="fr">│</tspan></text></g>
+<g class="s06" opacity="0"><text x="22" y="264" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="hi">I decide what it should do                             </tspan><tspan class="fr">│</tspan></text></g>
+<g class="s07" opacity="0"><text x="22" y="264" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="hi">I decide what it should do                             </tspan><tspan class="fr">│</tspan></text></g>
+<g class="s08" opacity="0"><text x="22" y="264" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="hi">I decide what it should do                             </tspan><tspan class="fr">│</tspan></text></g>
+<g class="s09"><text x="22" y="264" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="hi">I decide what it should do                             </tspan><tspan class="fr">│</tspan></text></g>
+<g class="s10" opacity="0"><text x="22" y="284" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="hi"> </tspan><tspan class="dm"> </tspan><tspan class="hi">s</tspan><tspan class="dm">t</tspan><tspan class="hi">h</tspan><tspan class="dm">h</tspan><tspan class="hi">o</tspan><tspan class="dm">e</tspan><tspan class="hi">u</tspan><tspan class="dm"> </tspan><tspan class="hi">l</tspan><tspan class="dm">t</tspan><tspan class="hi">d</tspan><tspan class="dm">y</tspan><tspan class="hi"> </tspan><tspan class="dm">p</tspan><tspan class="hi">d</tspan><tspan class="dm">i</tspan><tspan class="hi">o</tspan><tspan class="dm">n</tspan><tspan class="hi"> </tspan><tspan class="dm">g</tspan><tspan class="hi"> </tspan><tspan class="dm"> </tspan><tspan class="hi"> </tspan><tspan class="dm"> </tspan><tspan class="hi"> </tspan><tspan class="dm"> </tspan><tspan class="hi"> </tspan><tspan class="dm"> </tspan><tspan class="hi"> </tspan><tspan class="dm">                        </tspan><tspan class="fr">│</tspan></text></g>
+<g class="s11" opacity="0"><text x="22" y="284" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="hi"> s</tspan><tspan class="dm"> t</tspan><tspan class="hi">ho</tspan><tspan class="dm">he</tspan><tspan class="hi">ul</tspan><tspan class="dm"> t</tspan><tspan class="hi">d </tspan><tspan class="dm">yp</tspan><tspan class="hi">do</tspan><tspan class="dm">in</tspan><tspan class="hi">  </tspan><tspan class="dm">g </tspan><tspan class="hi">  </tspan><tspan class="dm">  </tspan><tspan class="hi">  </tspan><tspan class="dm">                         </tspan><tspan class="fr">│</tspan></text></g>
+<g class="s12" opacity="0"><text x="22" y="284" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="hi"> sho</tspan><tspan class="dm"> the</tspan><tspan class="hi">uld </tspan><tspan class="dm"> typ</tspan><tspan class="hi">do  </tspan><tspan class="dm">ing </tspan><tspan class="hi">    </tspan><tspan class="dm">                           </tspan><tspan class="fr">│</tspan></text></g>
+<g class="s13" opacity="0"><text x="22" y="284" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="hi"> should </tspan><tspan class="dm"> the typ</tspan><tspan class="hi">do      </tspan><tspan class="dm">ing                            </tspan><tspan class="fr">│</tspan></text></g>
+<g class="s14" opacity="0"><text x="22" y="284" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="hi"> should do      </tspan><tspan class="dm"> the typing                            </tspan><tspan class="fr">│</tspan></text></g>
+<g class="s15" opacity="0"><text x="22" y="284" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="dm">Claude Code does the typing                            </tspan><tspan class="fr">│</tspan></text></g>
+<g class="s16" opacity="0"><text x="22" y="284" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="dm">Claude Code does the typing                            </tspan><tspan class="fr">│</tspan></text></g>
+<g class="s17" opacity="0"><text x="22" y="284" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="dm">Claude Code does the typing                            </tspan><tspan class="fr">│</tspan></text></g>
+<g class="s18" opacity="0"><text x="22" y="284" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="dm">Claude Code does the typing                            </tspan><tspan class="fr">│</tspan></text></g>
+<g class="s19"><text x="22" y="284" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="dm">Claude Code does the typing                            </tspan><tspan class="fr">│</tspan></text></g>
+<text x="22" y="304" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│                                                           </tspan><tspan class="fr">│</tspan></text>
+<text x="22" y="324" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">└─────────────────────── the characters only change places ─┘</tspan></text>
+<rect class="scan" x="0" y="-12" width="556" height="386" fill="url(#sl)"/>
+<rect class="vig" width="556" height="362" rx="8" fill="url(#vig)"/>
+<rect class="edge" x=".5" y=".5" width="555" height="361" rx="8"/>
 </svg>
