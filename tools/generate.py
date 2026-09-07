@@ -50,6 +50,9 @@ BASE_CSS = f"""
 .edge{{fill:none;stroke:#241B12;stroke-width:1}}
 text{{font-family:{FONT};font-size:{FS}px;white-space:pre;fill:#E8A33D}}
 .fr{{fill:#B07D2A}} .hi{{fill:#F7E7C6}} .ac{{fill:#9B3A2E}} .dm{{fill:#7A5A2E}}
+.cool{{fill:#E8E4D2}} .deep{{fill:#7A2620}} .body{{fill:#E8A33D}} .scrim{{opacity:1}}
+.rust{{fill:#C25A1E}} .gold{{fill:#D9B45B}} .plum{{fill:#8E4A5E}}
+.g0{{fill:#5A3A18}} .g1{{fill:#8A5A20}} .g2{{fill:#C25A1E}} .g3{{fill:#E8A33D}}
 .q0{{fill:#3A2E1E}} .q1{{fill:#8A6224}} .q2{{fill:#C08A2E}} .q3{{fill:#E8A33D}} .q4{{fill:#F7E7C6}}
 .scan{{opacity:.05}}
 .vig{{opacity:1}}
@@ -58,6 +61,9 @@ text{{font-family:{FONT};font-size:{FS}px;white-space:pre;fill:#E8A33D}}
   .edge{{stroke:#DCC9A8}}
   text{{fill:#8A4F14}}
   .fr{{fill:#9A6E24}} .hi{{fill:#2B1D0E}} .ac{{fill:#8C2F27}} .dm{{fill:#A08769}}
+  .cool{{fill:#3F4A44}} .deep{{fill:#6B1F1A}} .body{{fill:#8A4F14}} .scrim{{opacity:0}}
+  .rust{{fill:#A8430F}} .gold{{fill:#8A6A1E}} .plum{{fill:#7A3A4C}}
+  .g0{{fill:#D8C4A2}} .g1{{fill:#BE9354}} .g2{{fill:#A8430F}} .g3{{fill:#8A4F14}}
   .q0{{fill:#DFCDAC}} .q1{{fill:#C9A263}} .q2{{fill:#A9741F}} .q3{{fill:#8A4F14}} .q4{{fill:#4A2A0A}}
   .scan{{opacity:.028}}
   .vig{{opacity:.18}}
@@ -229,6 +235,141 @@ def calendar():
 
 
 # ── generators ──────────────────────────────────────────────────────────
+
+def gen_hero():
+    """The hero. Text is hand-authored; the band underneath it is not.
+
+    The band runs elementary cellular automaton rule 110 -- the Turing-complete
+    one -- seeded with the real contribution year, bucketed to the band width.
+    So the pattern is derived from this account's actual history and no other
+    profile can produce it, and the motion comes from a system with rules rather
+    than from a keyframe asserting that something should appear.
+
+    Deliberately NOT: typewriter reveal, matrix rain, blinking cursor, glow
+    pulse, scanline sweep, generic fade-in. Rule 110's output is triangular and
+    self-similar, which is what keeps it from reading as matrix rain -- falling
+    glyph columns are random, this is structured and the structure is the point.
+
+    Colour is per generation rather than per cell: it collapses the markup from
+    ~120 KB of alternating tspans to a few KB, and reads as phosphor age, which
+    is what a scrolling CRT actually does.
+    """
+    W, H = 88, 30
+    try:
+        _, weeks, _ = calendar()
+        days = [d for w in weeks for d in w["contributionDays"]]
+    except Exception:
+        days = []
+
+    if days:
+        n = len(days)
+        buckets = [sum(d["contributionCount"]
+                       for d in days[i * n // W: max(i * n // W + 1, (i + 1) * n // W)])
+                   for i in range(W)]
+        nz = sorted(b for b in buckets if b)
+        thresh = nz[len(nz) // 2] if nz else 1
+        cur = [1 if b >= thresh else 0 for b in buckets]
+    else:
+        # No calendar: fall back to a single live cell, which is the classic
+        # rule-110 seed. The band still runs; it just isn't personalised.
+        cur = [0] * W
+        cur[W - 2] = 1
+
+    RAMP = " ·░▒▓█"
+    # Burn-in. Rule 110 grows leftward, and this account's live cells all sit in
+    # recent months on the right, so the first generations leave two thirds of
+    # the panel empty. Run it forward before capturing so the field is developed.
+    for _ in range(60):
+        cur = [(110 >> (cur[(i - 1) % W] * 4 + cur[i] * 2 + cur[(i + 1) % W])) & 1
+               for i in range(W)]
+    rows = []
+    age = [0] * W
+    for _ in range(H):
+        age = [(age[i] + 1 if cur[i] else 0) for i in range(W)]
+        rows.append("".join(RAMP[0] if not cur[i] else RAMP[min(5, 1 + age[i])]
+                            for i in range(W)))
+        cur = [(110 >> (cur[(i - 1) % W] * 4 + cur[i] * 2 + cur[(i + 1) % W])) & 1
+               for i in range(W)]
+
+    BCH, BLH = 8.0, 11
+    band_h = H * BLH
+    band = []
+    for rep in (0, 1):                    # drawn twice so the scroll loop is seamless
+        for gi, r in enumerate(rows):
+            band.append(f'<text class="g{gi * 4 // H}" x="0" '
+                        f'y="{(rep * H + gi) * BLH + BLH}" font-size="11">{esc(r)}</text>')
+
+    CH2, LH2, FS2 = 10.2, 20, 17
+    cols = 64
+    tx, ty = 40, 52
+    art = [
+        [("fr", "┌─ "), ("hi", "LOKAVYA SINGH"),
+         ("fr", " ──────────────────────────────── "), ("dm", "JAIPUR · IN"), ("fr", " ─┐")],
+        [("fr", "│"), ("fr", "│")],
+        [("fr", "│"), ("dm", "   "),
+         ("hi", "Local-first desktop software that keeps its receipts."), ("fr", "│")],
+        [("fr", "│"), ("fr", "│")],
+        [("fr", "│"), ("dm", "   "), ("ac", ">"), ("dm", " "), ("cool", "flint    "),
+         ("body", "a desktop timer that is really a plugin engine"), ("fr", "│")],
+        [("fr", "│"), ("dm", "   "), ("ac", ">"), ("dm", " "), ("cool", "vysted   "),
+         ("body", "a finance terminal an agent can drive"), ("fr", "│")],
+        [("fr", "│"), ("dm", "   "), ("ac", ">"), ("dm", " "), ("cool", "ulpf     "),
+         ("body", "a log pipeline that proves what it read"), ("fr", "│")],
+        [("fr", "│"), ("fr", "│")],
+        [("fr", "└──────────────────────── "), ("rust", "rust"), ("dm", " · "),
+         ("gold", "typescript"), ("dm", " · "), ("plum", "python"), ("dm", " · "),
+         ("cool", "tauri"), ("fr", " ─┘")],
+    ]
+    text_rows = []
+    for i, cells in enumerate(art):
+        total = sum(len(t) for _, t in cells)
+        pad = cols - total
+        if pad > 0:
+            c, t = cells[-2] if len(cells) > 1 else cells[-1]
+            cells = list(cells)
+            cells[-2 if len(cells) > 1 else -1] = (c, t + " " * pad)
+        spans = "".join(f'<tspan class="{c}">{esc(t)}</tspan>' for c, t in cells)
+        text_rows.append(f'<text x="{tx}" y="{ty + i * LH2}" font-size="{FS2}" '
+                         f'textLength="{cols * CH2:.1f}" lengthAdjust="spacing">{spans}</text>')
+
+    w_px, h_px = int(cols * CH2 + tx * 2), 300
+    css = f"""
+.band text{{font-size:11px}}
+@keyframes climb{{from{{transform:translateY(0)}}to{{transform:translateY(-{band_h}px)}}}}
+.band{{animation:climb 44s linear infinite}}
+@media (prefers-reduced-motion: reduce){{ .band{{animation:none}} }}
+"""
+    body = f"""
+<defs>
+  <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#fff" stop-opacity=".10"/>
+    <stop offset="42%" stop-color="#fff" stop-opacity=".95"/>
+    <stop offset="100%" stop-color="#fff" stop-opacity="1"/>
+  </linearGradient>
+  <mask id="bandmask"><rect width="{w_px}" height="{h_px}" fill="url(#fade)"/></mask>
+  <radialGradient id="scrim" cx="42%" cy="40%" r="72%">
+    <stop offset="0%" stop-color="#15110C" stop-opacity=".93"/>
+    <stop offset="100%" stop-color="#15110C" stop-opacity="0"/>
+  </radialGradient>
+</defs>
+<clipPath id="panel"><rect width="{w_px}" height="{h_px}" rx="10"/></clipPath>
+<g clip-path="url(#panel)">
+  <g mask="url(#bandmask)" opacity=".46">
+    <g class="band">{''.join(band)}</g>
+  </g>
+</g>
+<rect class="scrim" width="{w_px}" height="{h_px}" fill="url(#scrim)"/>
+{''.join(text_rows)}
+"""
+    return svg_doc(w_px, h_px,
+                   "Lokavya Singh — local-first desktop software that keeps its receipts",
+                   "An amber CRT frame over a band running cellular automaton rule 110, "
+                   "seeded with the real contribution year. Three projects: flint, a "
+                   "desktop timer that is really a plugin engine; vysted, a finance "
+                   "terminal an agent can drive; ulpf, a log pipeline that proves what "
+                   "it read.",
+                   css, body)
+
 
 def gen_activity():
     created, weeks, total = calendar()
@@ -555,6 +696,89 @@ def gen_ticker():
                    "the public repositories, newest first.", css, "\n".join(parts))
 
 
+LANG_CLASS = {
+    "Rust": "rust", "TypeScript": "gold", "Python": "plum",
+    "JavaScript": "gold", "Svelte": "ac", "Shell": "dm", "CSS": "dm",
+    "HTML": "dm", "Dockerfile": "dm", "PowerShell": "dm",
+}
+
+
+def _row_svg(stack, tag, state, cls, alt):
+    """One compact metadata strip: stack tokens colour-coded by language, then
+    the release state. Colour means something here -- language identity and
+    release maturity -- rather than decorating.
+
+    This is an SVG rather than markdown backticks because a code span picks up
+    GitHub's grey default styling, which drags a generic dev-portfolio look into
+    a page that is deliberately warm phosphor throughout.
+    """
+    CH, FS, H = 7.0, 12, 20
+    cells = []
+    for i, (name, lcls) in enumerate(stack):
+        if i:
+            cells.append(("dm", " · "))
+        cells.append((lcls, name))
+    cells.append(("dm", "   "))
+    cells.append((cls, f"■ {tag}" if tag else "■"))
+    cells.append(("dm", f" {state}"))
+
+    text = "".join(t for _, t in cells)
+    w = int(len(text) * CH) + 8
+    spans = "".join(f'<tspan class="{c}">{esc(t)}</tspan>' for c, t in cells)
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {H}" '
+            f'width="{w}" height="{H}" role="img" xml:space="preserve">'
+            f'<title>{esc(alt)}</title>'
+            f'<style>{BASE_CSS}text{{font-size:{FS}px}}</style>'
+            f'<text x="2" y="14" textLength="{len(text)*CH:.1f}" '
+            f'lengthAdjust="spacing">{spans}</text></svg>')
+
+
+def gen_rows():
+    """A metadata strip per public repository. Scales by construction: adding a
+    repo adds a file, and the README grows by one line. Nothing about the layout
+    degrades at six or eight entries because each entry is independent."""
+    repos = public_repos()
+    if not repos:
+        raise RuntimeError("no public repositories returned")
+
+    made = []
+    for r in repos:
+        langs = rest(f"/repos/{USER}/{r['name']}/languages") or {}
+        # Byte count alone surfaces build and config noise -- Shell scripts and
+        # a CSS file are not what the project is written in. Drop those, and
+        # drop JavaScript when TypeScript is present since it is almost always
+        # config and generated output rather than a second language.
+        NOISE = {"Shell", "PowerShell", "CSS", "HTML", "Dockerfile", "Makefile",
+                 "Batchfile", "SCSS"}
+        langs = {k: v for k, v in langs.items() if k not in NOISE}
+        if "TypeScript" in langs:
+            langs.pop("JavaScript", None)
+        top = sorted(langs.items(), key=lambda kv: -kv[1])[:3]
+        stack = [(k.lower(), LANG_CLASS.get(k, "dm")) for k, _ in top] or [("—", "dm")]
+
+        rel = [x for x in (rest(f"/repos/{USER}/{r['name']}/releases") or [])
+               if not x.get("draft")]
+        if rel:
+            rel.sort(key=lambda x: x.get("published_at") or "", reverse=True)
+            t = rel[0]
+            tag, state = t["tag_name"], ("pre-release" if t.get("prerelease") else "released")
+            cls = "rust" if t.get("prerelease") else "gold"
+        else:
+            tags = rest(f"/repos/{USER}/{r['name']}/tags?per_page=1") or []
+            if tags:
+                tag, state, cls = tags[0]["name"], "tagged, no release", "ac"
+            else:
+                tag, state, cls = "", "no release yet", "deep"
+
+        alt = (f"{r['name']}: " + ", ".join(k for k, _ in stack)
+               + f" — {tag + ' ' if tag else ''}{state}")
+        svg = _row_svg(stack, tag, state, cls, alt)
+        path = os.path.join(ASSETS, f"row-{r['name']}.svg")
+        write_atomic(path, svg, f"row-{r['name']}")
+        made.append(r["name"])
+    return made
+
+
 def no_data(title, reason):
     """A legible frame. Never an empty file -- <img> renders that as a broken
     image icon, which is worse on the page than stale or absent data."""
@@ -612,9 +836,9 @@ def write_atomic(path, svg, name):
 
 
 GENERATORS = [
+    ("hero",     "hero.svg",     gen_hero),
     ("activity", "activity.svg", gen_activity),
     ("stats",    "stats.svg",    gen_stats),
-    ("releases", "releases.svg", gen_releases),
     ("chain",    "chain.svg",    gen_chain),
     ("ticker",   "ticker.svg",   gen_ticker),
 ]
@@ -624,6 +848,16 @@ def main():
     os.makedirs(ASSETS, exist_ok=True)
     only = sys.argv[1:]
     ok, failed = [], []
+    if not only or "rows" in only:
+        try:
+            made = gen_rows()
+            ok.append(f"rows ({len(made)})")
+            print(f"ok      {'rows':9} -> " + ", ".join(f"assets/row-{m}.svg" for m in made),
+                  flush=True)
+        except Exception:
+            failed.append("rows")
+            print("FAILED  rows      -> kept last committed row SVGs", flush=True)
+            traceback.print_exc()
     for name, fname, fn in GENERATORS:
         if only and name not in only:
             continue
