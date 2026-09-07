@@ -40,18 +40,33 @@ structure. Vintage and warm.
 
 Light mode is not an inversion — it is the same instrument printed on aged paper.
 
-| role | dark (base) | light |
-|---|---|---|
-| glass / background | `#15110C` | `#F2E7D3` |
-| panel edge | `#241B12` | `#DCC9A8` |
-| body text | `#E8A33D` | `#8A4F14` |
-| frame / box-drawing | `#B07D2A` | `#9A6E24` |
-| bright (`.hi`) | `#F7E7C6` | `#2B1D0E` |
-| accent, oxblood (`.ac`) | `#9B3A2E` | `#8C2F27` |
-| dim (`.dm`) | `#7A5A2E` | `#A08769` |
-| density ramp `.q0`–`.q4` | `#3A2E1E` → `#F7E7C6` | `#DFCDAC` → `#4A2A0A` |
+**Colour carries meaning. It is not decoration.** Every accent below has a job;
+if you add one without a job, it is wrong. The failure mode is going rainbow and
+losing the 1997-CRT coherence — if a choice starts feeling like a generic
+dev-portfolio palette, it is wrong.
 
-Ramp characters for the activity graph: `·░▒▓█`.
+| class | dark (base) | light | what it MEANS |
+|---|---|---|---|
+| `.glass` | `#15110C` | `#F2E7D3` | panel ground |
+| `.edge` | `#241B12` | `#DCC9A8` | panel border |
+| `text` | `#E8A33D` | `#8A4F14` | body — amber |
+| `.fr` | `#B07D2A` | `#9A6E24` | frame, box-drawing, structure |
+| `.hi` | `#F7E7C6` | `#2B1D0E` | emphasis, values, cream |
+| `.cool` | `#E8E4D2` | `#3F4A44` | cooler cream — contrast against the warm |
+| `.dm` | `#8F6C38` | `#8A7050` | labels, secondary |
+| `.ac` | `#9B3A2E` | `#8C2F27` | oxblood — prompts, "tagged, no release" |
+| `.deep` | `#7A2620` | `#6B1F1A` | deep oxblood — "no release yet" |
+| `.rust` | `#C25A1E` | `#A8430F` | **Rust**, and pre-release state |
+| `.gold` | `#D9B45B` | `#8A6A1E` | **TypeScript / JavaScript**, and released state |
+| `.plum` | `#8E4A5E` | `#7A3A4C` | **Python** — the unexpected accent, still warm |
+| `.q0`–`.q4` | `#3A2E1E` → `#F7E7C6` | `#DFCDAC` → `#4A2A0A` | activity density |
+| `.g0`–`.g3` | `#5A3A18` → `#E8A33D` | `#D8C4A2` → `#8A4F14` | automaton generation age |
+
+Ramp characters for the activity graph and the hero band: `·░▒▓█`.
+
+`.dm` is tuned to hold contrast against **GitHub's** background (`#0d1117` /
+`#ffffff`), not against the panel glass — the per-repo row strips are transparent
+and sit directly on the page.
 
 ---
 
@@ -126,8 +141,31 @@ The failure mode is a page where five things loop at once and the whole thing
 reads as a slot machine.
 
 - **At most two elements animate continuously.** Currently exactly two: the
-  hero's scanline drift, and the commit ticker's horizontal roll. Adding a third
+  hero's automaton band, and the commit ticker's horizontal roll. Adding a third
   means removing one.
+
+### Ruled out — do not reintroduce these
+
+The first hero used a scanline sweep plus a staggered fade-in. Both are the
+default ASCII-profile move; neither had a mechanism underneath. **Banned:**
+typewriter / text reveal, matrix rain, blinking cursor, glow pulse, scanline
+sweep, generic fade-in.
+
+What makes motion not generic here is that a **system with rules produces it**.
+The hero band runs elementary cellular automaton **rule 110**, seeded from the
+real contribution year bucketed to the band width, with a 60-generation burn-in
+(rule 110 grows leftward, and this account's live cells are all recent, so
+without the burn-in two thirds of the panel is empty). Colour is per generation
+rather than per cell — that alone took the field from ~122 KB of alternating
+tspans to ~14 KB, and it reads as phosphor age, which is what a scrolling CRT
+does anyway.
+
+Two other concepts were built and rasterised rather than argued about:
+a commit-cadence trace with real exponential phosphor decay (reads as a bar
+chart once frozen), and a SHA-256 avalanche (**disqualified**: frozen for
+reduced-motion it is just a hash, so its entire meaning lives in the animation).
+That last one is the general test — **if a concept is meaningless in its
+reduced-motion freeze frame, it is not a candidate.**
 - Everything else animates **once on load and settles**, or is static. The
   activity graph wipes in left-to-right once. The stats, releases and chain panels
   do not animate at all — they are dense with text, and motion made them harder
@@ -168,20 +206,64 @@ activity graph this script draws.
 `secrets.GITHUB_TOKEN`. See "Contribution counts depend on the token" below —
 this matters more than it looks.
 
+**Rebase conflicts in `assets/` are expected** while iterating: a push that
+touches `tools/generate.py` triggers the workflow, which commits regenerated
+SVGs and races your next local commit. **Resolve by regenerating, never by
+text-merging an SVG** — `python tools/generate.py`, `git add -A`,
+`git rebase --continue`.
+
 **Caveat:** GitHub disables scheduled workflows after 60 days with no repository
 activity. The workflow's own commits count, but if the data never changes for 60
 days there are no commits and it can be switched off. Re-enable from the Actions tab.
 
 ---
 
+## The open-source section must scale
+
+One hook per project, then a generated metadata strip. **Roughly one line each**
+— a stranger should take in the whole section in about five seconds and know
+which repo to click.
+
+```
+**[name](url)** — the single most interesting true thing about it.␣␣
+<img src="assets/row-<name>.svg" height="20" alt="stack — release state">
+```
+
+The two trailing spaces are **load-bearing**: GitHub's profile README does not
+render a soft newline as a break, so without them the strip renders inline and
+the section collapses. Verified on the live page — the `/markdown` API renders
+soft breaks differently and will not reproduce this.
+
+**It scales because each entry is independent.** Verified by mocking the section
+at eight entries in a real 390px viewport: still two lines each, no overflow,
+still scans. Adding a repo adds one markdown line; `gen_rows()` produces its
+strip automatically. Do not replace this with a table or a card grid — both need
+horizontal room that a phone does not have.
+
+Depth belongs in each repo's own README, which is where a curious reader goes
+next. The sandbox details, the three-process architecture, the test counts and
+the notarisation caveats were **relocated, not deleted**.
+
+## Mobile is a hard constraint
+
+GitHub's README column is **309 px wide on a 390 px phone**, and images are
+downscaled to fit. A panel 940 px wide lands there at a 3× reduction, which put
+13 px ASCII at roughly **4 px** — an illegible smudge. Natural widths are now
+514–581 px, giving 7.4–8.4 px effective type.
+
+**Keep panels under ~600 px natural.** There is a floor: 53 weeks at one
+character each cannot be legible in 309 px, so the activity graph's labels
+degrade on a phone by construction while its heatmap shape survives. That is a
+deliberate trade, not an oversight.
+
 ## The panels
 
 | file | what it is | data source | animates |
 |---|---|---|---|
-| `hero.svg` | hand-built CRT frame, name and three projects | none, static content | scanline drift (continuous) + entrance |
+| `hero.svg` | CRT frame over a rule-110 band seeded by real data | GraphQL `contributionCalendar` | band scroll (continuous) |
 | `activity.svg` | contribution year as an ASCII density graph | GraphQL `contributionCalendar` | wipes in once |
 | `stats.svg` | real counts, no stars/forks/followers | REST `stats/contributors`, `languages`, `releases` | no |
-| `releases.svg` | latest release or tag per repo | REST `releases`, `tags` | no |
+| `row-<repo>.svg` | stack + release state, one per repo, transparent | REST `languages`, `releases`, `tags` | no |
 | `chain.svg` | recent commits as a verified hash chain | REST `commits` incl. parents | no |
 | `ticker.svg` | recent commit subjects, scrolling | REST `commits` | horizontal roll (continuous) |
 
@@ -191,16 +273,30 @@ structurally the thing ulpf builds for logs. The generator walks the real chain 
 **actually verifies** each link rather than illustrating one, and prints the count
 of links checked and broken.
 
+### Asset caching — measured
+
+README images in the **same repo** are **not** proxied through camo. GitHub
+rewrites them to `/<user>/<repo>/raw/main/...`, which is a 302 carrying
+`Cache-Control: no-cache`, redirecting to `raw.githubusercontent.com` where the
+asset carries **`max-age=300`** behind Fastly.
+
+Pushed a change and polled the ETag: it flipped after **262 seconds**. So worst
+case a logged-out visitor sees an asset ~5 minutes stale, and it self-corrects.
+**A cache-busting query parameter is neither needed nor useful** — it would only
+add a URL that changes on every run, defeating the deterministic-output design.
+
 ### Contribution counts depend on the token
 
-`contributionsCollection` returns different numbers depending on who is asking.
-Queried with the account owner's PAT it includes commits to private repositories;
-queried with a repo-scoped `GITHUB_TOKEN` it sees public contributions only. The
-number on the panel will therefore *drop* if the workflow falls back to
-`GITHUB_TOKEN`. If that matters, add a fine-grained PAT with read access to the
-account's repositories as the `PROFILE_TOKEN` secret. `stats.svg` labels its
-repo-derived rows "public repositories" precisely so the smaller figure is still
-an honest one.
+**Measured: `GITHUB_TOKEN` works and no PAT is needed.** The runner returned
+4,250 contributions against the owner PAT's 4,249 — a difference of exactly the
+one commit made in between, not a visibility gap. This holds because
+`restrictedContributionsCount` is 0; all contributions are public.
+
+It would diverge if private contributions were ever counted (turn on "include
+private contributions" in profile settings). If that happens the panel's number
+will *drop* when the workflow runs, and the fix is a fine-grained PAT with read
+access to the account's repositories, stored as the `PROFILE_TOKEN` secret —
+the workflow already prefers it and falls back to `GITHUB_TOKEN`.
 
 ---
 
