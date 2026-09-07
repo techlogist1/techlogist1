@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 941 228" width="941" height="228" role="img" aria-labelledby="t d" xml:space="preserve">
+<title id="t">Contribution activity — 4249 contributions in the last year</title>
+<desc id="d">An ASCII density graph of 4249 contributions across 53 weeks. 91 active days, peak 330 in a single day.</desc>
+<style>
+.glass{fill:#15110C}
+.edge{fill:none;stroke:#241B12;stroke-width:1}
+text{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Cascadia Mono","DejaVu Sans Mono","Liberation Mono",monospace;font-size:13px;white-space:pre;fill:#E8A33D}
+.fr{fill:#B07D2A} .hi{fill:#F7E7C6} .ac{fill:#9B3A2E} .dm{fill:#7A5A2E}
+.q0{fill:#3A2E1E} .q1{fill:#8A6224} .q2{fill:#C08A2E} .q3{fill:#E8A33D} .q4{fill:#F7E7C6}
+.scan{opacity:.05}
+.vig{opacity:1}
+@media (prefers-color-scheme: light){
+  .glass{fill:#F2E7D3}
+  .edge{stroke:#DCC9A8}
+  text{fill:#8A4F14}
+  .fr{fill:#9A6E24} .hi{fill:#2B1D0E} .ac{fill:#8C2F27} .dm{fill:#A08769}
+  .q0{fill:#DFCDAC} .q1{fill:#C9A263} .q2{fill:#A9741F} .q3{fill:#8A4F14} .q4{fill:#4A2A0A}
+  .scan{opacity:.028}
+  .vig{opacity:.18}
+}
+
+/* Base state is the finished grid. The wipe's start frame is supplied by
+   fill-mode backwards, so a renderer without animation support shows the
+   graph complete rather than blank. Animates once on load, then settles. */
+.grid{clip-path:none}
+@keyframes wipe{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+.grid{animation:wipe 1.6s cubic-bezier(.25,.6,.25,1) .2s backwards}
+@media (prefers-reduced-motion: reduce){ .grid{animation:none} }
+</style>
+<defs>
+  <pattern id="sl" width="6" height="6" patternUnits="userSpaceOnUse">
+    <rect width="6" height="3" fill="#000"/>
+  </pattern>
+  <radialGradient id="vig" cx="50%" cy="46%" r="78%">
+    <stop offset="58%" stop-color="#000" stop-opacity="0"/>
+    <stop offset="100%" stop-color="#000" stop-opacity=".34"/>
+  </radialGradient>
+</defs>
+<rect class="glass" width="941" height="228" rx="8"/>
+<text x="22" y="42" textLength="897.0" lengthAdjust="spacing"><tspan class="fr">┌─ ACTIVITY ─────────────────────────────────────────────────────────────── 4,249 contributions in the last year ─┐</tspan></text>
+<text x="22" y="58" textLength="897.0" lengthAdjust="spacing"><tspan class="fr">│</tspan><tspan class="dm">       Sep     Oct     Nov       Dec     Jan     Feb     Mar       Apr     May       Jun     Jul     Aug         </tspan><tspan class="fr">│</tspan></text>
+<g class="grid"><text x="22" y="74" textLength="897.0" lengthAdjust="spacing"><tspan class="fr">│</tspan><tspan class="dm">  Mon  </tspan><tspan class="q0">· · · · · · · · · · · · · · · · · · · · · · · · · · · </tspan><tspan class="q1">░ </tspan><tspan class="q0">· · </tspan><tspan class="q1">░ ░ </tspan><tspan class="q0">· · </tspan><tspan class="q3">▓ </tspan><tspan class="q1">░ </tspan><tspan class="q2">▒ </tspan><tspan class="q0">· </tspan><tspan class="q1">░ </tspan><tspan class="q0">· · · · · · </tspan><tspan class="q1">░ </tspan><tspan class="q2">▒ </tspan><tspan class="q1">░ </tspan><tspan class="q0">· · · · </tspan><tspan class="q4">█ </tspan><tspan class="fr">│</tspan></text><text x="22" y="90" textLength="897.0" lengthAdjust="spacing"><tspan class="fr">│</tspan><tspan class="dm">       </tspan><tspan class="q0">· · · · · · · · · · · · · · · · · · · · · · · · · · · </tspan><tspan class="q1">░ </tspan><tspan class="q0">· </tspan><tspan class="q1">░ ░ ░ ░ </tspan><tspan class="q0">· </tspan><tspan class="q2">▒ </tspan><tspan class="q3">▓ </tspan><tspan class="q2">▒ </tspan><tspan class="q1">░ </tspan><tspan class="q0">· · · · · </tspan><tspan class="q2">▒ </tspan><tspan class="q1">░ </tspan><tspan class="q0">· </tspan><tspan class="q1">░ ░ </tspan><tspan class="q0">· · · · </tspan><tspan class="q2">▒ </tspan><tspan class="fr">│</tspan></text><text x="22" y="106" textLength="897.0" lengthAdjust="spacing"><tspan class="fr">│</tspan><tspan class="dm">  Wed  </tspan><tspan class="q0">· · · · · · · · · · · · · · · · · · · · · · · · · · · </tspan><tspan class="q1">░ </tspan><tspan class="q0">· </tspan><tspan class="q1">░ ░ ░ </tspan><tspan class="q0">· · </tspan><tspan class="q3">▓ </tspan><tspan class="q2">▒ </tspan><tspan class="q1">░ ░ </tspan><tspan class="q0">· · · · · </tspan><tspan class="q3">▓ ▓ </tspan><tspan class="q0">· </tspan><tspan class="q1">░ ░ </tspan><tspan class="q0">· · · ·   </tspan><tspan class="fr">│</tspan></text><text x="22" y="122" textLength="897.0" lengthAdjust="spacing"><tspan class="fr">│</tspan><tspan class="dm">       </tspan><tspan class="q0">· · · · · · · · · · · · · · · · · · · · · · · · · · · · · </tspan><tspan class="q1">░ ░ ░ </tspan><tspan class="q2">▒ </tspan><tspan class="q1">░ </tspan><tspan class="q4">█ </tspan><tspan class="q2">▒ </tspan><tspan class="q1">░ </tspan><tspan class="q0">· </tspan><tspan class="q1">░ </tspan><tspan class="q0">· · </tspan><tspan class="q1">░ </tspan><tspan class="q0">· </tspan><tspan class="q2">▒ </tspan><tspan class="q4">█ </tspan><tspan class="q0">· · · · · · ·   </tspan><tspan class="fr">│</tspan></text><text x="22" y="138" textLength="897.0" lengthAdjust="spacing"><tspan class="fr">│</tspan><tspan class="dm">  Fri  </tspan><tspan class="q0">· · · · · · · · · · · · · · · · · · </tspan><tspan class="q1">░ </tspan><tspan class="q0">· · · · · · · · · </tspan><tspan class="q1">░ </tspan><tspan class="q0">· </tspan><tspan class="q1">░ ░ ░ ░ </tspan><tspan class="q3">▓ ▓ </tspan><tspan class="q1">░ </tspan><tspan class="q0">· · · · · </tspan><tspan class="q1">░ </tspan><tspan class="q2">▒ </tspan><tspan class="q3">▓ </tspan><tspan class="q0">· · · · · · ·   </tspan><tspan class="fr">│</tspan></text><text x="22" y="154" textLength="897.0" lengthAdjust="spacing"><tspan class="fr">│</tspan><tspan class="dm">       </tspan><tspan class="q0">· · · · · · · · · · · · · · · · · · · · · · · · · · </tspan><tspan class="q1">░ </tspan><tspan class="q0">· · · </tspan><tspan class="q1">░ ░ </tspan><tspan class="q2">▒ ▒ </tspan><tspan class="q3">▓ </tspan><tspan class="q2">▒ </tspan><tspan class="q1">░ ░ </tspan><tspan class="q2">▒ </tspan><tspan class="q0">· · · </tspan><tspan class="q1">░ </tspan><tspan class="q3">▓ ▓ </tspan><tspan class="q0">· · · · · · </tspan><tspan class="q1">░ </tspan><tspan class="q0">  </tspan><tspan class="fr">│</tspan></text><text x="22" y="170" textLength="897.0" lengthAdjust="spacing"><tspan class="fr">│</tspan><tspan class="dm">       </tspan><tspan class="q0">· · · · · · · · · · · · · · · · · · · · · · · · · · </tspan><tspan class="q1">░ </tspan><tspan class="q0">· </tspan><tspan class="q1">░ </tspan><tspan class="q0">· </tspan><tspan class="q1">░ ░ ░ </tspan><tspan class="q2">▒ </tspan><tspan class="q4">█ █ </tspan><tspan class="q0">· </tspan><tspan class="q1">░ ░ </tspan><tspan class="q0">· · · </tspan><tspan class="q3">▓ </tspan><tspan class="q0">· </tspan><tspan class="q1">░ ░ ░ </tspan><tspan class="q2">▒ </tspan><tspan class="q0">· · · </tspan><tspan class="q3">▓ </tspan><tspan class="q0">  </tspan><tspan class="fr">│</tspan></text></g>
+<text x="22" y="202" textLength="897.0" lengthAdjust="spacing"><tspan class="fr">│</tspan><tspan class="dm">  91 active days   peak 330 in a day   less </tspan><tspan class="q0">·</tspan><tspan class="q1">░</tspan><tspan class="q2">▒</tspan><tspan class="q3">▓</tspan><tspan class="q4">█</tspan><tspan class="dm"> more                                                           </tspan><tspan class="fr">│</tspan></text>
+<text x="22" y="218" textLength="897.0" lengthAdjust="spacing"><tspan class="fr">└───────────────────────────────────────────────────────────────────────────────────── densest week on the right ─┘</tspan></text>
+<rect class="scan" x="0" y="-12" width="941" height="252" fill="url(#sl)"/>
+<rect class="vig" width="941" height="228" rx="8" fill="url(#vig)"/>
+<rect class="edge" x=".5" y=".5" width="940" height="227" rx="8"/>
+</svg>
