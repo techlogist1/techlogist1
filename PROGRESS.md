@@ -52,18 +52,24 @@ social account all set via the API. Repo description, homepage and topics set.
 - **Row alignment: 0 px spread** across every row of every panel, pixel-measured
   with Pillow, down from 1142 px before the `line()` refactor.
 
+**Pinned repositories cannot be set through any API.** GraphQL exposes only
+`pinIssue`, `pinIssueComment`, `pinEnvironment` — there is no repository-pinning
+mutation, and REST has no endpoint.
+
+**Second pass.** The open-source section became an index (one hook per project
+plus a generated metadata strip, verified to still scan at eight entries in a
+390px viewport). The hero was rebuilt on rule 110 seeded by the real contribution
+year, replacing a scanline sweep and fade-in. The palette widened so colour
+carries language and release state. Panels were narrowed after the live page
+showed them downscaling to ~4px type on a phone.
+
+Degradation exercised, all four passing: a generator raising, an empty data
+source, a bad token, and a banned URL injected into an asset.
+
 ## Open / not done by me
 
-- **Pinned repositories cannot be set through any API.** GraphQL exposes only
-  `pinIssue`, `pinIssueComment`, `pinEnvironment` — there is no repository-pinning
-  mutation, and REST has no endpoint. Current pins are `vysted-terminal`, `flint`,
-  `techlogist1`, `ulpf`. The intended set is the three projects, so **the profile
-  repo itself needs unpinning by hand** in the web UI. Reported, not silently skipped.
-
-## In flight
-
-Restructuring the open-source section to one line per project (it currently reads
-as a README, not an index), rebuilding the hero animation on a real mechanism
-(rule 110 seeded by the contribution year) after the first version leaned on a
-scanline sweep and a fade-in — both generic — and widening the palette so colour
-carries language and release state rather than decorating.
+- **Pinned repositories cannot be set through any API** (see above). The profile
+  repo `techlogist1` is currently pinned alongside the three projects and needs
+  **unpinning by hand** in the web UI to reach the intended set.
+- **`vysted.com` has no A record**, so it is unlinked in the README. Point the
+  domain at its deployment and restore the link.
