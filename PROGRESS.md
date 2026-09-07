@@ -66,6 +66,19 @@ showed them downscaling to ~4px type on a phone.
 Degradation exercised, all four passing: a generator raising, an empty data
 source, a bad token, and a banned URL injected into an asset.
 
+**Third pass — monochrome.** Warm phosphor was removed rather than retuned; see
+CLAUDE.md for why and for the note that stops it being reintroduced. Every panel
+and the hero now share one width (`COLS = 61`) and one font size. The stack row
+left the hero SVG and became clickable generated badges in the README, because an
+`<img>` cannot hold a clickable region. The commit ticker was cut.
+
+Two defects found by measuring, not by looking:
+- the automaton field had no `textLength`, so it stopped at **72.6%** of the
+  panel and left a bald right margin behind a hard seam (the vignette hid it);
+  now 99.9%
+- the hero rendered *smaller* on screen than the panels below it, at 732 units
+  against 514-581
+
 ## Open / not done by me
 
 - **Pinned repositories cannot be set through any API** (see above). The profile
