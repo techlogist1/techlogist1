@@ -21,18 +21,18 @@ I'm 19, from Jaipur, a first-year CS student at Shiv Nadar University on a 2+2 w
 **[flint](https://github.com/techlogist1/flint)** — every timer mode is a plugin, including the built-in ones.  
 [![typescript](assets/badge-typescript.svg)](https://github.com/techlogist1?tab=repositories&language=typescript)
 [![rust](assets/badge-rust.svg)](https://github.com/techlogist1?tab=repositories&language=rust)
-[![tauri](assets/badge-tauri.svg)](https://github.com/techlogist1/flint)
+[![tauri](assets/badge-tauri.svg)](https://github.com/techlogist1/flint)  
 [![v0.1.4 released](assets/rel-flint.svg)](https://github.com/techlogist1/flint/releases/latest)
 
 **[vysted-terminal](https://github.com/techlogist1/vysted-terminal)** — a finance terminal an AI agent can actually drive.  
 [![typescript](assets/badge-typescript.svg)](https://github.com/techlogist1?tab=repositories&language=typescript)
 [![python](assets/badge-python.svg)](https://github.com/techlogist1/vysted-terminal)
-[![rust](assets/badge-rust.svg)](https://github.com/techlogist1?tab=repositories&language=rust)
+[![rust](assets/badge-rust.svg)](https://github.com/techlogist1?tab=repositories&language=rust)  
 [![v0.8.0 tagged, no release](assets/rel-vysted-terminal.svg)](https://github.com/techlogist1/vysted-terminal/tags)
 
 **[ulpf](https://github.com/techlogist1/ulpf)** — stores every original byte before it tries to understand any of them.  
 [![rust](assets/badge-rust.svg)](https://github.com/techlogist1?tab=repositories&language=rust)
-[![svelte](assets/badge-svelte.svg)](https://github.com/techlogist1/ulpf)
+[![svelte](assets/badge-svelte.svg)](https://github.com/techlogist1/ulpf)  
 [![v0.1.0-rc3 pre-release](assets/rel-ulpf.svg)](https://github.com/techlogist1/ulpf/releases)
 
 ## Shipping
