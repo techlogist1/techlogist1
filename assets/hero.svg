@@ -68,6 +68,14 @@ text{
   .sweep{display:none}
 }
 </style>
+<metadata>
+  ulpf.raw_id 0   parser svg_hero   parse_status parsed   sub_status matched
+  sha256 51367fe9571bccfd5a22376983df0eaddbe5ae1fb1d4f0a66d8e3a4ab85305d5
+  that digest covers the nine lines of art in this file, newline-joined,
+  trailing newline included. it is here so it can be checked, not admired.
+  you opened the source instead of trusting the render. that is the entire
+  point of everything linked below.
+</metadata>
 <defs>
   <pattern id="sl" width="6" height="6" patternUnits="userSpaceOnUse">
     <rect width="6" height="3" fill="#000"/>
