@@ -311,6 +311,12 @@ the workflow already prefers it and falls back to `GITHUB_TOKEN`.
   legally all-rights-reserved while carrying an outside fork. Fixed 2026-09-07.
 - `ulpf v0.1.0-rc3` was published the same day; all three drafts had **empty**
   release bodies.
+- **`vysted.com` has no A record.** The domain is registered and sitting on
+  Cloudflare nameservers (`ara.ns.cloudflare.com`) but resolves to nothing —
+  a DNS query returns NOERROR with only an SOA. It is therefore **unlinked** in
+  the README; the product is still named. Point the domain at its deployment and
+  restore the link. Checked against 8.8.8.8, 1.1.1.1 and Cloudflare DoH, not just
+  the local resolver.
 - Account metadata (bio, blog, location, socials) is set through `PATCH /user`,
   which needs the **`user`** OAuth scope. `repo` is not enough:
   `gh auth refresh -h github.com -s user`.

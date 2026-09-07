@@ -25,7 +25,7 @@ I'm 19, from Jaipur, a first-year CS student at Shiv Nadar University on a 2+2 w
 ## Shipping
 
 **[Luminfaber](https://luminfaber.com)** — B2B AI agency.  
-**[Vysted](https://vysted.com)** — college discovery for the people actually applying.  
+**Vysted** — college discovery for the people actually applying.  
 **[rajkanwar.com](https://rajkanwar.com)** — editorial site for my grandmother, a master textile artist.
 
 ## By the numbers
