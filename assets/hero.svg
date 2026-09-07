@@ -5,7 +5,7 @@
 .glass{fill:#15110C}
 .edge{fill:none;stroke:#241B12;stroke-width:1}
 text{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Cascadia Mono","DejaVu Sans Mono","Liberation Mono",monospace;font-size:13px;white-space:pre;fill:#E8A33D}
-.fr{fill:#B07D2A} .hi{fill:#F7E7C6} .ac{fill:#9B3A2E} .dm{fill:#7A5A2E}
+.fr{fill:#B07D2A} .hi{fill:#F7E7C6} .ac{fill:#9B3A2E} .dm{fill:#8F6C38}
 .cool{fill:#E8E4D2} .deep{fill:#7A2620} .body{fill:#E8A33D} .scrim{opacity:1}
 .rust{fill:#C25A1E} .gold{fill:#D9B45B} .plum{fill:#8E4A5E}
 .g0{fill:#5A3A18} .g1{fill:#8A5A20} .g2{fill:#C25A1E} .g3{fill:#E8A33D}
@@ -16,7 +16,7 @@ text{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Cascadia 
   .glass{fill:#F2E7D3}
   .edge{stroke:#DCC9A8}
   text{fill:#8A4F14}
-  .fr{fill:#9A6E24} .hi{fill:#2B1D0E} .ac{fill:#8C2F27} .dm{fill:#A08769}
+  .fr{fill:#9A6E24} .hi{fill:#2B1D0E} .ac{fill:#8C2F27} .dm{fill:#8A7050}
   .cool{fill:#3F4A44} .deep{fill:#6B1F1A} .body{fill:#8A4F14} .scrim{opacity:0}
   .rust{fill:#A8430F} .gold{fill:#8A6A1E} .plum{fill:#7A3A4C}
   .g0{fill:#D8C4A2} .g1{fill:#BE9354} .g2{fill:#A8430F} .g3{fill:#8A4F14}
