@@ -33,42 +33,68 @@ that isn't the SVG namespace, any `@font-face`, and any `url(http...)`.
 
 ## Aesthetic direction
 
-**Warm phosphor.** A CRT terminal photographed on film in 1997 — not green-on-black
-hacker cliché, not cold modern grey. Amber, ochre and cream on a warm near-black,
-with a single oxblood accent. Monospace throughout, ASCII box-drawing for
-structure. Vintage and warm.
+**Monochrome. White and greys on near-black.** A clean terminal, not a CRT
+effect. Off-white for primary text, mid-grey for secondary, dimmer grey for
+structure and box-drawing. Minimal and sharp.
 
-Light mode is not an inversion — it is the same instrument printed on aged paper.
+**There is no accent colour, deliberately.** An accent has to be justified by a
+meaning a reader can learn. Release state -- the one thing that genuinely needed
+encoding -- is carried by **glyph and value instead of hue**: filled square means
+downloadable now, half square means pre-release, hollow square means nothing cut
+yet. That keeps the page quiet and dodges a trap the previous palette fell into,
+where one colour meant both "Rust" and "pre-release" on the same line. If you add
+an accent, it must mean exactly one thing.
 
-**Colour carries meaning. It is not decoration.** Every accent below has a job;
-if you add one without a job, it is wrong. The failure mode is going rainbow and
-losing the 1997-CRT coherence — if a choice starts feeling like a generic
-dev-portfolio palette, it is wrong.
+**Every panel and the hero share one width (`COLS = 61`) and one font size.**
+That is what makes the page read as a single object rather than a stack of
+differently-scaled widgets. Do not give a new panel its own width.
 
-| class | dark (base) | light | what it MEANS |
+| class | dark (base) | light | role |
 |---|---|---|---|
-| `.glass` | `#15110C` | `#F2E7D3` | panel ground |
-| `.edge` | `#241B12` | `#DCC9A8` | panel border |
-| `text` | `#E8A33D` | `#8A4F14` | body — amber |
-| `.fr` | `#B07D2A` | `#9A6E24` | frame, box-drawing, structure |
-| `.hi` | `#F7E7C6` | `#2B1D0E` | emphasis, values, cream |
-| `.cool` | `#E8E4D2` | `#3F4A44` | cooler cream — contrast against the warm |
-| `.dm` | `#8F6C38` | `#8A7050` | labels, secondary |
-| `.ac` | `#9B3A2E` | `#8C2F27` | oxblood — prompts, "tagged, no release" |
-| `.deep` | `#7A2620` | `#6B1F1A` | deep oxblood — "no release yet" |
-| `.rust` | `#C25A1E` | `#A8430F` | **Rust**, and pre-release state |
-| `.gold` | `#D9B45B` | `#8A6A1E` | **TypeScript / JavaScript**, and released state |
-| `.plum` | `#8E4A5E` | `#7A3A4C` | **Python** — the unexpected accent, still warm |
-| `.q0`–`.q4` | `#3A2E1E` → `#F7E7C6` | `#DFCDAC` → `#4A2A0A` | activity density |
-| `.g0`–`.g3` | `#5A3A18` → `#E8A33D` | `#D8C4A2` → `#8A4F14` | automaton generation age |
+| `.glass` | `#0E0E10` | `#FBFBFC` | panel ground |
+| `.edge` | `#26262B` | `#E2E2E6` | panel border |
+| `text` | `#B8B8BE` | `#45454C` | body |
+| `.hi` | `#EDEDEF` | `#16161A` | primary / emphasis |
+| `.dm` | `#7A7A82` | `#76767E` | secondary, labels |
+| `.fr` | `#4A4A52` | `#A8A8B0` | structure, box-drawing |
+| `.q0`-`.q4` | `#26262B` to `#EDEDEF` | `#EAEAEE` to `#16161A` | activity density |
+| `.g0`-`.g3` | `#1E1E22` to `#55555E` | `#F0F0F2` to `#B8B8C0` | automaton generation age |
 
-Ramp characters for the activity graph and the hero band: `·░▒▓█`.
+Light is a **sensible inversion**, not the dark values ported across: a clean
+near-white ground with dark ink, not a beige one.
 
-`.dm` is tuned to hold contrast against **GitHub's** background (`#0d1117` /
-`#ffffff`), not against the panel glass — the per-repo row strips are transparent
-and sit directly on the page.
+### Rejected: warm phosphor -- do not reintroduce
 
----
+An earlier pass built this entire page in amber, ochre and cream on warm
+near-black, with oxblood, burnt orange, gold and plum accents -- "a CRT
+photographed on film in 1997". **It was tried, shipped, and rejected**: it read
+muddy and busy rather than warm, several accents fell under 3:1 on GitHub's dark
+background, and colour ended up meaning two things at once. Do not bring it back.
+
+## Badges
+
+Technology and release badges are **generated in this repo** (`gen_badges()`),
+one small SVG each, wrapped in markdown links so they are clickable. Not
+shields.io -- generating locally gives exact palette control at the same effort
+and keeps the page dependency-free.
+
+Badges live in the **README, never inside an image**: an `<img>` cannot contain a
+clickable region, so a badge drawn into the hero SVG is inert.
+
+**Link destinations, verified rather than assumed.** `?tab=repositories&language=X`
+works, but matches each repo's **primary language only**:
+
+| badge | destination | why |
+|---|---|---|
+| `rust` | `?tab=repositories&language=rust` | resolves, returns ulpf |
+| `typescript` | `?tab=repositories&language=typescript` | resolves, returns vysted-terminal and flint |
+| `python` | `techlogist1/vysted-terminal` | the filter returns only this profile repo, whose Python is its own tooling -- misleading |
+| `svelte` | `techlogist1/ulpf` | the filter returns an **empty page**; ulpf is where the Svelte UI is |
+| `tauri` | `techlogist1/flint` | no language filter exists for frameworks |
+
+Check any new badge's destination against GitHub's empty-state string before
+shipping it. A badge that links to an empty filter page is worse than one that
+does not link at all.
 
 ## SVG constraints — all of these were found the hard way
 
@@ -105,20 +131,27 @@ Everything below follows from that, or from rasterising and looking at the resul
    the content. Measured with a pixel diff, not guessed — `line()` folds padding
    into the second-to-last cell for exactly this reason.
 
-7. **Line advance ~1.18em.** At `LH: 24` against a 17px font every vertical
+7. **Anything on the character grid needs `textLength`, including the automaton.**
+   The hero's field rows once had none while the framed rows were pinned to the
+   panel width, so the field rendered at its natural advance, stopped dead at
+   **72.6%** and left a bald right margin behind a hard vertical seam. The
+   vignette had been hiding it. Measured with a column ink profile, not spotted
+   by eye.
+
+8. **Line advance ~1.18em.** At `LH: 24` against a 17px font every vertical
    box-drawing rule was visibly broken between rows. Box-drawing glyphs tile at
    roughly the line spacing a terminal uses; `LH = 20` at 17px, `LH = 16` at 13px.
 
-8. **Fonts: generic monospace stack only.** A webfont referenced by URL fails
+9. **Fonts: generic monospace stack only.** A webfont referenced by URL fails
    silently and breaks the layout for every visitor. Nothing is embedded, so no
    file pays for a font.
 
-9. **Base CSS state must be the *finished* frame.** Keyframes supply only the
+10. **Base CSS state must be the *finished* frame.** Keyframes supply only the
    entrance, via `animation-fill-mode: backwards`. A renderer with no animation
    support then shows a complete image rather than a blank one — and
    `prefers-reduced-motion: reduce` becomes a one-line `animation: none`.
 
-10. **Budget: 150 KB per file, 400 KB for the whole README.** Currently ~35 KB
+11. **Budget: 150 KB per file, 400 KB for the whole README.** Currently ~35 KB
     total across six files, so there is a lot of headroom. `verify.py` enforces both.
 
 ### Verifying a change
@@ -140,9 +173,9 @@ the PNGs.** Every real defect in this repo was found by looking, not by reasonin
 The failure mode is a page where five things loop at once and the whole thing
 reads as a slot machine.
 
-- **At most two elements animate continuously.** Currently exactly two: the
-  hero's automaton band, and the commit ticker's horizontal roll. Adding a third
-  means removing one.
+- **At most two elements animate continuously.** Currently exactly **one**: the
+  hero's automaton field. The commit ticker was cut. There is budget for one more
+  if something earns it.
 
 ### Ruled out — do not reintroduce these
 
@@ -260,12 +293,13 @@ deliberate trade, not an oversight.
 
 | file | what it is | data source | animates |
 |---|---|---|---|
-| `hero.svg` | CRT frame over a rule-110 band seeded by real data | GraphQL `contributionCalendar` | band scroll (continuous) |
+| `hero.svg` | terminal frame over a rule-110 field seeded by real data | GraphQL `contributionCalendar` | field scroll (continuous) |
 | `activity.svg` | contribution year as an ASCII density graph | GraphQL `contributionCalendar` | wipes in once |
 | `stats.svg` | real counts, no stars/forks/followers | REST `stats/contributors`, `languages`, `releases` | no |
 | `row-<repo>.svg` | stack + release state, one per repo, transparent | REST `languages`, `releases`, `tags` | no |
 | `chain.svg` | recent commits as a verified hash chain | REST `commits` incl. parents | no |
-| `ticker.svg` | recent commit subjects, scrolling | REST `commits` | horizontal roll (continuous) |
+| `badge-*.svg` | clickable technology pills | none, static | no |
+| `rel-*.svg` | release state per repo, glyph-encoded | REST `releases`, `tags` | no |
 
 `chain.svg` is the one that isn't a standard profile widget. Git is already a
 digest-chained provenance store — every commit names its parent's hash — which is
