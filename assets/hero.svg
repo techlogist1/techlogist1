@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 280" width="780" height="280" role="img" aria-labelledby="ht hd">
+<title id="ht">Lokavya Singh — local-first desktop software that keeps its receipts</title>
+<desc id="hd">An amber CRT terminal frame. Three projects: flint, a desktop timer that is really a plugin engine; vysted, a finance terminal an agent can drive; ulpf, a log pipeline that proves what it read. Built in Rust, TypeScript and Tauri.</desc>
+<style>
+/* ── warm phosphor ────────────────────────────────────────────────────
+   No CSS custom properties anywhere, deliberately. resvg and other
+   non-browser renderers drop var() and fall back to black, which would
+   make the degraded state an error state. Literal colours in the base
+   rules mean the fallback IS the dark design; the media block overrides
+   for light. Dark is the base because it is the intended artwork.
+   ──────────────────────────────────────────────────────────────────── */
+.glass{fill:#15110C}
+.edge{fill:none;stroke:#241B12;stroke-width:1}
+text{
+  font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Cascadia Mono","DejaVu Sans Mono","Liberation Mono",monospace;
+  font-size:17px; white-space:pre; fill:#E8A33D;
+}
+.fr{fill:#B07D2A}
+.hi{fill:#F7E7C6}
+.ac{fill:#9B3A2E}
+.dm{fill:#7A5A2E}
+.bl{opacity:.5}
+.scan{opacity:.055}
+.vig{opacity:1}
+
+@media (prefers-color-scheme: light){
+  .glass{fill:#F2E7D3}
+  .edge{stroke:#DCC9A8}
+  text{fill:#8A4F14}
+  .fr{fill:#9A6E24}
+  .hi{fill:#2B1D0E}
+  .ac{fill:#8C2F27}
+  .dm{fill:#A08769}
+  .bl{opacity:.12}
+  .scan{opacity:.028}
+  /* black edge-darkening reads as CRT curvature on glass and as a dirty
+     smudge on paper, so the vignette is nearly dialled out in light. */
+  .vig{opacity:.18}
+}
+
+/* Base state IS the finished frame. Keyframes supply only the entrance,
+   via fill-mode backwards, so a renderer with no animation support shows
+   the image complete rather than blank. */
+.ln{opacity:1}
+@keyframes lineIn{from{opacity:0;transform:translateX(-7px)}to{opacity:1;transform:none}}
+.ln{animation:lineIn .52s cubic-bezier(.2,.7,.3,1) backwards}
+.l0{animation-delay:.10s} .l1{animation-delay:.20s}
+.l2{animation-delay:.30s} .l3{animation-delay:.46s}
+.l4{animation-delay:.58s} .l5{animation-delay:.70s}
+.l6{animation-delay:.86s} .l7{animation-delay:.98s}
+
+/* power-on sweep — base opacity 0, so it never shows in a static render */
+.sweep{opacity:0}
+@keyframes powerOn{
+  0%{opacity:0;transform:translateY(-46px)}
+  12%{opacity:.85}
+  88%{opacity:.5}
+  100%{opacity:0;transform:translateY(292px)}
+}
+.sweep{animation:powerOn 1.15s ease-out .05s 1}
+
+/* the ONE continuously-moving element on this image */
+@keyframes drift{from{transform:translateY(0)}to{transform:translateY(6px)}}
+.scan{animation:drift 4s linear infinite}
+
+@media (prefers-reduced-motion: reduce){
+  .ln,.scan{animation:none}
+  .sweep{display:none}
+}
+</style>
+<defs>
+  <pattern id="sl" width="6" height="6" patternUnits="userSpaceOnUse">
+    <rect width="6" height="3" fill="#000"/>
+  </pattern>
+  <radialGradient id="vig" cx="50%" cy="46%" r="76%">
+    <stop offset="55%" stop-color="#000" stop-opacity="0"/>
+    <stop offset="100%" stop-color="#000" stop-opacity=".42"/>
+  </radialGradient>
+  <linearGradient id="sw" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#F7E7C6" stop-opacity="0"/>
+    <stop offset="50%" stop-color="#F7E7C6" stop-opacity=".55"/>
+    <stop offset="100%" stop-color="#F7E7C6" stop-opacity="0"/>
+  </linearGradient>
+  <filter id="bloom" x="-6%" y="-6%" width="112%" height="112%">
+    <feGaussianBlur stdDeviation="2.4"/>
+  </filter>
+
+  <!-- xml:space="preserve" is load-bearing. The CSS white-space:pre property
+       is honoured by browsers but NOT by resvg's text layout; without this
+       attribute every run of padding spaces collapses to one and the frame
+       never closes. Verified by rasterising, not assumed.
+       Line advance is 20px against a 17px font (~1.18em) because that is
+       roughly where box-drawing glyphs tile seamlessly, as they do in a
+       terminal. At the 24px I first used, every vertical rule was visibly
+       broken between rows. -->
+  <g id="body" xml:space="preserve">
+    <text class="ln l0" x="63.5" y="64" ><tspan class="fr">┌─ </tspan><tspan class="hi">LOKAVYA SINGH</tspan><tspan class="fr"> ──────────────────────────────── </tspan><tspan class="dm">JAIPUR · IN</tspan><tspan class="fr"> ─┐</tspan></text>
+    <text class="ln l1" x="63.5" y="84" ><tspan class="fr">│</tspan>                                                              <tspan class="fr">│</tspan></text>
+    <text class="ln l2" x="63.5" y="104"><tspan class="fr">│</tspan>   <tspan class="hi">Local-first desktop software that keeps its receipts.</tspan>      <tspan class="fr">│</tspan></text>
+    <text class="ln l3" x="63.5" y="124"><tspan class="fr">│</tspan>                                                              <tspan class="fr">│</tspan></text>
+    <text class="ln l4" x="63.5" y="144"><tspan class="fr">│</tspan>   <tspan class="ac">&gt;</tspan> <tspan class="hi">flint    </tspan>a desktop timer that is really a plugin engine  <tspan class="fr">│</tspan></text>
+    <text class="ln l5" x="63.5" y="164"><tspan class="fr">│</tspan>   <tspan class="ac">&gt;</tspan> <tspan class="hi">vysted   </tspan>a finance terminal an agent can drive           <tspan class="fr">│</tspan></text>
+    <text class="ln l6" x="63.5" y="184"><tspan class="fr">│</tspan>   <tspan class="ac">&gt;</tspan> <tspan class="hi">ulpf     </tspan>a log pipeline that proves what it read         <tspan class="fr">│</tspan></text>
+    <text class="ln l7" x="63.5" y="204"><tspan class="fr">│</tspan>                                                              <tspan class="fr">│</tspan></text>
+    <text class="ln l7" x="63.5" y="224"><tspan class="fr">└──────────────────────────────────</tspan> <tspan class="dm">rust · typescript · tauri</tspan> <tspan class="fr">─┘</tspan></text>
+  </g>
+</defs>
+
+<rect class="glass" width="780" height="280" rx="10"/>
+<g class="bl"><use href="#body" filter="url(#bloom)" aria-hidden="true"/></g>
+<use href="#body"/>
+<rect class="scan" x="0" y="-12" width="780" height="304" fill="url(#sl)"/>
+<rect class="sweep" x="0" y="0" width="780" height="46" fill="url(#sw)"/>
+<rect class="vig" width="780" height="280" rx="10" fill="url(#vig)"/>
+<rect class="edge" x=".5" y=".5" width="779" height="279" rx="10"/>
+</svg>
