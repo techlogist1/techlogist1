@@ -13,19 +13,19 @@ I'm 19, from Jaipur, a first-year CS student at Shiv Nadar University on a 2+2 w
 
 ## Open source
 
-**[flint](https://github.com/techlogist1/flint)** — every timer mode is a plugin, including the built-in ones.
+**[flint](https://github.com/techlogist1/flint)** — every timer mode is a plugin, including the built-in ones.  
 <img src="assets/row-flint.svg" height="20" alt="typescript, rust — v0.1.4, released">
 
-**[vysted-terminal](https://github.com/techlogist1/vysted-terminal)** — a finance terminal an AI agent can actually drive.
+**[vysted-terminal](https://github.com/techlogist1/vysted-terminal)** — a finance terminal an AI agent can actually drive.  
 <img src="assets/row-vysted-terminal.svg" height="20" alt="typescript, python, rust — v0.8.0, tagged, no release">
 
-**[ulpf](https://github.com/techlogist1/ulpf)** — stores every original byte before it tries to understand any of them.
+**[ulpf](https://github.com/techlogist1/ulpf)** — stores every original byte before it tries to understand any of them.  
 <img src="assets/row-ulpf.svg" height="20" alt="rust, svelte, javascript — v0.1.0-rc3, pre-release">
 
 ## Shipping
 
-**[Luminfaber](https://luminfaber.com)** — B2B AI agency.
-**[Vysted](https://vysted.com)** — college discovery for the people actually applying.
+**[Luminfaber](https://luminfaber.com)** — B2B AI agency.  
+**[Vysted](https://vysted.com)** — college discovery for the people actually applying.  
 **[rajkanwar.com](https://rajkanwar.com)** — editorial site for my grandmother, a master textile artist.
 
 ## By the numbers

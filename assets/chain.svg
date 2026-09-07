@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 652 246" width="652" height="246" role="img" aria-labelledby="t d" xml:space="preserve">
-<title id="t">Commit chain — 15 links verified, 0 broken</title>
-<desc id="d">The most recent commits in each public repository shown as a hash chain, each commit naming its parent. 15 links verified, 0 broken.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 531 276" width="531" height="276" role="img" aria-labelledby="t d" xml:space="preserve">
+<title id="t">Commit chain — 12 links verified, 0 broken</title>
+<desc id="d">The most recent commits in each public repository shown as a hash chain, each commit naming its parent. 12 links verified, 0 broken.</desc>
 <style>
 .glass{fill:#15110C}
 .edge{fill:none;stroke:#241B12;stroke-width:1}
-text{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Cascadia Mono","DejaVu Sans Mono","Liberation Mono",monospace;font-size:13px;white-space:pre;fill:#E8A33D}
+text{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Cascadia Mono","DejaVu Sans Mono","Liberation Mono",monospace;font-size:14px;white-space:pre;fill:#E8A33D}
 .fr{fill:#B07D2A} .hi{fill:#F7E7C6} .ac{fill:#9B3A2E} .dm{fill:#8F6C38}
 .cool{fill:#E8E4D2} .deep{fill:#7A2620} .body{fill:#E8A33D} .scrim{opacity:1}
 .rust{fill:#C25A1E} .gold{fill:#D9B45B} .plum{fill:#8E4A5E}
@@ -34,20 +34,21 @@ text{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Cascadia 
     <stop offset="100%" stop-color="#000" stop-opacity=".34"/>
   </radialGradient>
 </defs>
-<rect class="glass" width="652" height="246" rx="8"/>
-<text x="22" y="42" textLength="608.4" lengthAdjust="spacing"><tspan class="fr">┌─ INTEGRITY ───────────────────────────────────────────────────── chain ok ─┐</tspan></text>
-<text x="22" y="58" textLength="608.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">ulpf                                                                      </tspan><tspan class="fr">│</tspan></text>
-<text x="22" y="74" textLength="608.4" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="hi">8ea8fb2</tspan><tspan class="dm"> &lt;── </tspan><tspan class="hi">b751cc4</tspan><tspan class="dm"> &lt;── </tspan><tspan class="hi">0b4a8e5</tspan><tspan class="dm"> &lt;── </tspan><tspan class="hi">e4c8d8b</tspan><tspan class="dm"> &lt;── </tspan><tspan class="hi">5c32d61                 </tspan><tspan class="fr">│</tspan></text>
-<text x="22" y="90" textLength="608.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">vysted-terminal                                                           </tspan><tspan class="fr">│</tspan></text>
-<text x="22" y="106" textLength="608.4" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="hi">cfcf5be</tspan><tspan class="dm"> &lt;── </tspan><tspan class="hi">9352565</tspan><tspan class="dm"> &lt;── </tspan><tspan class="hi">8770bf2</tspan><tspan class="dm"> &lt;── </tspan><tspan class="hi">d58bfc7</tspan><tspan class="dm"> &lt;── </tspan><tspan class="hi">3123e7c                 </tspan><tspan class="fr">│</tspan></text>
-<text x="22" y="122" textLength="608.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">flint                                                                     </tspan><tspan class="fr">│</tspan></text>
-<text x="22" y="138" textLength="608.4" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="hi">11cf4f5</tspan><tspan class="dm"> &lt;── </tspan><tspan class="hi">54f901c</tspan><tspan class="dm"> &lt;── </tspan><tspan class="hi">6829ca8</tspan><tspan class="dm"> &lt;── </tspan><tspan class="hi">de18df2</tspan><tspan class="dm"> &lt;── </tspan><tspan class="hi">743d1ce                 </tspan><tspan class="fr">│</tspan></text>
-<text x="22" y="154" textLength="608.4" lengthAdjust="spacing"><tspan class="fr">│                                                                            </tspan><tspan class="fr">│</tspan></text>
-<text x="22" y="170" textLength="608.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">every commit names its parent's digest, so a branch is a hash chain a     </tspan><tspan class="fr">│</tspan></text>
-<text x="22" y="186" textLength="608.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">stranger can re-verify. that is the thing ulpf builds for logs. 15        </tspan><tspan class="fr">│</tspan></text>
-<text x="22" y="202" textLength="608.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">links checked, 0 broken.                                                  </tspan><tspan class="fr">│</tspan></text>
-<text x="22" y="218" textLength="608.4" lengthAdjust="spacing"><tspan class="fr">└─────────────────────────────────────────────────── verified at build time ─┘</tspan></text>
-<rect class="scan" x="0" y="-12" width="652" height="270" fill="url(#sl)"/>
-<rect class="vig" width="652" height="246" rx="8" fill="url(#vig)"/>
-<rect class="edge" x=".5" y=".5" width="651" height="245" rx="8"/>
+<rect class="glass" width="531" height="276" rx="8"/>
+<text x="22" y="43" textLength="487.2" lengthAdjust="spacing"><tspan class="fr">┌─ INTEGRITY ───────────────────────────────── chain ok ─┐</tspan></text>
+<text x="22" y="60" textLength="487.2" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">ulpf                                                  </tspan><tspan class="fr">│</tspan></text>
+<text x="22" y="77" textLength="487.2" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="hi">8ea8fb2</tspan><tspan class="dm"> &lt;── </tspan><tspan class="hi">b751cc4</tspan><tspan class="dm"> &lt;── </tspan><tspan class="hi">0b4a8e5</tspan><tspan class="dm"> &lt;── </tspan><tspan class="hi">e4c8d8b         </tspan><tspan class="fr">│</tspan></text>
+<text x="22" y="94" textLength="487.2" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">vysted-terminal                                       </tspan><tspan class="fr">│</tspan></text>
+<text x="22" y="111" textLength="487.2" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="hi">cfcf5be</tspan><tspan class="dm"> &lt;── </tspan><tspan class="hi">9352565</tspan><tspan class="dm"> &lt;── </tspan><tspan class="hi">8770bf2</tspan><tspan class="dm"> &lt;── </tspan><tspan class="hi">d58bfc7         </tspan><tspan class="fr">│</tspan></text>
+<text x="22" y="128" textLength="487.2" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">flint                                                 </tspan><tspan class="fr">│</tspan></text>
+<text x="22" y="145" textLength="487.2" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="hi">11cf4f5</tspan><tspan class="dm"> &lt;── </tspan><tspan class="hi">54f901c</tspan><tspan class="dm"> &lt;── </tspan><tspan class="hi">6829ca8</tspan><tspan class="dm"> &lt;── </tspan><tspan class="hi">de18df2         </tspan><tspan class="fr">│</tspan></text>
+<text x="22" y="162" textLength="487.2" lengthAdjust="spacing"><tspan class="fr">│                                                        </tspan><tspan class="fr">│</tspan></text>
+<text x="22" y="179" textLength="487.2" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">every commit names its parent's digest, so a branch   </tspan><tspan class="fr">│</tspan></text>
+<text x="22" y="196" textLength="487.2" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">is a hash chain a stranger can re-verify. that is     </tspan><tspan class="fr">│</tspan></text>
+<text x="22" y="213" textLength="487.2" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">the thing ulpf builds for logs. 12 links checked, 0   </tspan><tspan class="fr">│</tspan></text>
+<text x="22" y="230" textLength="487.2" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">broken.                                               </tspan><tspan class="fr">│</tspan></text>
+<text x="22" y="247" textLength="487.2" lengthAdjust="spacing"><tspan class="fr">└─────────────────────────────── verified at build time ─┘</tspan></text>
+<rect class="scan" x="0" y="-12" width="531" height="300" fill="url(#sl)"/>
+<rect class="vig" width="531" height="276" rx="8" fill="url(#vig)"/>
+<rect class="edge" x=".5" y=".5" width="530" height="275" rx="8"/>
 </svg>

@@ -35,9 +35,9 @@ ASSETS = os.path.join(ROOT, "assets")
 TOKEN = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN") or ""
 
 # ── grid ────────────────────────────────────────────────────────────────
-FS = 13          # font-size, px
-CH = 7.8         # character advance at FS for a 0.6-ratio monospace face
-LH = 16          # line advance; ~1.23em, near where box-drawing tiles
+FS = 14          # font-size, px
+CH = 8.4         # character advance at FS for a 0.6-ratio monospace face
+LH = 17          # line advance; ~1.21em, near where box-drawing tiles
 PADX, PADY = 22, 26
 
 FONT = ('ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,'
@@ -395,20 +395,25 @@ def gen_activity():
 
     RAMP = "·░▒▓█"
     ncols = len(weeks)
-    LABEL = 8                        # "|  Mon  "
-    cols = LABEL + ncols * 2 + 1
+    LABEL = 7                        # "|  Mon "
+    cols = LABEL + ncols + 1
 
-    ruler = [" "] * (ncols * 2)
-    seen = set()
+    # One character per week means a 3-letter month name occupies three weeks
+    # and months sit ~4.3 weeks apart, so labels only just fit. Track where the
+    # last one ended rather than gating on a modulus, which silently dropped
+    # most of the year.
+    ruler = [" "] * ncols
+    seen, last_end = set(), -99
     for i, w in enumerate(weeks):
         d0 = w["contributionDays"][0]["date"]
         mo = d0[:7]
         m = datetime.strptime(d0, "%Y-%m-%d")
-        if mo not in seen and m.day <= 7 and i < ncols - 2:
+        if mo not in seen and m.day <= 7 and i < ncols - 3 and i > last_end:
             seen.add(mo)
             for j, c in enumerate(m.strftime("%b")):
-                if i * 2 + j < len(ruler):
-                    ruler[i * 2 + j] = c
+                if i + j < len(ruler):
+                    ruler[i + j] = c
+            last_end = i + 3
 
     DAYNAME = ["Mon", "", "Wed", "", "Fri", "", ""]
     w_px = int(cols * CH + PADX * 2)
@@ -424,7 +429,7 @@ def gen_activity():
 
     grid = []
     for wd in range(7):
-        cells = [("fr", "│"), ("dm", "  " + DAYNAME[wd].ljust(3) + "  ")]
+        cells = [("fr", "│"), ("dm", "  " + DAYNAME[wd].ljust(3) + " ")]
         runs, cur, buf = [], None, ""
         for w in weeks:
             day = next((d for d in w["contributionDays"] if d["weekday"] == wd), None)
@@ -435,7 +440,7 @@ def gen_activity():
                 runs.append((cur, buf))
                 buf = ""
             cur = cls
-            buf += ch + " "
+            buf += ch
         if buf:
             runs.append((cur, buf))
         cells += runs
@@ -443,7 +448,7 @@ def gen_activity():
         grid.append(line(y + LH * (wd + 2), cells, cols))
     parts.append('<g class="grid">' + "".join(grid) + "</g>")
 
-    legend = f"  {active} active days   peak {peak} in a day   less "
+    legend = f"  {active} active days  peak {peak}  less "
     parts.append(line(y + LH * 10,
                       [("fr", "│"), ("dm", legend)]
                       + [(f"q{i}", c) for i, c in enumerate(RAMP)]
@@ -499,18 +504,18 @@ def gen_stats():
         return f"{n/1000:.0f}k" if n >= 10000 else f"{n:,}"
 
     rows = [
-        ("commits, public repositories", f"{commits:,}"),
-        ("lines added, public repositories", f"{added:,}"),
-        ("contributions, last 365 days", f"{cal_total:,}"),
+        ("commits, public repos", f"{commits:,}"),
+        ("lines added, public repos", f"{added:,}"),
+        ("contributions, 365 days", f"{cal_total:,}"),
         ("longest daily streak", f"{best} days"),
         ("releases published", f"{releases}"),
         ("public repositories", f"{len(repos)}"),
-        ("Rust, bytes on disk", kb(langs.get("Rust", 0))),
-        ("TypeScript, bytes on disk", kb(langs.get("TypeScript", 0))),
+        ("Rust, bytes", kb(langs.get("Rust", 0))),
+        ("TypeScript, bytes", kb(langs.get("TypeScript", 0))),
         ("account opened", f"{opened:%b %Y} ({yrs:.1f} yrs)"),
     ]
 
-    cols = 62
+    cols = 56
     w_px = int(cols * CH + PADX * 2)
     h_px = int(PADY + LH * (len(rows) + 2) + 12)
     y = PADY + LH
@@ -580,7 +585,7 @@ def gen_chain():
         if len(cs) < 2:
             continue
         shas = []
-        for i, c in enumerate(cs[:5]):
+        for i, c in enumerate(cs[:4]):
             shas.append(c["sha"][:7])
             if i + 1 < len(cs):
                 parents = [p["sha"] for p in c.get("parents", [])]
@@ -596,7 +601,7 @@ def gen_chain():
     prose = ("every commit names its parent's digest, so a branch is a hash "
              "chain a stranger can re-verify. that is the thing ulpf builds "
              f"for logs. {links} links checked, {broken} broken.")
-    cols = 78
+    cols = 58
     words, wrapped, cur = prose.split(), [], ""
     for wd in words:
         if len(cur) + len(wd) + 1 > cols - 7:
@@ -661,7 +666,7 @@ def gen_ticker():
 
     seg = "".join(f"  {r} · {m}   ◦" for _, r, m in items) + "   "
     n = len(seg)
-    cols = 108
+    cols = 64
     w_px = int(cols * CH + PADX * 2)
     h_px = PADY + LH * 3 + 10
     inner_x = PADX + 2 * CH

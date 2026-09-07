@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 527 214" width="527" height="214" role="img" aria-labelledby="t d" xml:space="preserve">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 514 225" width="514" height="225" role="img" aria-labelledby="t d" xml:space="preserve">
 <title id="t">By the numbers</title>
 <desc id="d">Real counts from the GitHub API: commits, lines added, contributions, longest streak, releases, repositories, language bytes and account age. No stars or followers.</desc>
 <style>
 .glass{fill:#15110C}
 .edge{fill:none;stroke:#241B12;stroke-width:1}
-text{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Cascadia Mono","DejaVu Sans Mono","Liberation Mono",monospace;font-size:13px;white-space:pre;fill:#E8A33D}
+text{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Cascadia Mono","DejaVu Sans Mono","Liberation Mono",monospace;font-size:14px;white-space:pre;fill:#E8A33D}
 .fr{fill:#B07D2A} .hi{fill:#F7E7C6} .ac{fill:#9B3A2E} .dm{fill:#8F6C38}
 .cool{fill:#E8E4D2} .deep{fill:#7A2620} .body{fill:#E8A33D} .scrim{opacity:1}
 .rust{fill:#C25A1E} .gold{fill:#D9B45B} .plum{fill:#8E4A5E}
@@ -34,19 +34,19 @@ text{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Cascadia 
     <stop offset="100%" stop-color="#000" stop-opacity=".34"/>
   </radialGradient>
 </defs>
-<rect class="glass" width="527" height="214" rx="8"/>
-<text x="22" y="42" textLength="483.6" lengthAdjust="spacing"><tspan class="fr">┌─ BY THE NUMBERS ───────────────────────────────────────── ─┐</tspan></text>
-<text x="22" y="58" textLength="483.6" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">commits, public repositories ....................... </tspan><tspan class="hi">1,407</tspan><tspan class="fr">│</tspan></text>
-<text x="22" y="74" textLength="483.6" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">lines added, public repositories ................. </tspan><tspan class="hi">789,305</tspan><tspan class="fr">│</tspan></text>
-<text x="22" y="90" textLength="483.6" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">contributions, last 365 days ....................... </tspan><tspan class="hi">4,252</tspan><tspan class="fr">│</tspan></text>
-<text x="22" y="106" textLength="483.6" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">longest daily streak ............................. </tspan><tspan class="hi">24 days</tspan><tspan class="fr">│</tspan></text>
-<text x="22" y="122" textLength="483.6" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">releases published ..................................... </tspan><tspan class="hi">6</tspan><tspan class="fr">│</tspan></text>
-<text x="22" y="138" textLength="483.6" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">public repositories .................................... </tspan><tspan class="hi">3</tspan><tspan class="fr">│</tspan></text>
-<text x="22" y="154" textLength="483.6" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">Rust, bytes on disk ................................ </tspan><tspan class="hi">1317k</tspan><tspan class="fr">│</tspan></text>
-<text x="22" y="170" textLength="483.6" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">TypeScript, bytes on disk .......................... </tspan><tspan class="hi">1852k</tspan><tspan class="fr">│</tspan></text>
-<text x="22" y="186" textLength="483.6" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">account opened ........................ </tspan><tspan class="hi">Feb 2022 (4.6 yrs)</tspan><tspan class="fr">│</tspan></text>
-<text x="22" y="202" textLength="483.6" lengthAdjust="spacing"><tspan class="fr">└─────────────────────────────────── no stars, no followers ─┘</tspan></text>
-<rect class="scan" x="0" y="-12" width="527" height="238" fill="url(#sl)"/>
-<rect class="vig" width="527" height="214" rx="8" fill="url(#vig)"/>
-<rect class="edge" x=".5" y=".5" width="526" height="213" rx="8"/>
+<rect class="glass" width="514" height="225" rx="8"/>
+<text x="22" y="43" textLength="470.4" lengthAdjust="spacing"><tspan class="fr">┌─ BY THE NUMBERS ─────────────────────────────────── ─┐</tspan></text>
+<text x="22" y="60" textLength="470.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">commits, public repos ........................ </tspan><tspan class="hi">1,407</tspan><tspan class="fr">│</tspan></text>
+<text x="22" y="77" textLength="470.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">lines added, public repos .................. </tspan><tspan class="hi">789,305</tspan><tspan class="fr">│</tspan></text>
+<text x="22" y="94" textLength="470.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">contributions, 365 days ...................... </tspan><tspan class="hi">4,253</tspan><tspan class="fr">│</tspan></text>
+<text x="22" y="111" textLength="470.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">longest daily streak ....................... </tspan><tspan class="hi">24 days</tspan><tspan class="fr">│</tspan></text>
+<text x="22" y="128" textLength="470.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">releases published ............................... </tspan><tspan class="hi">6</tspan><tspan class="fr">│</tspan></text>
+<text x="22" y="145" textLength="470.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">public repositories .............................. </tspan><tspan class="hi">3</tspan><tspan class="fr">│</tspan></text>
+<text x="22" y="162" textLength="470.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">Rust, bytes .................................. </tspan><tspan class="hi">1317k</tspan><tspan class="fr">│</tspan></text>
+<text x="22" y="179" textLength="470.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">TypeScript, bytes ............................ </tspan><tspan class="hi">1852k</tspan><tspan class="fr">│</tspan></text>
+<text x="22" y="196" textLength="470.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">account opened .................. </tspan><tspan class="hi">Feb 2022 (4.6 yrs)</tspan><tspan class="fr">│</tspan></text>
+<text x="22" y="213" textLength="470.4" lengthAdjust="spacing"><tspan class="fr">└───────────────────────────── no stars, no followers ─┘</tspan></text>
+<rect class="scan" x="0" y="-12" width="514" height="249" fill="url(#sl)"/>
+<rect class="vig" width="514" height="225" rx="8" fill="url(#vig)"/>
+<rect class="edge" x=".5" y=".5" width="513" height="224" rx="8"/>
 </svg>
