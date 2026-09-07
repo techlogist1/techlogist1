@@ -79,6 +79,40 @@ Two defects found by measuring, not by looking:
 - the hero rendered *smaller* on screen than the panels below it, at 732 units
   against 514-581
 
+**Fourth pass — voice, a live panel, and a transmutation.**
+
+- **Nothing on the page names an absence any more.** The stats footer said "no
+  stars, no followers" and its `<desc>` said it a second time for screen readers;
+  the vysted-terminal badge said "v0.8.0 tagged, no release" across its pill, its
+  `<title>` and the README alt text; the "Currently building" paragraph confessed
+  that a benchmark figure was "sitting in the README unpromoted". All gone. The
+  account **bio** carried the same slogan as the intro and was changed with it.
+  Kept deliberately: real counts (3 repositories, 6 releases) and "0 broken" in
+  the chain panel, which is a pass rather than a deficit. See CLAUDE.md § Voice.
+- **The activity graph is cut** — it duplicated GitHub's own contribution
+  calendar, two screens below it on the same page. Its slot now holds
+  `inflight.svg`: commits ahead of each repository's newest tag. The live profile
+  page was enumerated first; release and tag state is the one substantial thing
+  about these repos that GitHub shows nowhere.
+- **The hero is a transmutation**, replacing rule 110, which was a real mechanism
+  that never resolved into anything and came out ~5px on a phone. Two rival
+  concepts were built, rasterised at the real 847px column and rejected on the
+  evidence; see CLAUDE.md.
+- The hero now makes **no API call at all**, which removes the last failure
+  surface from the one image that must never break.
+
+Three defects found by rasterising and by watching the file in a browser:
+- the animated hero rasterised **completely blank** — `frame_css` set `opacity:0`
+  in a CSS rule, which outranks the presentation attribute carrying each group's
+  base state. Only the per-frame stills had been rasterised, never the animated
+  file itself.
+- a solid `U+2588` bar is **not** solid inside a row that `lengthAdjust="spacing"`
+  is correcting; it comes out as ragged fringed segments. Now a discrete `U+25A0`
+  meter, where the gaps are the design.
+- `resvg` lays the rows out at natural advance rather than honouring `textLength`,
+  so the ASCII frame measures ~88% of the canvas there and 96% in a browser. A
+  rasteriser artifact, **not** a defect — confirmed in Chrome before acting.
+
 ## Open / not done by me
 
 - **Pinned repositories cannot be set through any API** (see above). The profile

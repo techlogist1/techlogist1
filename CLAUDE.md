@@ -31,6 +31,45 @@ that isn't the SVG namespace, any `@font-face`, and any `url(http...)`.
 
 ---
 
+## Voice
+
+**No line on this page ever names something the author lacks.** Not stars, not
+followers, not an unshipped release, not a missing feature. State what is true;
+never state what is missing. The failure mode is subtle and it is easy to write
+by accident: the stats panel used to close with *"no stars, no followers"*, and
+the vysted-terminal badge used to read *"v0.8.0 tagged, no release"*. Nobody
+visiting was auditing either. **Absence is invisible until you announce it**, and
+announcing it in monospace at the bottom of a panel is the loudest way to do it.
+
+The same rule kills hedges (*only*, *just*, *still*, *not much*), pre-emptive
+apologies, and self-critique dressed as information -- an earlier "Currently
+building" paragraph explained that a faster benchmark figure was "sitting in the
+README unpromoted", which is a confession nobody asked for.
+
+Two things this rule does **not** mean. A real count is not an absence: "public
+repositories 3" and "releases published 6" stay, because they are facts about
+what exists. And a verification result where zero is the good answer stays too:
+`chain.svg` printing "12 links checked, 0 broken" is a pass, not a deficit. The
+`no_data()` frame is likewise an error state doing its job -- it says why a panel
+is empty, which is the opposite of a hedge.
+
+Where a state genuinely has a negative branch, find the true positive statement
+for it. `gen_inflight()` prints **"released in full"** for a repository with zero
+commits ahead of its tag, because that is what zero means there -- printing a `0`
+next to a `157` would let the smallest number do the talking.
+
+**The intro must be plain, not aphoristic.** The first line a stranger reads has
+to tell them what kind of software this is, in words they parse instantly. It
+previously read *"Local-first desktop software that keeps its receipts"*, which
+sounds good and communicates nothing to anyone who does not already know the
+work. It now reads **"Desktop apps that run on your own computer and keep your
+data there."** The test is not whether the line is good prose. It is whether
+someone who has never heard of him can say what he builds after reading it once.
+The same pass applies to the paragraph beneath it and to the account bio, which
+carried the identical slogan and was changed with it.
+
+---
+
 ## Aesthetic direction
 
 **Monochrome. White and greys on near-black.** A clean terminal, not a CRT
@@ -173,32 +212,68 @@ the PNGs.** Every real defect in this repo was found by looking, not by reasonin
 The failure mode is a page where five things loop at once and the whole thing
 reads as a slot machine.
 
-- **At most two elements animate continuously.** Currently exactly **one**: the
-  hero's automaton field. The commit ticker was cut. There is budget for one more
-  if something earns it.
+- **At most one element animates continuously**, and it is the hero. The commit
+  ticker was cut and the activity graph was cut.
+
+### The hero is a transmutation
+
+**One thing visibly becoming another, with the intermediate states legible.**
+Three log lines — nginx combined, JSON lines, RFC3164 syslog — are carried stage
+by stage into one common schema: timestamp located, timestamp normalised, level
+resolved, source resolved, fields aligned. Whatever run *just* resolved is drawn
+in `.hi` and the rest in `.dm`, which is the only emphasis on the panel and means
+exactly one thing.
+
+**The three rows are two slots out of phase**, so they are never at the same
+stage. That is the whole difference between a pipeline in flight and a slideshow:
+at any moment one line is raw, one is half-resolved and one is done, so the shape
+of the transformation is legible without waiting for a cycle.
+
+Mechanically it is N discrete slots sharing **one** keyframe, separated by
+`animation-delay`. Cheaper than N keyframe blocks, and the **hard cut** at the
+slot boundary is what keeps it a substitution rather than a crossfade — an
+interpolated blend would make the middle of the transformation a smear instead of
+a state you can read. Delays are **negative** so the cycle is already under way
+at t=0; a positive delay leaves every group in its base state until its first
+turn, which flashes the finished frame on load.
+
+### Rejected: rule 110 — it read as texture
+
+The previous hero ran elementary cellular automaton **rule 110** seeded from the
+real contribution year. It was a real mechanism and it was derived from real
+data, and it still failed: it **never resolved into anything**. It sat behind the
+text as a field of noise, and at the width GitHub actually renders the hero on a
+phone its 10px glyphs came out around **5px** — beautiful at full resolution,
+mush in the browser. Do not bring it back. A mechanism is necessary but not
+sufficient; the output has to become something.
+
+Two alternatives were built, rasterised at the real 847px column width and
+compared rather than argued about:
+
+- **Six named pipeline stages, one row swapping in place.** Rejected: you never
+  see two representations at once, so nothing *becomes* anything — it is a
+  caption cycling under a heading, and the panel is 80% empty.
+- **An odd-even transposition sort settling into order.** Rejected: the mechanism
+  is real but says nothing about this work, consecutive frames are visually
+  indistinguishable (noise, then slightly less noise), and its freeze frame is a
+  sorted ramp with no meaning attached. It also **overflowed its own frame** —
+  `lengthAdjust="spacing"` corrects the gaps between glyphs, not glyph width, so
+  a 46-long run of `U+2581..U+2587` pushed the closing rule outside the panel.
 
 ### Ruled out — do not reintroduce these
 
 The first hero used a scanline sweep plus a staggered fade-in. Both are the
 default ASCII-profile move; neither had a mechanism underneath. **Banned:**
 typewriter / text reveal, matrix rain, blinking cursor, glow pulse, scanline
-sweep, generic fade-in.
+sweep, generic fade-in. Substitution in place — a complete row replaced by
+another complete row — is *not* a typewriter; text accumulating character by
+character is.
 
-What makes motion not generic here is that a **system with rules produces it**.
-The hero band runs elementary cellular automaton **rule 110**, seeded from the
-real contribution year bucketed to the band width, with a 60-generation burn-in
-(rule 110 grows leftward, and this account's live cells are all recent, so
-without the burn-in two thirds of the panel is empty). Colour is per generation
-rather than per cell — that alone took the field from ~122 KB of alternating
-tspans to ~14 KB, and it reads as phosphor age, which is what a scrolling CRT
-does anyway.
-
-Two other concepts were built and rasterised rather than argued about:
-a commit-cadence trace with real exponential phosphor decay (reads as a bar
-chart once frozen), and a SHA-256 avalanche (**disqualified**: frozen for
-reduced-motion it is just a hash, so its entire meaning lives in the animation).
-That last one is the general test — **if a concept is meaningless in its
-reduced-motion freeze frame, it is not a candidate.**
+A SHA-256 avalanche was also built and **disqualified**: frozen for
+reduced-motion it is just a hash, so its entire meaning lives in the animation.
+That is the general test — **if a concept is meaningless in its reduced-motion
+freeze frame, it is not a candidate.** The transmutation passes it: frozen, it is
+the finished normalised table.
 - Everything else animates **once on load and settles**, or is static. The
   activity graph wipes in left-to-right once. The stats, releases and chain panels
   do not animate at all — they are dense with text, and motion made them harder
@@ -259,7 +334,8 @@ which repo to click.
 
 ```
 **[name](url)** — the single most interesting true thing about it.␣␣
-<img src="assets/row-<name>.svg" height="20" alt="stack — release state">
+[![lang](assets/badge-<lang>.svg)](<where that work actually lives>)␣␣
+[![<tag> <state>](assets/rel-<name>.svg)](<releases or tags>)
 ```
 
 The two trailing spaces are **load-bearing**: GitHub's profile README does not
@@ -269,8 +345,8 @@ soft breaks differently and will not reproduce this.
 
 **It scales because each entry is independent.** Verified by mocking the section
 at eight entries in a real 390px viewport: still two lines each, no overflow,
-still scans. Adding a repo adds one markdown line; `gen_rows()` produces its
-strip automatically. Do not replace this with a table or a card grid — both need
+still scans. Adding a repo adds one markdown line; `gen_badges()` produces its
+release marker automatically. Do not replace this with a table or a card grid — both need
 horizontal room that a phone does not have.
 
 Depth belongs in each repo's own README, which is where a curious reader goes
@@ -284,28 +360,66 @@ downscaled to fit. A panel 940 px wide lands there at a 3× reduction, which put
 13 px ASCII at roughly **4 px** — an illegible smudge. Natural widths are now
 514–581 px, giving 7.4–8.4 px effective type.
 
-**Keep panels under ~600 px natural.** There is a floor: 53 weeks at one
-character each cannot be legible in 309 px, so the activity graph's labels
-degrade on a phone by construction while its heatmap shape survives. That is a
-deliberate trade, not an oversight.
+**Keep panels under ~600 px natural.** Natural widths are 556 px, and the hero
+carries `width="100%"` so it *upscales* to 847 px on desktop and downscales to
+309 px on a phone. Measured on the live page, not assumed — and this is the check
+that matters, because a panel can look right at full resolution and be mush in
+the browser. Rasterise at 847 and at 309, not at natural size.
 
 ## The panels
 
 | file | what it is | data source | animates |
 |---|---|---|---|
-| `hero.svg` | terminal frame over a rule-110 field seeded by real data | GraphQL `contributionCalendar` | field scroll (continuous) |
-| `activity.svg` | contribution year as an ASCII density graph | GraphQL `contributionCalendar` | wipes in once |
-| `stats.svg` | real counts, no stars/forks/followers | REST `stats/contributors`, `languages`, `releases` | no |
-| `row-<repo>.svg` | stack + release state, one per repo, transparent | REST `languages`, `releases`, `tags` | no |
+| `hero.svg` | terminal frame; three log formats becoming one schema | none — hand-authored | the transmutation (continuous) |
+| `inflight.svg` | commits ahead of each repo's newest tag | REST `releases`, `tags`, `compare` | bars grow once |
+| `stats.svg` | real counts from the API | REST `stats/contributors`, `languages`, `releases` | no |
 | `chain.svg` | recent commits as a verified hash chain | REST `commits` incl. parents | no |
 | `badge-*.svg` | clickable technology pills | none, static | no |
 | `rel-*.svg` | release state per repo, glyph-encoded | REST `releases`, `tags` | no |
+
+The hero takes **no API call at all** — it is hand-authored sample records, and
+nothing on it claims to be live. That is deliberate: it removes the last failure
+surface from the one image that must never break. The live panel is
+`inflight.svg`.
 
 `chain.svg` is the one that isn't a standard profile widget. Git is already a
 digest-chained provenance store — every commit names its parent's hash — which is
 structurally the thing ulpf builds for logs. The generator walks the real chain and
 **actually verifies** each link rather than illustrating one, and prints the count
 of links checked and broken.
+
+### What GitHub already renders — checked, not assumed
+
+The activity graph was **cut** because it duplicated GitHub's own contribution
+calendar, which sits about two screens below it on the same page. Before
+replacing it, the live profile page was read and enumerated. GitHub natively
+renders, without any help from the README:
+
+- the **contribution calendar**, 53 weeks with an exact per-day tooltip and a
+  total ("4,252 contributions in the last year")
+- an **Activity overview** radar: commits / PRs / issues / code review as
+  percentages (currently 100% commits)
+- a **contribution activity timeline**, month by month, with per-repo commit
+  counts ("Created 422 commits in 2 repositories")
+- **pinned repository cards** carrying description, primary language, star count
+  and fork count
+- sidebar bio, location, links, followers/following, achievements
+- tab counters for repositories, projects, packages and stars
+
+So anything built from contributions, languages, stars or forks is a second copy
+of something already on the page. **Release and tag state is the one substantial
+thing about these repositories that appears nowhere on a profile page** — the
+pinned cards carry no version, no release, no topics and no last-updated. That is
+why `inflight.svg` measures commits ahead of the newest tag.
+
+It is live in the sense that matters: ulpf moved **157 commits** ahead of its tag
+inside two days, and the count resets to zero when a release is cut, so the panel
+changes shape on a real event rather than drifting by one a week.
+
+**Use `ahead_by`, never `len(commits)`.** The compare endpoint caps its commit
+list at 250 and its file list at 300, so summing the returned diff reports a
+floor as though it were a total. vysted-terminal returns exactly 250 files, which
+is what that cap looks like from the outside.
 
 ### Asset caching — measured
 

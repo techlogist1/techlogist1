@@ -5,16 +5,16 @@
   that ordering is the whole idea. -- ulpf, and this file
 -->
 
-<img src="assets/hero.svg" width="100%" alt="Lokavya Singh — local-first desktop software that keeps its receipts. flint: a timer that is really a plugin engine. vysted: a finance terminal an agent can drive. ulpf: a log pipeline that proves what it read.">
+<img src="assets/hero.svg" width="100%" alt="Lokavya Singh — desktop apps that run on your own computer and keep your data there. Three log lines in three formats are carried stage by stage into one schema. flint: a timer whose every mode is a plugin. vysted: a finance terminal an AI agent can drive. ulpf: a log parser that keeps the original bytes.">
 
-I'm 19, from Jaipur, a first-year CS student at Shiv Nadar University on a 2+2 with Arizona State. I build by driving Claude Code, so most of my time goes on the parts that decide whether software is any good — what it should do, where the seams go, and whether a README's claims survive someone checking them. Mostly local-first desktop software: runs on your machine, keeps its data in files you can read, doesn't phone home.
+I'm 19, from Jaipur, a first-year CS student at Shiv Nadar University on a 2+2 with Arizona State. I build by driving Claude Code, so most of my time goes on deciding what the software should do, how it is put together, and checking that it does what its README says. The apps run on your own machine, store their data in files you can open in a text editor, and keep working with the network off.
 
 [![rust](assets/badge-rust.svg)](https://github.com/techlogist1?tab=repositories&language=rust)
 [![typescript](assets/badge-typescript.svg)](https://github.com/techlogist1?tab=repositories&language=typescript)
 [![python](assets/badge-python.svg)](https://github.com/techlogist1/vysted-terminal)
 [![tauri](assets/badge-tauri.svg)](https://github.com/techlogist1/flint)
 
-<img src="assets/activity.svg" alt="Contribution activity for the last year, rendered as an ASCII density graph.">
+<img src="assets/inflight.svg" alt="Per repository, the commits on the default branch that are ahead of its newest tag, drawn as a bar.">
 
 ## Open source
 
@@ -28,7 +28,7 @@ I'm 19, from Jaipur, a first-year CS student at Shiv Nadar University on a 2+2 w
 [![typescript](assets/badge-typescript.svg)](https://github.com/techlogist1?tab=repositories&language=typescript)
 [![python](assets/badge-python.svg)](https://github.com/techlogist1/vysted-terminal)
 [![rust](assets/badge-rust.svg)](https://github.com/techlogist1?tab=repositories&language=rust)  
-[![v0.8.0 tagged, no release](assets/rel-vysted-terminal.svg)](https://github.com/techlogist1/vysted-terminal/tags)
+[![v0.8.0 tagged](assets/rel-vysted-terminal.svg)](https://github.com/techlogist1/vysted-terminal/tags)
 
 **[ulpf](https://github.com/techlogist1/ulpf)** — stores every original byte before it tries to understand any of them.  
 [![rust](assets/badge-rust.svg)](https://github.com/techlogist1?tab=repositories&language=rust)
@@ -49,7 +49,7 @@ I'm 19, from Jaipur, a first-year CS student at Shiv Nadar University on a 2+2 w
 
 ## Currently building
 
-ULPF. `v0.1.0-rc3` is out with binaries for three platforms; before `v0.1.0` proper there's Windows path handling, a signed build, and a scorecard that re-pins the throughput number instead of leaving the faster figure sitting in the README unpromoted.
+ULPF. `v0.1.0-rc3` is out with binaries for macOS, Windows and Linux. The work on `main` since that tag is going into Windows path handling, a signed build, and a throughput scorecard, heading for `v0.1.0`.
 
 ## Contact
 

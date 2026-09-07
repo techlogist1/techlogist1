@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 556 157" width="556" height="157" role="img" aria-labelledby="t d" xml:space="preserve">
+<title id="t">In flight — 220 commits since the last tag</title>
+<desc id="d">Per repository, the number of commits on the default branch that are ahead of its newest tag, drawn as a bar. ulpf: 157 ahead of v0.1.0-rc3; vysted-terminal: 63 ahead of v0.8.0; flint: released in full at v0.1.4.</desc>
+<style>
+.glass{fill:#0E0E10}
+.edge{fill:none;stroke:#26262B;stroke-width:1}
+text{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Cascadia Mono","DejaVu Sans Mono","Liberation Mono",monospace;font-size:14px;white-space:pre;fill:#B8B8BE}
+.fr{fill:#4A4A52} .hi{fill:#EDEDEF} .ac{fill:#B8B8BE} .dm{fill:#7A7A82}
+.cool{fill:#EDEDEF} .deep{fill:#4A4A52} .body{fill:#B8B8BE}
+.rust{fill:#B8B8BE} .gold{fill:#EDEDEF} .plum{fill:#7A7A82}
+.q0{fill:#26262B} .q1{fill:#4A4A52} .q2{fill:#7A7A82} .q3{fill:#B8B8BE} .q4{fill:#EDEDEF}
+.g0{fill:#1E1E22} .g1{fill:#2E2E34} .g2{fill:#3E3E46} .g3{fill:#55555E}
+.scan{opacity:0}
+.vig{opacity:0}
+.scrim{opacity:1}
+@media (prefers-color-scheme: light){
+  .glass{fill:#FBFBFC}
+  .edge{stroke:#E2E2E6}
+  text{fill:#45454C}
+  .fr{fill:#A8A8B0} .hi{fill:#16161A} .ac{fill:#45454C} .dm{fill:#76767E}
+  .cool{fill:#16161A} .deep{fill:#A8A8B0} .body{fill:#45454C}
+  .rust{fill:#45454C} .gold{fill:#16161A} .plum{fill:#76767E}
+  .q0{fill:#EAEAEE} .q1{fill:#C6C6CC} .q2{fill:#94949C} .q3{fill:#5C5C64} .q4{fill:#16161A}
+  .g0{fill:#F0F0F2} .g1{fill:#E2E2E6} .g2{fill:#D0D0D6} .g3{fill:#B8B8C0}
+  .scrim{opacity:0}
+}
+
+/* Base state is the finished chart; the keyframe supplies only the entrance,
+   via fill-mode backwards. A renderer with no animation support shows the bars
+   complete rather than blank, and reduced motion is then one line. Animates
+   once and settles -- the hero is the page's only continuous motion. */
+.bars{clip-path:none}
+@keyframes grow{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+.bars{animation:grow 1.4s cubic-bezier(.25,.6,.25,1) .2s backwards}
+@media (prefers-reduced-motion: reduce){ .bars{animation:none} }
+</style>
+<defs>
+  <pattern id="sl" width="6" height="6" patternUnits="userSpaceOnUse">
+    <rect width="6" height="3" fill="#000"/>
+  </pattern>
+  <radialGradient id="vig" cx="50%" cy="46%" r="78%">
+    <stop offset="58%" stop-color="#000" stop-opacity="0"/>
+    <stop offset="100%" stop-color="#000" stop-opacity=".34"/>
+  </radialGradient>
+</defs>
+<rect class="glass" width="556" height="157" rx="8"/>
+<text x="22" y="43" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">┌─ IN FLIGHT ────────────── 220 commits since the last tag ─┐</tspan></text>
+<text x="22" y="60" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│                                                           </tspan><tspan class="fr">│</tspan></text>
+<g class="bars"><text x="22" y="77" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="hi">ulpf             </tspan><tspan class="hi">■■■■■■■■■■■■■■■■</tspan><tspan class="fr"></tspan><tspan class="hi">  157</tspan><tspan class="dm">  v0.1.0-rc3       </tspan><tspan class="fr">│</tspan></text><text x="22" y="94" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="hi">vysted-terminal  </tspan><tspan class="hi">■■■■■■</tspan><tspan class="fr">··········</tspan><tspan class="hi">   63</tspan><tspan class="dm">  v0.8.0           </tspan><tspan class="fr">│</tspan></text><text x="22" y="111" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="hi">flint            </tspan><tspan class="dm">released in full</tspan><tspan class="dm">     </tspan><tspan class="dm">  v0.1.4           </tspan><tspan class="fr">│</tspan></text></g>
+<text x="22" y="128" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│                                                           </tspan><tspan class="fr">│</tspan></text>
+<text x="22" y="145" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">└──────────────────────────────── newest commit 2026-09-07 ─┘</tspan></text>
+<rect class="scan" x="0" y="-12" width="556" height="181" fill="url(#sl)"/>
+<rect class="vig" width="556" height="157" rx="8" fill="url(#vig)"/>
+<rect class="edge" x=".5" y=".5" width="555" height="156" rx="8"/>
+</svg>

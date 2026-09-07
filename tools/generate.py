@@ -45,8 +45,9 @@ COLS = 61        # every panel and the hero share one width, so the page reads
 FONT = ('ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,'
         '"Cascadia Mono","DejaVu Sans Mono","Liberation Mono",monospace')
 
-# Warm phosphor. Literal colours in the base rules, overridden by the light
-# media block -- never CSS custom properties, which resvg drops to black.
+# Monochrome: white and greys on near-black. Literal colours in the base rules,
+# overridden by the light media block -- never CSS custom properties, which resvg
+# drops to black. Warm phosphor was tried and rejected; see CLAUDE.md.
 BASE_CSS = f"""
 .glass{{fill:#0E0E10}}
 .edge{{fill:none;stroke:#26262B;stroke-width:1}}
@@ -238,123 +239,170 @@ def calendar():
 
 # ── generators ──────────────────────────────────────────────────────────
 
-def gen_hero():
-    """The hero. Text is hand-authored; the field behind it is not.
+def frame_css(nslots, cycle, phases):
+    """N discrete slots sharing one keyframe, separated by animation-delay.
 
-    The field runs elementary cellular automaton rule 110 -- the Turing-complete
-    one -- seeded with the real contribution year bucketed to the field width.
-    The pattern is therefore derived from this account's actual history and no
-    other profile produces it, and the motion comes from a system with rules
-    rather than a keyframe asserting that something should appear.
+    One shared keyframe plus a per-group delay costs a fraction of what N
+    separate keyframe blocks would, and the hard cut at the slot boundary is
+    what keeps this a substitution rather than a crossfade -- an interpolated
+    blend between two frames would make the middle of the transformation a
+    smear instead of a state you can read.
+
+    Delays are always negative so the cycle is already under way at t=0.
+    A positive delay would leave every group in its base state until its first
+    turn came round, which means the finished frame flashes on load.
+    """
+    frac = 100.0 / nslots
+    css = [f"""
+@keyframes slot{{
+  0%{{opacity:1}} {frac:.4f}%{{opacity:1}}
+  {frac + 0.0001:.4f}%{{opacity:0}} 100%{{opacity:0}}
+}}"""]
+    for cls, delay in phases:
+        d = delay % cycle - cycle
+        # No opacity in this rule. Each group's base state is carried by its
+        # own presentation attribute, and a CSS declaration would outrank it --
+        # which rasterised the whole panel blank, since resvg runs no keyframes.
+        # Rasterise the animated file, not only the stills.
+        css.append(f".{cls}{{animation:slot {cycle}s linear "
+                   f"{d:.3f}s infinite}}")
+    return "\n".join(css)
+
+
+# Three real log formats and the stages that carry each one into a common
+# schema. Each tuple is the row at that stage, split so the run that *just*
+# resolved can be drawn in .hi and the rest in .dm -- that is the only place
+# emphasis is used here, and it means exactly one thing: this field just landed.
+#
+# Hand-authored sample records, deliberately. Nothing on this panel claims to be
+# live; the live panel is SHIPPED below. Seeding these from the API would add a
+# failure surface to the hero for no gain, and the hero is the one image on the
+# page that must never break.
+NORMALISE = [
+    [  # nginx combined
+        ('127.0.0.1 - [08/Sep/2026:04:17:09] "GET /v1" 200', None),
+        ('[08/Sep/2026:04:17:09]', '  127.0.0.1 "GET /v1" 200'),
+        ('2026-09-08 04:17:09', '  127.0.0.1 "GET /v1" 200'),
+        ('2026-09-08 04:17:09  ', 'info', '  127.0.0.1 "GET /v1" 200'),
+        ('2026-09-08 04:17:09  info  ', 'http', '  GET /v1 200'),
+    ],
+    [  # json lines
+        ('{"ts":"2026-09-08T04:17:11Z","lvl":"warn","m":"retry"}', None),
+        ('"2026-09-08T04:17:11Z"', '  {"lvl":"warn","m":"retry"}'),
+        ('2026-09-08 04:17:11', '  {"lvl":"warn","m":"retry"}'),
+        ('2026-09-08 04:17:11  ', 'warn', '  {"m":"retry"}'),
+        ('2026-09-08 04:17:11  warn  ', 'app ', '  retry'),
+    ],
+    [  # rfc3164 syslog
+        ('Sep  8 04:17:14 host sshd[441]: Accepted pubkey', None),
+        ('[Sep  8 04:17:14]', '  host sshd[441]: Accepted pubkey'),
+        ('2026-09-08 04:17:14', '  host sshd[441]: Accepted pubkey'),
+        ('2026-09-08 04:17:14  ', 'info', '  sshd[441]: Accepted pubkey'),
+        ('2026-09-08 04:17:14  info  ', 'sshd', '  Accepted pubkey'),
+    ],
+]
+STAGES = 5
+HOLD = 2                       # slots the finished record sits still
+SLOTS = STAGES + HOLD
+
+
+def _norm_cells(li, stage):
+    spec = NORMALISE[li][min(stage, STAGES - 1)]
+    cells = [("fr", "│   ")]
+    if len(spec) == 2 and spec[1] is None:
+        cells.append(("dm", spec[0]))
+    elif len(spec) == 2:
+        cells += [("hi", spec[0]), ("dm", spec[1])]
+    else:
+        cells += [("dm", spec[0]), ("hi", spec[1]), ("dm", spec[2])]
+    cells.append(("fr", "│"))
+    return cells
+
+
+def gen_hero():
+    """The hero. A transmutation: three log lines in three different formats
+    becoming one schema, field by field.
+
+    Why a transmutation rather than a texture. The previous hero ran cellular
+    automaton rule 110 seeded by the contribution year. It was a real mechanism
+    and it was derived from real data, but it read as a field of noise behind
+    the text -- it never resolved into anything, and at the width GitHub renders
+    the hero on a phone its 10px glyphs came out around 5px, which is mush.
+    Every project here is a transformation of one representation into another,
+    so the hero shows one happening.
+
+    The three rows are two slots out of phase with each other, so they are never
+    at the same stage. That is the difference between a pipeline in flight and a
+    slideshow: at any moment one line is raw, one is half-resolved and one is
+    done, and the shape of the whole thing is legible without waiting.
 
     Deliberately NOT: typewriter reveal, matrix rain, blinking cursor, glow
-    pulse, scanline sweep, generic fade-in. Rule 110's output is triangular and
-    self-similar, which is what keeps it from reading as matrix rain -- falling
-    glyph columns are random; this is structured, and the structure is the point.
+    pulse, scanline sweep, generic fade-in. This is substitution in place -- the
+    row is replaced by another complete row -- not text accumulating, which is
+    what makes it a different thing from a typewriter.
     """
-    W, H = COLS, 30
-    try:
-        _, weeks, _ = calendar()
-        days = [d for w in weeks for d in w["contributionDays"]]
-    except Exception:
-        days = []
-
-    if days:
-        n = len(days)
-        buckets = [sum(d["contributionCount"]
-                       for d in days[i * n // W: max(i * n // W + 1, (i + 1) * n // W)])
-                   for i in range(W)]
-        nz = sorted(b for b in buckets if b)
-        thresh = nz[len(nz) // 2] if nz else 1
-        cur = [1 if b >= thresh else 0 for b in buckets]
-    else:
-        cur = [0] * W
-        cur[W - 2] = 1
-
-    # Burn-in. Rule 110 grows leftward and this account's live cells all sit in
-    # recent months on the right, so without this two thirds of the panel is bare.
-    for _ in range(60):
-        cur = [(110 >> (cur[(i - 1) % W] * 4 + cur[i] * 2 + cur[(i + 1) % W])) & 1
-               for i in range(W)]
-
-    RAMP = " ·░▒▓█"
-    rows, age = [], [0] * W
-    for _ in range(H):
-        age = [(age[i] + 1 if cur[i] else 0) for i in range(W)]
-        rows.append("".join(RAMP[0] if not cur[i] else RAMP[min(5, 1 + age[i])]
-                            for i in range(W)))
-        cur = [(110 >> (cur[(i - 1) % W] * 4 + cur[i] * 2 + cur[(i + 1) % W])) & 1
-               for i in range(W)]
-
-    w_px = int(COLS * CH + PADX * 2)
-    BLH = 11
-    band_h = H * BLH
-    band = []
-    for rep in (0, 1):                    # drawn twice so the scroll loop is seamless
-        for gi, r in enumerate(rows):
-            # textLength is required here, not optional. Without it the band
-            # rows render at their natural advance while the framed rows are
-            # pinned to the panel width, and the field stops dead at ~73% with
-            # a hard vertical seam and a bald right margin. Measured, not guessed.
-            band.append(f'<text class="g{gi * 4 // H}" x="{PADX}" '
-                        f'y="{(rep * H + gi) * BLH + BLH}" font-size="10" '
-                        f'textLength="{COLS * CH:.1f}" lengthAdjust="spacing">'
-                        f'{esc(r)}</text>')
-
     art = [
-        [("fr", "┌─ "), ("hi", "LOKAVYA SINGH"), ("fr", " "), ("fr", "─" * 29),
-         ("dm", " JAIPUR · IN "), ("fr", "─┐")],
+        [("fr", "┌─ "), ("hi", "LOKAVYA SINGH"), ("fr", " "),
+         ("fr", "─" * 29), ("dm", " JAIPUR · IN "), ("fr", "─┐")],
         [("fr", "│"), ("fr", "│")],
         [("fr", "│"), ("dm", "   "),
-         ("hi", "Local-first desktop software that keeps"), ("fr", "│")],
-        [("fr", "│"), ("dm", "   "), ("hi", "its receipts."), ("fr", "│")],
+         ("hi", "Desktop apps that run on your own computer"), ("fr", "│")],
+        [("fr", "│"), ("dm", "   "), ("hi", "and keep your data there."),
+         ("fr", "│")],
         [("fr", "│"), ("fr", "│")],
         [("fr", "│"), ("dm", "   "), ("dm", "> "), ("hi", "flint   "),
-         ("body", "a timer that is really a plugin engine"), ("fr", "│")],
+         ("body", "a timer whose every mode is a plugin"), ("fr", "│")],
         [("fr", "│"), ("dm", "   "), ("dm", "> "), ("hi", "vysted  "),
-         ("body", "a finance terminal an agent can drive"), ("fr", "│")],
+         ("body", "a finance terminal an AI agent can drive"), ("fr", "│")],
         [("fr", "│"), ("dm", "   "), ("dm", "> "), ("hi", "ulpf    "),
-         ("body", "a log pipeline that proves what it read"), ("fr", "│")],
+         ("body", "a log parser that keeps the original bytes"), ("fr", "│")],
         [("fr", "│"), ("fr", "│")],
-        [("fr", foot(COLS, "the field below is rule 110, seeded by my year"))],
     ]
-    ty, LH2 = 44, 20
-    text_rows = [line(ty + i * LH2, cells, COLS) for i, cells in enumerate(art)]
+    head = "├─ three log formats becoming one schema "
+    art.append([("fr", head + "─" * (COLS - len(head) - 2) + "─┤")])
 
-    h_px = ty + LH2 * len(art) + 118
-    css = f"""
-@keyframes climb{{from{{transform:translateY(0)}}to{{transform:translateY(-{band_h}px)}}}}
-.band{{animation:climb 46s linear infinite}}
-@media (prefers-reduced-motion: reduce){{ .band{{animation:none}} }}
-"""
-    band_top = ty + LH2 * len(art) - 6
-    body = f"""
-<defs>
-  <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#fff" stop-opacity="0"/>
-    <stop offset="34%" stop-color="#fff" stop-opacity="1"/>
-    <stop offset="100%" stop-color="#fff" stop-opacity="1"/>
-  </linearGradient>
-  <mask id="bandmask">
-    <rect x="0" y="{band_top}" width="{w_px}" height="{h_px - band_top}" fill="url(#fade)"/>
-  </mask>
-  <clipPath id="bandclip">
-    <rect x="0" y="{band_top}" width="{w_px}" height="{h_px - band_top}"/>
-  </clipPath>
-</defs>
-<g clip-path="url(#bandclip)" mask="url(#bandmask)">
-  <g class="band" transform="translate(0,{band_top})">{''.join(band)}</g>
-</g>
-{''.join(text_rows)}
-"""
-    return svg_doc(w_px, h_px,
-                   "Lokavya Singh — local-first desktop software that keeps its receipts",
-                   "A monochrome terminal frame over a field running cellular automaton "
-                   "rule 110, seeded with the real contribution year. Three projects: "
-                   "flint, a timer that is really a plugin engine; vysted, a finance "
-                   "terminal an agent can drive; ulpf, a log pipeline that proves what "
-                   "it read.",
-                   css, body)
+    ty, LH2 = 44, 20
+    rows = [line(ty + i * LH2, cells, COLS) for i, cells in enumerate(art)]
+    base = len(art)
+    rows.append(line(ty + base * LH2, [("fr", "│"), ("fr", "│")], COLS))
+
+    cycle, phases = 9.8, []
+    for li in range(3):
+        ry = ty + (base + 1 + li) * LH2
+        for sl in range(SLOTS):
+            cls = f"n{li}{sl}"
+            # Base state is the LAST slot, which is the finished record. A
+            # renderer with no animation support, and reduced-motion, both land
+            # on the completed table rather than on a half-parsed line.
+            op = "" if sl == SLOTS - 1 else ' opacity="0"'
+            rows.append(f'<g class="{cls}"{op}>'
+                        + line(ry, _norm_cells(li, sl), COLS) + "</g>")
+            phases.append((cls, (sl - li * 2) * cycle / SLOTS))
+
+    n = base + 4
+    rows.append(line(ty + n * LH2, [("fr", "│"), ("fr", "│")], COLS))
+    rows.append(line(ty + (n + 1) * LH2,
+                     [("fr", foot(COLS, "this is what ulpf does"))], COLS))
+
+    css = (frame_css(SLOTS, cycle, phases)
+           + "\n@media (prefers-reduced-motion: reduce){"
+           + "".join(f".n{li}{sl}{{animation:none;opacity:0}}"
+                     for li in range(3) for sl in range(SLOTS - 1))
+           + "".join(f".n{li}{SLOTS-1}{{animation:none;opacity:1}}"
+                     for li in range(3))
+           + "}")
+
+    w_px = int(COLS * CH + PADX * 2)
+    h_px = ty + (n + 2) * LH2 + 18
+    return svg_doc(
+        w_px, h_px,
+        "Lokavya Singh — desktop apps that run on your own computer",
+        "A terminal frame. Three log lines in three different formats -- nginx, "
+        "JSON and syslog -- are carried stage by stage into one common schema, "
+        "each row a stage out of phase with the others. Three projects: flint, a "
+        "timer whose every mode is a plugin; vysted, a finance terminal an AI "
+        "agent can drive; ulpf, a log parser that keeps the original bytes.",
+        css, "\n".join(rows))
 
 
 BADGES = [
@@ -437,112 +485,11 @@ def gen_badges():
         else:
             tags = rest(f"/repos/{USER}/{r['name']}/tags?per_page=1") or []
             tag = tags[0]["name"] if tags else ""
-            state, filled = ("tagged, no release" if tags else "no release"), "none"
+            state, filled = ("tagged" if tags else "in progress"), "none"
         write_atomic(os.path.join(ASSETS, f"rel-{r['name']}.svg"),
                      _release_badge(tag, state, filled), f"rel-{r['name']}")
         made.append(f"rel-{r['name']}")
     return made
-
-
-def gen_activity():
-    created, weeks, total = calendar()
-    if not weeks:
-        return no_data("ACTIVITY", "the contribution calendar returned no weeks")
-
-    days = [d for w in weeks for d in w["contributionDays"]]
-    counts = [d["contributionCount"] for d in days]
-    peak = max(counts) if counts else 0
-    active = sum(1 for c in counts if c > 0)
-
-    # Thresholds are taken against the actual peak rather than fixed cuts, so
-    # the graph keeps its shape whatever the volume happens to be.
-    def level(c):
-        if c == 0:
-            return 0
-        if peak <= 4:
-            return min(4, c)
-        for i, f in enumerate((.10, .25, .50), start=1):
-            if c <= max(1, round(peak * f)):
-                return i
-        return 4
-
-    RAMP = "·░▒▓█"
-    ncols = len(weeks)
-    LABEL = 7                        # "|  Mon "
-    cols = COLS
-
-    # One character per week means a 3-letter month name occupies three weeks
-    # and months sit ~4.3 weeks apart, so labels only just fit. Track where the
-    # last one ended rather than gating on a modulus, which silently dropped
-    # most of the year.
-    ruler = [" "] * ncols
-    seen, last_end = set(), -99
-    for i, w in enumerate(weeks):
-        d0 = w["contributionDays"][0]["date"]
-        mo = d0[:7]
-        m = datetime.strptime(d0, "%Y-%m-%d")
-        if mo not in seen and m.day <= 7 and i < ncols - 3 and i > last_end:
-            seen.add(mo)
-            for j, c in enumerate(m.strftime("%b")):
-                if i + j < len(ruler):
-                    ruler[i + j] = c
-            last_end = i + 3
-
-    DAYNAME = ["Mon", "", "Wed", "", "Fri", "", ""]
-    w_px = int(cols * CH + PADX * 2)
-    h_px = int(PADY + LH * 12 + 10)
-
-    parts = []
-    y = PADY + LH
-    parts.append(line(y, [("fr", rule("ACTIVITY", cols,
-                                      f"{total:,} contributions in the last year"))], cols))
-    parts.append(line(y + LH, [("fr", "│"),
-                               ("dm", " " * (LABEL - 1) + "".join(ruler)),
-                               ("fr", "│")], cols))
-
-    grid = []
-    for wd in range(7):
-        cells = [("fr", "│"), ("dm", "  " + DAYNAME[wd].ljust(3) + " ")]
-        runs, cur, buf = [], None, ""
-        for w in weeks:
-            day = next((d for d in w["contributionDays"] if d["weekday"] == wd), None)
-            lv = level(day["contributionCount"]) if day else 0
-            ch = RAMP[lv] if day else " "
-            cls = f"q{lv}"
-            if cls != cur and buf:
-                runs.append((cur, buf))
-                buf = ""
-            cur = cls
-            buf += ch
-        if buf:
-            runs.append((cur, buf))
-        cells += runs
-        cells.append(("fr", "│"))
-        grid.append(line(y + LH * (wd + 2), cells, cols))
-    parts.append('<g class="grid">' + "".join(grid) + "</g>")
-
-    legend = f"  {active} active days  peak {peak}  less "
-    parts.append(line(y + LH * 10,
-                      [("fr", "│"), ("dm", legend)]
-                      + [(f"q{i}", c) for i, c in enumerate(RAMP)]
-                      + [("dm", " more"), ("fr", "│")], cols))
-    parts.append(line(y + LH * 11,
-                      [("fr", foot(cols, "densest week on the right"))], cols))
-
-    css = """
-/* Base state is the finished grid. The wipe's start frame is supplied by
-   fill-mode backwards, so a renderer without animation support shows the
-   graph complete rather than blank. Animates once on load, then settles. */
-.grid{clip-path:none}
-@keyframes wipe{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
-.grid{animation:wipe 1.6s cubic-bezier(.25,.6,.25,1) .2s backwards}
-@media (prefers-reduced-motion: reduce){ .grid{animation:none} }
-"""
-    return svg_doc(w_px, h_px,
-                   f"Contribution activity — {total} contributions in the last year",
-                   f"An ASCII density graph of {total} contributions across {ncols} "
-                   f"weeks. {active} active days, peak {peak} in a single day.",
-                   css, "\n".join(parts))
 
 
 def gen_stats():
@@ -598,53 +545,17 @@ def gen_stats():
         parts.append(line(y + LH * (i + 1),
                           [("fr", "│  "), ("dm", f"{label} {dots} "),
                            ("hi", val), ("fr", "│")], cols))
+    # No footer naming what is absent. An earlier version closed this panel
+    # with "no stars, no followers", which took something no visitor had noticed
+    # and set it in monospace at the bottom of the page. Absence is invisible
+    # until you announce it.
     parts.append(line(y + LH * (len(rows) + 1),
-                      [("fr", foot(cols, "no stars, no followers"))], cols))
+                      [("fr", foot(cols, "counted from the API at build time"))], cols))
     return svg_doc(w_px, h_px, "By the numbers",
                    "Real counts from the GitHub API: commits, lines added, "
                    "contributions, longest streak, releases, repositories, "
-                   "language bytes and account age. No stars or followers.",
+                   "language bytes and account age.",
                    "", "\n".join(parts))
-
-
-def gen_releases():
-    repos = public_repos()
-    if not repos:
-        return no_data("LATEST RELEASE", "no public repositories returned")
-    rows = []
-    for r in repos:
-        rel = [x for x in (rest(f"/repos/{USER}/{r['name']}/releases") or [])
-               if not x.get("draft")]
-        if rel:
-            rel.sort(key=lambda x: x.get("published_at") or "", reverse=True)
-            t = rel[0]
-            rows.append((r["name"], t["tag_name"], (t.get("published_at") or "")[:10],
-                         f"{len(t.get('assets', []))} assets, "
-                         f"{'pre-release' if t.get('prerelease') else 'release'}"))
-        else:
-            tags = rest(f"/repos/{USER}/{r['name']}/tags?per_page=1") or []
-            rows.append((r["name"], tags[0]["name"] if tags else "—", "",
-                         "tagged, no release cut" if tags else "no tags yet"))
-
-    cols = 74
-    w_px = int(cols * CH + PADX * 2)
-    h_px = int(PADY + LH * (len(rows) + 2) + 12)
-    y = PADY + LH
-    parts = [line(y, [("fr", rule("LATEST RELEASE", cols, "per repository"))], cols)]
-    for i, (name, tag, when, note) in enumerate(rows):
-        parts.append(line(y + LH * (i + 1),
-                          [("fr", "│  "), ("hi", name.ljust(17)),
-                           ("ac", tag.ljust(14)), ("dm", when.ljust(12) + note),
-                           ("fr", "│")], cols))
-    # Deliberately no timestamp. A generated-at stamp woulddiffer  every run, so the
-    # workflow would commit every single time it fired whether anything changed
-    # or not -- and those commits would then show up in the activity graph this
-    # same script draws. Freshness is legible from the commit history instead.
-    parts.append(line(y + LH * (len(rows) + 1),
-                      [("fr", foot(cols, "published releases only"))], cols))
-    return svg_doc(w_px, h_px, "Latest release per repository",
-                   "The most recent published release or tag for each public "
-                   "repository, with asset counts.", "", "\n".join(parts))
 
 
 def gen_chain():
@@ -719,158 +630,122 @@ def gen_chain():
                    f"verified, {broken} broken.", "", "\n".join(parts))
 
 
-def gen_ticker():
-    repos = public_repos()
-    items = []
-    for r in repos:
-        for c in (rest(f"/repos/{USER}/{r['name']}/commits?per_page=12") or []):
-            msg = (c.get("commit", {}).get("message") or "").split("\n")[0].strip()
-            if not msg:
-                msg = "(no commit message)"
-            if len(msg) < 2:
-                msg = msg + " …"
-            if len(msg) > 70:
-                msg = msg[:69].rstrip() + "…"
-            items.append((c["commit"]["author"]["date"], r["name"], msg))
-    items.sort(reverse=True)
-    items = items[:22]
-    if not items:
-        return no_data("RECENT COMMITS", "no commits returned for any public repo")
+def gen_inflight():
+    """Commits on the default branch that are ahead of the newest tag.
 
-    seg = "".join(f"  {r} · {m}   ◦" for _, r, m in items) + "   "
-    n = len(seg)
-    cols = 64
-    w_px = int(cols * CH + PADX * 2)
-    h_px = PADY + LH * 3 + 10
-    inner_x = PADX + 2 * CH
-    y = PADY + LH
+    Why this and not something contribution-shaped. Checked against the live
+    profile page rather than assumed: GitHub already renders a contribution
+    calendar with per-day counts, an "Activity overview" radar giving the
+    commit/PR/issue/review split, a month-by-month contribution timeline, and a
+    pinned card per repo carrying its primary language, star count and fork
+    count. Anything built from contributions, languages, stars or forks would be
+    a second copy of something sitting a screen below it. Release and tag state
+    is the one substantial thing about these repositories that appears nowhere
+    on the profile page.
 
-    newest = items[0]
-    frozen = f"{newest[1]} · {newest[2]}"
-    if len(frozen) > cols - 7:
-        # break on a word, not mid-token -- a frozen frame that ends "has a"
-        # reads as a truncation bug rather than a deliberate still
-        frozen = frozen[: cols - 8].rsplit(" ", 1)[0] + " …"
+    And it is live in the sense that matters -- ulpf moved 157 commits ahead of
+    its newest tag inside two days, and the count resets to zero the moment a
+    release is cut, so the panel changes shape on a real event rather than
+    drifting by one a week.
 
-    parts = [
-        line(y, [("fr", rule("RECENT COMMITS", cols, "newest first"))], cols),
-        f'<clipPath id="cl"><rect x="{inner_x:.1f}" y="{y + 4}" '
-        f'width="{(cols - 4) * CH:.1f}" height="{LH + 6}"/></clipPath>',
-        line(y + LH, [("fr", "│"), ("fr", "│")], cols),
-        f'<g clip-path="url(#cl)"><g class="mv">'
-        f'<text class="dm" x="{inner_x:.1f}" y="{y + LH}" '
-        f'textLength="{2 * n * CH:.1f}" lengthAdjust="spacing">'
-        f'{esc(seg)}{esc(seg)}</text></g></g>',
-        # A stopped marquee freezes at an arbitrary character and reads as a
-        # broken image. Reduced motion gets a purpose-built frame instead: the
-        # newest commit, whole, ending where it should.
-        '<g class="frz">'
-        + line(y + LH, [("fr", "│  "), ("dm", frozen), ("fr", "│")], cols)
-        + '</g>',
-        line(y + LH * 2,
-             [("fr", foot(cols, f"{len(items)} commits across "
-                                f"{len(repos)} repositories"))], cols),
-    ]
-
-    css = f"""
-/* One of only two continuously-animating elements on the whole profile. The
-   strip is rendered twice back to back and translated by exactly one copy's
-   width, so the loop has no visible seam. textLength pins that width to the
-   grid, which is what keeps the seam invisible on a font whose advance is
-   not the CH this file assumes. */
-@keyframes roll{{from{{transform:translateX(0)}}to{{transform:translateX(-{n * CH:.1f}px)}}}}
-.mv{{animation:roll {max(30, n // 8)}s linear infinite}}
-.frz{{display:none}}
-@media (prefers-reduced-motion: reduce){{
-  .mv{{display:none}} .frz{{display:block}}
-}}
-"""
-    return svg_doc(w_px, h_px, "Recent commits",
-                   "A scrolling ticker of the most recent commit subjects across "
-                   "the public repositories, newest first.", css, "\n".join(parts))
-
-
-LANG_CLASS = {
-    "Rust": "rust", "TypeScript": "gold", "Python": "plum",
-    "JavaScript": "gold", "Svelte": "ac", "Shell": "dm", "CSS": "dm",
-    "HTML": "dm", "Dockerfile": "dm", "PowerShell": "dm",
-}
-
-
-def _row_svg(stack, tag, state, cls, alt):
-    """One compact metadata strip: stack tokens colour-coded by language, then
-    the release state. Colour means something here -- language identity and
-    release maturity -- rather than decorating.
-
-    This is an SVG rather than markdown backticks because a code span picks up
-    GitHub's grey default styling, which drags a generic dev-portfolio look into
-    a page that is deliberately warm phosphor throughout.
+    `ahead_by` is used rather than len(commits): the compare endpoint caps its
+    commit list at 250 and its file list at 300, so summing the returned diff
+    would silently report a floor as if it were a total. vysted-terminal
+    returns exactly 250 files, which is what that cap looks like from outside.
     """
-    CH, FS, H = 7.0, 12, 20
-    cells = []
-    for i, (name, lcls) in enumerate(stack):
-        if i:
-            cells.append(("dm", " · "))
-        cells.append((lcls, name))
-    cells.append(("dm", "   "))
-    cells.append((cls, f"■ {tag}" if tag else "■"))
-    cells.append(("dm", f" {state}"))
-
-    text = "".join(t for _, t in cells)
-    w = int(len(text) * CH) + 8
-    spans = "".join(f'<tspan class="{c}">{esc(t)}</tspan>' for c, t in cells)
-    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {H}" '
-            f'width="{w}" height="{H}" role="img" xml:space="preserve">'
-            f'<title>{esc(alt)}</title>'
-            f'<style>{BASE_CSS}text{{font-size:{FS}px}}</style>'
-            f'<text x="2" y="14" textLength="{len(text)*CH:.1f}" '
-            f'lengthAdjust="spacing">{spans}</text></svg>')
-
-
-def gen_rows():
-    """A metadata strip per public repository. Scales by construction: adding a
-    repo adds a file, and the README grows by one line. Nothing about the layout
-    degrades at six or eight entries because each entry is independent."""
     repos = public_repos()
-    if not repos:
-        raise RuntimeError("no public repositories returned")
-
-    made = []
+    rows, newest, total = [], "", 0
     for r in repos:
-        langs = rest(f"/repos/{USER}/{r['name']}/languages") or {}
-        # Byte count alone surfaces build and config noise -- Shell scripts and
-        # a CSS file are not what the project is written in. Drop those, and
-        # drop JavaScript when TypeScript is present since it is almost always
-        # config and generated output rather than a second language.
-        NOISE = {"Shell", "PowerShell", "CSS", "HTML", "Dockerfile", "Makefile",
-                 "Batchfile", "SCSS"}
-        langs = {k: v for k, v in langs.items() if k not in NOISE}
-        if "TypeScript" in langs:
-            langs.pop("JavaScript", None)
-        top = sorted(langs.items(), key=lambda kv: -kv[1])[:3]
-        stack = [(k.lower(), LANG_CLASS.get(k, "dm")) for k, _ in top] or [("—", "dm")]
-
         rel = [x for x in (rest(f"/repos/{USER}/{r['name']}/releases") or [])
                if not x.get("draft")]
-        if rel:
-            rel.sort(key=lambda x: x.get("published_at") or "", reverse=True)
-            t = rel[0]
-            tag, state = t["tag_name"], ("pre-release" if t.get("prerelease") else "released")
-            cls = "rust" if t.get("prerelease") else "gold"
-        else:
-            tags = rest(f"/repos/{USER}/{r['name']}/tags?per_page=1") or []
-            if tags:
-                tag, state, cls = tags[0]["name"], "tagged, no release", "ac"
-            else:
-                tag, state, cls = "", "no release yet", "deep"
+        rel.sort(key=lambda x: x.get("published_at") or "", reverse=True)
+        tags = rest(f"/repos/{USER}/{r['name']}/tags?per_page=1") or []
+        base = rel[0]["tag_name"] if rel else (tags[0]["name"] if tags else None)
+        if not base:
+            # A repository with no tag has nothing to say on this panel, so it
+            # is left off rather than given a row that reports an absence.
+            continue
+        cmp_ = rest(f"/repos/{USER}/{r['name']}/compare/{base}...{r['default_branch']}")
+        if not cmp_:
+            continue
+        ahead = cmp_.get("ahead_by", 0)
+        total += ahead
+        for c in (cmp_.get("commits") or []):
+            d = c.get("commit", {}).get("author", {}).get("date", "")[:10]
+            newest = max(newest, d)
+        rows.append((r["name"], base, ahead))
 
-        alt = (f"{r['name']}: " + ", ".join(k for k, _ in stack)
-               + f" — {tag + ' ' if tag else ''}{state}")
-        svg = _row_svg(stack, tag, state, cls, alt)
-        path = os.path.join(ASSETS, f"row-{r['name']}.svg")
-        write_atomic(path, svg, f"row-{r['name']}")
-        made.append(r["name"])
-    return made
+    if not rows:
+        return no_data("IN FLIGHT", "no tagged repository to compare against")
+
+    rows.sort(key=lambda x: -x[2])
+    peak = max(a for _, _, a in rows) or 1
+    BAR = 16
+    cols = COLS
+    w_px = int(cols * CH + PADX * 2)
+    h_px = int(PADY + LH * (len(rows) + 4) + 12)
+    y = PADY + LH
+
+    parts = [line(y, [("fr", rule("IN FLIGHT", cols,
+                                  f"{total} commits since the last tag"))], cols),
+             line(y + LH, [("fr", "│"), ("fr", "│")], cols)]
+
+    bars = []
+    for i, (name, tag, ahead) in enumerate(rows):
+        cells = [("fr", "│  "), ("hi", name.ljust(17))]
+        if ahead:
+            fill = max(1, round(BAR * ahead / peak))
+            # Only U+2588 and U+2591 are used for the bar. A run of the lower
+            # block glyphs (U+2581..U+2587) falls back to a face with a
+            # different advance, and lengthAdjust="spacing" cannot correct a
+            # glyph that is itself the wrong width -- a 46-long run of them
+            # pushed a panel's closing rule outside the frame when this was
+            # tried. Measured by rasterising, not reasoned about.
+            # A DISCRETE meter, not a solid bar, and that is forced rather
+            # than chosen. lengthAdjust="spacing" spreads the row's width
+            # correction across every inter-glyph gap, so a run of U+2588 comes
+            # out as blocks separated by ragged sub-pixel gaps that read as a
+            # rendering fault rather than as a bar. Squares with deliberate gaps
+            # absorb that correction invisibly, and U+25A0 is already the release
+            # badges' glyph, so the page's vocabulary stays consistent.
+            #
+            # The lower block glyphs U+2581..U+2587 are worse: they fall back to
+            # a face with a different advance, and lengthAdjust cannot correct a
+            # glyph that is itself the wrong width -- a 46-long run of them
+            # pushed a panel's closing rule outside its frame.
+            cells += [("hi", "■" * fill), ("fr", "·" * (BAR - fill)),
+                      ("hi", f"{ahead:>5}")]
+        else:
+            # Zero ahead is the good end of this scale: everything that has
+            # been built is downloadable. Say that, rather than printing a 0
+            # next to a 157 and letting the small number do the talking.
+            cells += [("dm", "released in full".ljust(BAR)), ("dm", "     ")]
+        cells += [("dm", "  " + tag.ljust(12)), ("fr", "│")]
+        bars.append(line(y + LH * (i + 2), cells, cols))
+    parts.append('<g class="bars">' + "".join(bars) + "</g>")
+
+    parts.append(line(y + LH * (len(rows) + 2), [("fr", "│"), ("fr", "│")], cols))
+    parts.append(line(y + LH * (len(rows) + 3),
+                      [("fr", foot(cols, f"newest commit {newest}"))], cols))
+
+    css = """
+/* Base state is the finished chart; the keyframe supplies only the entrance,
+   via fill-mode backwards. A renderer with no animation support shows the bars
+   complete rather than blank, and reduced motion is then one line. Animates
+   once and settles -- the hero is the page's only continuous motion. */
+.bars{clip-path:none}
+@keyframes grow{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+.bars{animation:grow 1.4s cubic-bezier(.25,.6,.25,1) .2s backwards}
+@media (prefers-reduced-motion: reduce){ .bars{animation:none} }
+"""
+    return svg_doc(w_px, h_px,
+                   f"In flight — {total} commits since the last tag",
+                   "Per repository, the number of commits on the default branch "
+                   "that are ahead of its newest tag, drawn as a bar. "
+                   + "; ".join(f"{n}: {a} ahead of {t}" if a
+                               else f"{n}: released in full at {t}"
+                               for n, t, a in rows) + ".",
+                   css, "\n".join(parts))
 
 
 def no_data(title, reason):
@@ -931,7 +806,7 @@ def write_atomic(path, svg, name):
 
 GENERATORS = [
     ("hero",     "hero.svg",     gen_hero),
-    ("activity", "activity.svg", gen_activity),
+    ("inflight", "inflight.svg", gen_inflight),
     ("stats",    "stats.svg",    gen_stats),
     ("chain",    "chain.svg",    gen_chain),
 ]

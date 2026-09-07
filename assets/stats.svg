@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 556 225" width="556" height="225" role="img" aria-labelledby="t d" xml:space="preserve">
 <title id="t">By the numbers</title>
-<desc id="d">Real counts from the GitHub API: commits, lines added, contributions, longest streak, releases, repositories, language bytes and account age. No stars or followers.</desc>
+<desc id="d">Real counts from the GitHub API: commits, lines added, contributions, longest streak, releases, repositories, language bytes and account age.</desc>
 <style>
 .glass{fill:#0E0E10}
 .edge{fill:none;stroke:#26262B;stroke-width:1}
@@ -38,14 +38,14 @@ text{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Cascadia 
 <text x="22" y="43" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">┌─ BY THE NUMBERS ──────────────────────────────────────── ─┐</tspan></text>
 <text x="22" y="60" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">commits, public repos ............................. </tspan><tspan class="hi">1,407</tspan><tspan class="fr">│</tspan></text>
 <text x="22" y="77" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">lines added, public repos ....................... </tspan><tspan class="hi">789,305</tspan><tspan class="fr">│</tspan></text>
-<text x="22" y="94" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">contributions, 365 days ........................... </tspan><tspan class="hi">4,252</tspan><tspan class="fr">│</tspan></text>
+<text x="22" y="94" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">contributions, 365 days ........................... </tspan><tspan class="hi">4,261</tspan><tspan class="fr">│</tspan></text>
 <text x="22" y="111" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">longest daily streak ............................ </tspan><tspan class="hi">24 days</tspan><tspan class="fr">│</tspan></text>
 <text x="22" y="128" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">releases published .................................... </tspan><tspan class="hi">6</tspan><tspan class="fr">│</tspan></text>
 <text x="22" y="145" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">public repositories ................................... </tspan><tspan class="hi">3</tspan><tspan class="fr">│</tspan></text>
 <text x="22" y="162" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">Rust, bytes ....................................... </tspan><tspan class="hi">1317k</tspan><tspan class="fr">│</tspan></text>
 <text x="22" y="179" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">TypeScript, bytes ................................. </tspan><tspan class="hi">1852k</tspan><tspan class="fr">│</tspan></text>
 <text x="22" y="196" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">account opened ....................... </tspan><tspan class="hi">Feb 2022 (4.6 yrs)</tspan><tspan class="fr">│</tspan></text>
-<text x="22" y="213" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">└────────────────────────────────── no stars, no followers ─┘</tspan></text>
+<text x="22" y="213" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">└────────────────────── counted from the API at build time ─┘</tspan></text>
 <rect class="scan" x="0" y="-12" width="556" height="249" fill="url(#sl)"/>
 <rect class="vig" width="556" height="225" rx="8" fill="url(#vig)"/>
 <rect class="edge" x=".5" y=".5" width="555" height="224" rx="8"/>
