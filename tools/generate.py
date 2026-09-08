@@ -269,7 +269,7 @@ def frame_css(nslots, cycle, phases):
     return "\n".join(css)
 
 
-# Two true sentences about how this gets built, interleaved character by
+# Two true sentences about what the software does, interleaved character by
 # character. Read as one line they are noise; the characters then separate into
 # the two statements that were there the whole time. Nothing is ever added and
 # nothing is ever removed -- every character on screen in the last frame is on
@@ -283,8 +283,11 @@ def frame_css(nslots, cycle, phases):
 # Hand-authored, and nothing on this panel claims to be live. The live panel is
 # IN FLIGHT below. Giving the hero a data source would put a failure surface on
 # the one image that must never break.
-SAY_A = "I decide what it should do      "
-SAY_B = "Claude Code does the typing     "
+# NEVER name a tool, an assistant or how the code was written -- not here,
+# not in the desc, not in alt text. What is true and worth saying is what
+# the software does and what its author decided. See CLAUDE.md.
+SAY_A = "It runs on your own computer    "
+SAY_B = "Your data stays in your files   "
 ROUNDS = 6                     # round 0 fully interleaved, round 5 separated
 HOLD = 4                       # slots the separated pair sits still
 SLOTS = ROUNDS + HOLD
@@ -425,8 +428,8 @@ def gen_hero():
     return svg_doc(
         w_px, h_px,
         "Lokavya Singh — desktop apps that run on your own computer",
-        "A terminal frame. Two sentences -- \"I decide what it should do\" and "
-        "\"Claude Code does the typing\" -- are interleaved character by "
+        "A terminal frame. Two sentences -- \"It runs on your own computer\" and "
+        "\"Your data stays in your files\" -- are interleaved character by "
         "character and separate back into two readable lines; nothing is added "
         "or removed at any point. Three projects: flint, a timer whose every "
         "mode is a plugin; vysted, a finance terminal an AI agent can drive; "

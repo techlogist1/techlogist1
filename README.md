@@ -4,9 +4,9 @@
   from under it. the numbers are counted from the API when the workflow runs.
 -->
 
-<img src="assets/hero.svg" width="100%" alt="Lokavya Singh — desktop apps that run on your own computer and keep your data there. Two sentences, 'I decide what it should do' and 'Claude Code does the typing', are interleaved character by character and separate back into two readable lines. flint: a timer whose every mode is a plugin. vysted: a finance terminal an AI agent can drive. ulpf: a log parser that keeps the original bytes.">
+<img src="assets/hero.svg" width="100%" alt="Lokavya Singh — desktop apps that run on your own computer and keep your data there. Two sentences, 'It runs on your own computer' and 'Your data stays in your files', are interleaved character by character and separate back into two readable lines. flint: a timer whose every mode is a plugin. vysted: a finance terminal an AI agent can drive. ulpf: a log parser that keeps the original bytes.">
 
-I'm 19, from Jaipur, a first-year CS student at Shiv Nadar University on a 2+2 with Arizona State. I build by driving Claude Code, so most of my time goes on deciding what the software should do, how it is put together, and checking that it does what its README says. The apps run on your own machine, store their data in files you can open in a text editor, and keep working with the network off.
+I'm 19, from Jaipur, a first-year CS student at Shiv Nadar University on a 2+2 with Arizona State. I build desktop apps that run on your own computer, store their data in files you can open in a text editor, and keep working with the network off. Where a feature could cost you something, I ship it switched off: order execution disabled, no outbound connection, no telemetry.
 
 [![rust](assets/badge-rust.svg)](https://github.com/techlogist1?tab=repositories&language=rust)
 [![typescript](assets/badge-typescript.svg)](https://github.com/techlogist1?tab=repositories&language=typescript)
