@@ -5,6 +5,37 @@ Newest first.
 
 ## Done
 
+## Sixth pass — in progress
+
+**No line on this page attributes the work to a tool.** Shipped and live. The hero
+animated a pair of sentences splitting credit between the author and his tooling,
+the intro named that tooling, and both were repeated in the README alt text and in
+the hero's `<desc>`. All removed; the hero's two sentences are now *"It runs on
+your own computer"* / *"Your data stays in your files"*, both true of all three
+projects, and the intro states the decision instead: where a feature could cost
+you something, it ships switched off. The rule and the general principle behind it
+are in CLAUDE.md § Never attribute the work to a tool — **read that before writing
+any hero**. The scheduled workflow regenerated on the new generator and kept it.
+
+**Measured on the live site, not assumed** (probe branch, since deleted):
+
+- `<source media="(prefers-reduced-motion: reduce)">` **survives GitHub's HTML
+  sanitizer verbatim**, including compound queries such as
+  `(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)`. So a raster
+  hero *can* freeze for reduced motion via `<picture>`; the format choice is not
+  forced by accessibility.
+- `<table>` with `width` and `valign` survives, so real multi-column layout is
+  available. The page has never used it.
+- Images still rewrite to `/techlogist1/techlogist1/raw/...` — the camo finding holds.
+
+**Toolchain present for a rendered hero:** resvg 0.48.1, ffmpeg 8.1, Pillow 12.1
+(APNG save), numpy, node. No ImageMagick, gifsicle, oxipng or pngquant.
+
+**Open:** the conceit is chosen but the page is not yet rebuilt in it. `verify.py`
+guards `assets/*.svg` only — if a raster asset ships, extend it to cover raster
+size and existence too, or the budget stops being enforced.
+
+
 **Phase 1 — inventory.** 20 repos, 6 public at the time. Findings that corrected
 the original brief: this repo had **zero commits** (not a weak README — an empty
 repo); all three `ulpf` releases were **drafts** with **empty bodies**, so its
