@@ -1,24 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 22" width="48" height="22" role="img" xml:space="preserve"><title>rust</title><style>
-.glass{fill:#0E0E10}
-.edge{fill:none;stroke:#26262B;stroke-width:1}
-text{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Cascadia Mono","DejaVu Sans Mono","Liberation Mono",monospace;font-size:14px;white-space:pre;fill:#B8B8BE}
-.fr{fill:#4A4A52} .hi{fill:#EDEDEF} .ac{fill:#B8B8BE} .dm{fill:#7A7A82}
-.cool{fill:#EDEDEF} .deep{fill:#4A4A52} .body{fill:#B8B8BE}
-.rust{fill:#B8B8BE} .gold{fill:#EDEDEF} .plum{fill:#7A7A82}
-.q0{fill:#26262B} .q1{fill:#4A4A52} .q2{fill:#7A7A82} .q3{fill:#B8B8BE} .q4{fill:#EDEDEF}
-.g0{fill:#1E1E22} .g1{fill:#2E2E34} .g2{fill:#3E3E46} .g3{fill:#55555E}
-.scan{opacity:0}
-.vig{opacity:0}
-.scrim{opacity:1}
+.glass{fill:#16130F}
+.edge{fill:none;stroke:#3A3125;stroke-width:1}
+text{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Cascadia Mono","DejaVu Sans Mono","Liberation Mono",monospace;font-size:14px;white-space:pre;fill:#CEC2AD}
+.fr{fill:#6E6047} .hi{fill:#F3EBDB} .dm{fill:#AA9877} .ox{fill:#CF6A56} .tx{fill:#CEC2AD}
+.ln{fill:none;stroke:#CEC2AD;stroke-width:1.15;stroke-linecap:round;stroke-linejoin:round}
+.q0{fill:#3A3125} .q1{fill:#6E6047} .q2{fill:#AA9877} .q3{fill:#CEC2AD} .q4{fill:#F3EBDB}
 @media (prefers-color-scheme: light){
-  .glass{fill:#FBFBFC}
-  .edge{stroke:#E2E2E6}
-  text{fill:#45454C}
-  .fr{fill:#A8A8B0} .hi{fill:#16161A} .ac{fill:#45454C} .dm{fill:#76767E}
-  .cool{fill:#16161A} .deep{fill:#A8A8B0} .body{fill:#45454C}
-  .rust{fill:#45454C} .gold{fill:#16161A} .plum{fill:#76767E}
-  .q0{fill:#EAEAEE} .q1{fill:#C6C6CC} .q2{fill:#94949C} .q3{fill:#5C5C64} .q4{fill:#16161A}
-  .g0{fill:#F0F0F2} .g1{fill:#E2E2E6} .g2{fill:#D0D0D6} .g3{fill:#B8B8C0}
-  .scrim{opacity:0}
+  .glass{fill:#FAF6EC}
+  .edge{stroke:#D6C9AF}
+  text{fill:#3F362A}
+  .fr{fill:#9C8B6E} .hi{fill:#1B1610} .dm{fill:#75664F} .ox{fill:#8E241A} .tx{fill:#3F362A}
+  .ln{stroke:#3F362A}
+  .q0{fill:#D6C9AF} .q1{fill:#9C8B6E} .q2{fill:#75664F} .q3{fill:#3F362A} .q4{fill:#1B1610}
 }
-text{font-size:12px}.pill{fill:none;stroke:#3A3A42;stroke-width:1}.pbg{fill:#161619}@media (prefers-color-scheme: light){.pill{stroke:#DADADE}.pbg{fill:#F4F4F6}}</style><rect class="pbg" x=".5" y=".5" width="47" height="21" rx="5"/><rect class="pill" x=".5" y=".5" width="47" height="21" rx="5"/><text class="hi" x="10" y="15" textLength="28.0" lengthAdjust="spacing">rust</text></svg>
+text{font-size:12px}.pill{fill:none;stroke:#3A3125;stroke-width:1}.pbg{fill:#16130F}@media (prefers-color-scheme: light){.pill{stroke:#D6C9AF}.pbg{fill:#FAF6EC}}</style><rect class="pbg" x=".5" y=".5" width="47" height="21" rx="5"/><rect class="pill" x=".5" y=".5" width="47" height="21" rx="5"/><text class="hi" x="10" y="15" textLength="28.0" lengthAdjust="spacing">rust</text></svg>

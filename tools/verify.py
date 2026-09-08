@@ -53,6 +53,32 @@ def check(path):
     return size, bad
 
 
+README_MARKERS = ["notebook:kit", "notebook:accounts",
+                  "notebook:plans", "notebook:deposited"]
+# Nothing on this page names a tool, an assistant, or how the code was written.
+# The rule is in CLAUDE.md; this is the guard that stops it coming back by
+# accident, in an alt string or an HTML comment where nobody would look.
+BANNED = ["claude", "copilot", "chatgpt", "vibe cod", "openai"]
+
+
+def check_readme(path="README.md"):
+    """The generator rewrites four blocks in README.md in place. If a marker
+    goes missing the rewrite raises and the page silently stops growing, so the
+    markers are checked here rather than discovered months later."""
+    bad = []
+    if not os.path.exists(path):
+        return ["README.md is missing"]
+    raw = open(path, encoding="utf-8").read()
+    for m in README_MARKERS:
+        if raw.count("<!--%s-->" % m) != 1 or raw.count("<!--/%s-->" % m) != 1:
+            bad.append("README.md: marker pair <!--%s--> is not intact" % m)
+    low = raw.lower()
+    for b in BANNED:
+        if b in low:
+            bad.append("README.md: names a tool (%r) -- see CLAUDE.md" % b)
+    return bad
+
+
 def main(paths):
     files = []
     for p in paths:
@@ -62,7 +88,15 @@ def main(paths):
         print("::error::no SVGs matched — refusing to pass vacuously")
         return 1
 
-    total, failed = 0, 0
+    failed = 0
+    for b in check_readme(os.path.join(os.path.dirname(os.path.dirname(
+            os.path.abspath(__file__))), "README.md")):
+        failed += 1
+        print("::error::%s" % b)
+    if not failed:
+        print("ok    README.md        markers intact, names no tool")
+
+    total = 0
     for f in files:
         size, bad = check(f)
         total += size

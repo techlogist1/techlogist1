@@ -1,53 +1,43 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 556 259" width="556" height="259" role="img" aria-labelledby="t d" xml:space="preserve">
-<title id="t">Provenance — 12 links verified, 0 broken</title>
-<desc id="d">The most recent commits in each public repository shown as a hash chain, each commit naming its parent. 12 links verified, 0 broken.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 556 382" width="556" height="382" role="img" aria-labelledby="t d" xml:space="preserve">
+<title id="t">Provenance — the chain walked and verified</title>
+<desc id="d">Recent commits in each catalogued repository shown as a digest chain, each naming the one before it, with every link checked: 12 links checked, 0 broken.</desc>
 <style>
-.glass{fill:#0E0E10}
-.edge{fill:none;stroke:#26262B;stroke-width:1}
-text{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Cascadia Mono","DejaVu Sans Mono","Liberation Mono",monospace;font-size:14px;white-space:pre;fill:#B8B8BE}
-.fr{fill:#4A4A52} .hi{fill:#EDEDEF} .ac{fill:#B8B8BE} .dm{fill:#7A7A82}
-.cool{fill:#EDEDEF} .deep{fill:#4A4A52} .body{fill:#B8B8BE}
-.rust{fill:#B8B8BE} .gold{fill:#EDEDEF} .plum{fill:#7A7A82}
-.q0{fill:#26262B} .q1{fill:#4A4A52} .q2{fill:#7A7A82} .q3{fill:#B8B8BE} .q4{fill:#EDEDEF}
-.g0{fill:#1E1E22} .g1{fill:#2E2E34} .g2{fill:#3E3E46} .g3{fill:#55555E}
-.scan{opacity:0}
-.vig{opacity:0}
-.scrim{opacity:1}
+.glass{fill:#16130F}
+.edge{fill:none;stroke:#3A3125;stroke-width:1}
+text{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Cascadia Mono","DejaVu Sans Mono","Liberation Mono",monospace;font-size:14px;white-space:pre;fill:#CEC2AD}
+.fr{fill:#6E6047} .hi{fill:#F3EBDB} .dm{fill:#AA9877} .ox{fill:#CF6A56} .tx{fill:#CEC2AD}
+.ln{fill:none;stroke:#CEC2AD;stroke-width:1.15;stroke-linecap:round;stroke-linejoin:round}
+.q0{fill:#3A3125} .q1{fill:#6E6047} .q2{fill:#AA9877} .q3{fill:#CEC2AD} .q4{fill:#F3EBDB}
 @media (prefers-color-scheme: light){
-  .glass{fill:#FBFBFC}
-  .edge{stroke:#E2E2E6}
-  text{fill:#45454C}
-  .fr{fill:#A8A8B0} .hi{fill:#16161A} .ac{fill:#45454C} .dm{fill:#76767E}
-  .cool{fill:#16161A} .deep{fill:#A8A8B0} .body{fill:#45454C}
-  .rust{fill:#45454C} .gold{fill:#16161A} .plum{fill:#76767E}
-  .q0{fill:#EAEAEE} .q1{fill:#C6C6CC} .q2{fill:#94949C} .q3{fill:#5C5C64} .q4{fill:#16161A}
-  .g0{fill:#F0F0F2} .g1{fill:#E2E2E6} .g2{fill:#D0D0D6} .g3{fill:#B8B8C0}
-  .scrim{opacity:0}
+  .glass{fill:#FAF6EC}
+  .edge{stroke:#D6C9AF}
+  text{fill:#3F362A}
+  .fr{fill:#9C8B6E} .hi{fill:#1B1610} .dm{fill:#75664F} .ox{fill:#8E241A} .tx{fill:#3F362A}
+  .ln{stroke:#3F362A}
+  .q0{fill:#D6C9AF} .q1{fill:#9C8B6E} .q2{fill:#75664F} .q3{fill:#3F362A} .q4{fill:#1B1610}
 }
 </style>
-<defs>
-  <pattern id="sl" width="6" height="6" patternUnits="userSpaceOnUse">
-    <rect width="6" height="3" fill="#000"/>
-  </pattern>
-  <radialGradient id="vig" cx="50%" cy="46%" r="78%">
-    <stop offset="58%" stop-color="#000" stop-opacity="0"/>
-    <stop offset="100%" stop-color="#000" stop-opacity=".34"/>
-  </radialGradient>
-</defs>
-<rect class="glass" width="556" height="259" rx="8"/>
-<text x="22" y="43" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">┌─ PROVENANCE ─────────────────────────────────── chain ok ─┐</tspan></text>
-<text x="22" y="60" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">ulpf                                                     </tspan><tspan class="fr">│</tspan></text>
-<text x="22" y="77" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="hi">8ea8fb2</tspan><tspan class="dm"> &lt;── </tspan><tspan class="hi">b751cc4</tspan><tspan class="dm"> &lt;── </tspan><tspan class="hi">0b4a8e5</tspan><tspan class="dm"> &lt;── </tspan><tspan class="hi">e4c8d8b            </tspan><tspan class="fr">│</tspan></text>
-<text x="22" y="94" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">vysted-terminal                                          </tspan><tspan class="fr">│</tspan></text>
-<text x="22" y="111" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="hi">cfcf5be</tspan><tspan class="dm"> &lt;── </tspan><tspan class="hi">9352565</tspan><tspan class="dm"> &lt;── </tspan><tspan class="hi">8770bf2</tspan><tspan class="dm"> &lt;── </tspan><tspan class="hi">d58bfc7            </tspan><tspan class="fr">│</tspan></text>
-<text x="22" y="128" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">flint                                                    </tspan><tspan class="fr">│</tspan></text>
-<text x="22" y="145" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="hi">11cf4f5</tspan><tspan class="dm"> &lt;── </tspan><tspan class="hi">54f901c</tspan><tspan class="dm"> &lt;── </tspan><tspan class="hi">6829ca8</tspan><tspan class="dm"> &lt;── </tspan><tspan class="hi">de18df2            </tspan><tspan class="fr">│</tspan></text>
-<text x="22" y="162" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│                                                           </tspan><tspan class="fr">│</tspan></text>
-<text x="22" y="179" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">every commit names its parent's digest, so each branch   </tspan><tspan class="fr">│</tspan></text>
-<text x="22" y="196" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">above is a hash chain a stranger can re-walk without     </tspan><tspan class="fr">│</tspan></text>
-<text x="22" y="213" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">trusting this page. 12 links checked here, 0 broken.     </tspan><tspan class="fr">│</tspan></text>
-<text x="22" y="230" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">└────────────────────────────────── verified at build time ─┘</tspan></text>
-<rect class="scan" x="0" y="-12" width="556" height="283" fill="url(#sl)"/>
-<rect class="vig" width="556" height="259" rx="8" fill="url(#vig)"/>
-<rect class="edge" x=".5" y=".5" width="555" height="258" rx="8"/>
+<rect class="glass" width="556" height="382" rx="8"/>
+<text x="22" y="42" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">┌─ PROVENANCE ────────────────── EACH NAMES THE ONE BEFORE ─┐</tspan></text>
+<text x="22" y="58" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│                                                           │</tspan></text>
+<text x="22" y="74" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="ox">№ 1  </tspan><tspan class="hi">flint                                             </tspan><tspan class="fr">  │</tspan></text>
+<text x="22" y="90" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│     </tspan><tspan class="dm">11cf4f5cd → 54f901cd7</tspan><tspan>  linked                       </tspan><tspan class="fr">  │</tspan></text>
+<text x="22" y="106" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│     </tspan><tspan class="dm">54f901cd7 → 6829ca821</tspan><tspan>  linked                       </tspan><tspan class="fr">  │</tspan></text>
+<text x="22" y="122" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│     </tspan><tspan class="dm">6829ca821 → de18df22d</tspan><tspan>  linked                       </tspan><tspan class="fr">  │</tspan></text>
+<text x="22" y="138" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│     </tspan><tspan class="dm">de18df22d → 743d1ce7d</tspan><tspan>  linked                       </tspan><tspan class="fr">  │</tspan></text>
+<text x="22" y="154" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│                                                           │</tspan></text>
+<text x="22" y="170" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="ox">№ 2  </tspan><tspan class="hi">vysted-terminal                                   </tspan><tspan class="fr">  │</tspan></text>
+<text x="22" y="186" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│     </tspan><tspan class="dm">cfcf5bef9 → 93525654b</tspan><tspan>  linked                       </tspan><tspan class="fr">  │</tspan></text>
+<text x="22" y="202" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│     </tspan><tspan class="dm">93525654b → 8770bf26a</tspan><tspan>  linked                       </tspan><tspan class="fr">  │</tspan></text>
+<text x="22" y="218" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│     </tspan><tspan class="dm">8770bf26a → d58bfc747</tspan><tspan>  linked                       </tspan><tspan class="fr">  │</tspan></text>
+<text x="22" y="234" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│     </tspan><tspan class="dm">d58bfc747 → 3123e7ccd</tspan><tspan>  linked                       </tspan><tspan class="fr">  │</tspan></text>
+<text x="22" y="250" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│                                                           │</tspan></text>
+<text x="22" y="266" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="ox">№ 3  </tspan><tspan class="hi">ulpf                                              </tspan><tspan class="fr">  │</tspan></text>
+<text x="22" y="282" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│     </tspan><tspan class="dm">8ea8fb205 → b751cc4af</tspan><tspan>  linked                       </tspan><tspan class="fr">  │</tspan></text>
+<text x="22" y="298" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│     </tspan><tspan class="dm">b751cc4af → 0b4a8e55b</tspan><tspan>  linked                       </tspan><tspan class="fr">  │</tspan></text>
+<text x="22" y="314" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│     </tspan><tspan class="dm">0b4a8e55b → e4c8d8b15</tspan><tspan>  linked                       </tspan><tspan class="fr">  │</tspan></text>
+<text x="22" y="330" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│     </tspan><tspan class="dm">e4c8d8b15 → 5c32d6183</tspan><tspan>  linked                       </tspan><tspan class="fr">  │</tspan></text>
+<text x="22" y="346" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│                                                           │</tspan></text>
+<text x="22" y="362" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">└────────────────────────────── 12 LINKS CHECKED, 0 BROKEN ─┘</tspan></text>
+<rect class="edge" x=".5" y=".5" width="555" height="381" rx="8"/>
 </svg>

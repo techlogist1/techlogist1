@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 22" width="90" height="22" role="img" xml:space="preserve"><title>typescript</title><style>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 37 22" width="37" height="22" role="img" xml:space="preserve"><title>№ 3</title><style>
 .glass{fill:#16130F}
 .edge{fill:none;stroke:#3A3125;stroke-width:1}
 text{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Cascadia Mono","DejaVu Sans Mono","Liberation Mono",monospace;font-size:14px;white-space:pre;fill:#CEC2AD}
@@ -13,4 +13,4 @@ text{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Cascadia 
   .ln{stroke:#3F362A}
   .q0{fill:#D6C9AF} .q1{fill:#9C8B6E} .q2{fill:#75664F} .q3{fill:#3F362A} .q4{fill:#1B1610}
 }
-text{font-size:12px}.pill{fill:none;stroke:#3A3125;stroke-width:1}.pbg{fill:#16130F}@media (prefers-color-scheme: light){.pill{stroke:#D6C9AF}.pbg{fill:#FAF6EC}}</style><rect class="pbg" x=".5" y=".5" width="89" height="21" rx="5"/><rect class="pill" x=".5" y=".5" width="89" height="21" rx="5"/><text class="hi" x="10" y="15" textLength="70.0" lengthAdjust="spacing">typescript</text></svg>
+text{font-size:12px}.pill{fill:none;stroke:#3A3125;stroke-width:1}.pbg{fill:#16130F}@media (prefers-color-scheme: light){.pill{stroke:#D6C9AF}.pbg{fill:#FAF6EC}}</style><rect class="pbg" x=".5" y=".5" width="36" height="21" rx="5"/><rect class="pill" x=".5" y=".5" width="36" height="21" rx="5"/><text class="ox" x="10" y="15" textLength="21.0" lengthAdjust="spacing">№ 3</text></svg>

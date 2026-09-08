@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 556 158" width="556" height="158" role="img" aria-labelledby="t d" xml:space="preserve">
+<title id="t">Lines set — commits ahead of each newest tag</title>
+<desc id="d">For every catalogued repository, the commits on its default branch that are ahead of its newest tag, drawn as a bar. A repository level with its tag is entered as run.</desc>
+<style>
+.glass{fill:#16130F}
+.edge{fill:none;stroke:#3A3125;stroke-width:1}
+text{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Cascadia Mono","DejaVu Sans Mono","Liberation Mono",monospace;font-size:14px;white-space:pre;fill:#CEC2AD}
+.fr{fill:#6E6047} .hi{fill:#F3EBDB} .dm{fill:#AA9877} .ox{fill:#CF6A56} .tx{fill:#CEC2AD}
+.ln{fill:none;stroke:#CEC2AD;stroke-width:1.15;stroke-linecap:round;stroke-linejoin:round}
+.q0{fill:#3A3125} .q1{fill:#6E6047} .q2{fill:#AA9877} .q3{fill:#CEC2AD} .q4{fill:#F3EBDB}
+@media (prefers-color-scheme: light){
+  .glass{fill:#FAF6EC}
+  .edge{stroke:#D6C9AF}
+  text{fill:#3F362A}
+  .fr{fill:#9C8B6E} .hi{fill:#1B1610} .dm{fill:#75664F} .ox{fill:#8E241A} .tx{fill:#3F362A}
+  .ln{stroke:#3F362A}
+  .q0{fill:#D6C9AF} .q1{fill:#9C8B6E} .q2{fill:#75664F} .q3{fill:#3F362A} .q4{fill:#1B1610}
+}
+</style>
+<rect class="glass" width="556" height="158" rx="8"/>
+<text x="22" y="42" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">┌─ LINES SET ───────────────────── SET AND NOT YET CHECKED ─┐</tspan></text>
+<text x="22" y="58" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│                                                           │</tspan></text>
+<text x="22" y="74" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="ox">№ 1  </tspan><tspan class="hi">flint            </tspan><tspan class="tx">run and entered</tspan><tspan class="dm">                  </tspan><tspan class="fr">  │</tspan></text>
+<text x="22" y="90" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="ox">№ 2  </tspan><tspan class="hi">vysted-terminal  </tspan><tspan class="tx">       63 ahead</tspan><tspan class="dm">  ▪▪▪▪▪▪··········</tspan><tspan class="fr">  │</tspan></text>
+<text x="22" y="106" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="ox">№ 3  </tspan><tspan class="hi">ulpf             </tspan><tspan class="tx">      157 ahead</tspan><tspan class="dm">  ▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪▪</tspan><tspan class="fr">  │</tspan></text>
+<text x="22" y="122" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│                                                           │</tspan></text>
+<text x="22" y="138" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">└─────────────────────────────────── ONE MARK = 10 COMMITS ─┘</tspan></text>
+<rect class="edge" x=".5" y=".5" width="555" height="157" rx="8"/>
+</svg>

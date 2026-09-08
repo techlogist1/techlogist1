@@ -1,0 +1,44 @@
+# The hand-kept half of the notebook.
+#
+# Everything a machine can read comes from the GitHub API: name, description,
+# languages, release and tag state, creation date, collector's number. This file
+# holds only what needs judgement.
+#
+# NOTHING HERE IS REQUIRED. A repository absent from this file still renders a
+# complete species account from API data alone, and a field absent from an entry
+# is omitted rather than printed empty. Open-sourcing a project needs no edit
+# here at all -- add an observation later, or never.
+#
+# Keyed by repository name.
+#   hook         overrides the GitHub description, when the description is
+#                written for a repository visitor rather than for this page
+#   observation  the one running note on the account, kept short
+#   plan         what is being run at next; appears under "Plans for tomorrow"
+#
+# The standing rule applies to every string in this file: nothing names a tool,
+# an assistant, or how the code was written.
+
+[flint]
+hook = "every timer mode is a plugin, including the three that ship with it"
+observation = "Session files under ~/.flint/ are the record; the SQLite cache is an index and rebuilds from them on request. A plugin handed undefined for window, fetch and localStorage is the sandbox working."
+plan = "signed macOS and Windows builds out of a single release workflow"
+
+[vysted-terminal]
+hook = "a finance terminal an AI agent can actually drive"
+observation = "Three processes on one machine, loopback only. Keys live in the OS keychain. The broker connection reads; order execution is fitted, switched off, and every attempt is written to an append-only log."
+plan = "one plugin model for the whole terminal, so brokers, data providers, panels and agents install the same way"
+
+[ulpf]
+hook = "stores every original byte before it tries to understand any of them"
+observation = "A format no parser claims is clustered into a candidate definition a human approves, and approval activates it without a restart. 258,411 events/s end to end, median of three runs over a 5,000,000-event file, scorecard committed."
+plan = "Windows path handling and a signed build, heading for v0.1.0"
+
+# Work that has no repository. It shares the one running series -- everything
+# gets a number, only some things get an account -- and the disposition column
+# is what tells them apart.
+[catalog]
+entries = [
+  { name = "Luminfaber", disposition = "in practice", url = "https://luminfaber.com", note = "B2B AI agency" },
+  { name = "Vysted", disposition = "in the field", note = "college discovery, for the people actually applying" },
+  { name = "rajkanwar.com", disposition = "published", url = "https://rajkanwar.com", note = "editorial site for my grandmother, a master textile artist" },
+]
