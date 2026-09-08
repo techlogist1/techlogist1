@@ -44,7 +44,7 @@ Each links to the work it was used on.
 
 ## Lines set
 
-<img src="assets/lines-set.svg" alt="For every catalogued repository, the commits on its default branch that are ahead of its newest tag, drawn as a bar. A repository level with its tag is entered as run.">
+<img src="assets/lines-set.svg" width="100%" alt="For every catalogued repository, the commits on its default branch that are ahead of its newest tag, drawn as a bar. A repository level with its tag is entered as run.">
 
 ## Species accounts
 
@@ -68,7 +68,7 @@ One account per specimen, same fields in the same order. Everything known about 
 
 Everything gets a number; only some things get an account. The disposition does the separating.
 
-<img src="assets/catalog.svg" alt="Every entry in one running series, numbered in the order it entered the collection, with its disposition.">
+<img src="assets/catalog.svg" width="100%" alt="Every entry in one running series, numbered in the order it entered the collection, with its disposition.">
 
 <!--notebook:deposited-->
 **[Luminfaber](https://luminfaber.com)** — B2B AI agency  
@@ -76,11 +76,11 @@ Everything gets a number; only some things get an account. The disposition does 
 **[rajkanwar.com](https://rajkanwar.com)** — editorial site for my grandmother, a master textile artist  
 <!--/notebook:deposited-->
 
-<img src="assets/chain.svg" alt="Recent commits in each catalogued repository shown as a digest chain, each naming the one before it, with every link checked.">
+<img src="assets/chain.svg" width="100%" alt="Recent commits in each catalogued repository shown as a digest chain, each naming the one before it, with every link checked.">
 
 ## Measurements, taken in the flesh
 
-<img src="assets/measurements.svg" alt="Counts read from the GitHub API at the moment the workflow ran: contributions over the last 365 days, longest daily run, repositories catalogued, releases published, languages in the collection, and the month the account was opened.">
+<img src="assets/measurements.svg" width="100%" alt="Counts read from the GitHub API at the moment the workflow ran: contributions over the last 365 days, longest daily run, repositories catalogued, releases published, languages in the collection, and the month the account was opened.">
 
 <sub>Taken from the fresh specimen rather than from a dried skin — counted when this ran, not remembered.</sub>
 
