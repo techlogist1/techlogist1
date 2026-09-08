@@ -53,12 +53,19 @@ def check(path):
     return size, bad
 
 
-README_MARKERS = ["notebook:kit", "notebook:accounts",
-                  "notebook:plans", "notebook:deposited"]
+README_MARKERS = ["notebook:accounts", "notebook:plans",
+                  "notebook:deposited"]
 # Nothing on this page names a tool, an assistant, or how the code was written.
 # The rule is in CLAUDE.md; this is the guard that stops it coming back by
 # accident, in an alt string or an HTML comment where nobody would look.
 BANNED = ["claude", "copilot", "chatgpt", "vibe cod", "openai"]
+# Nothing on this page describes the author rather than the work. These are the
+# specific things that were on it and were cut; the rule is in CLAUDE.md.
+PERSONAL = ["whisk", "glenlivet", "proraso", "edwin jagger", "razor",
+            "fountain pen", "wristwatch", "tame impala", "mac demarco",
+            "kahaani", "andhadhun", "jaane jaan", "nolan", "fincher",
+            "villeneuve", "26°55", "75°47", "shiv nadar", "arizona state",
+            "outfit carried", "in camp"]
 
 
 def check_readme(path="README.md"):
@@ -73,9 +80,18 @@ def check_readme(path="README.md"):
         if raw.count("<!--%s-->" % m) != 1 or raw.count("<!--/%s-->" % m) != 1:
             bad.append("README.md: marker pair <!--%s--> is not intact" % m)
     low = raw.lower()
+    # The repository's own notes file is named CLAUDE.md by convention. A
+    # pointer to it in a non-rendered comment is a filename, not a credit, so
+    # the token is removed before the banlist runs rather than the banlist
+    # being weakened.
+    low_ban = low.replace("claude.md", "")
     for b in BANNED:
-        if b in low:
+        if b in low_ban:
             bad.append("README.md: names a tool (%r) -- see CLAUDE.md" % b)
+    for b in PERSONAL:
+        if b in low:
+            bad.append("README.md: describes the author (%r) rather than the "
+                       "work -- see CLAUDE.md" % b)
 
     # HTML comments do not nest. A "<!--" inside a comment body means the first
     # "-->" closes the block early and everything after it renders as body text

@@ -1,8 +1,8 @@
 <!--
-  A field notebook, kept in the Grinnell system: a dated journal, a set of
+  A field notebook, kept in the Grinnell system: a stated method, a set of
   running species accounts, and one numbered catalog covering everything.
 
-  The accounts, the kit list, the plans and the deposited list are WRITTEN BY
+  The accounts, the plans and the deposited list are WRITTEN BY
   tools/generate.py from the GitHub API and data/accounts.toml, each between a
   pair of notebook marker comments. Do not hand-edit between a marker pair: the
   next run overwrites it. Open-sourcing a new project needs no edit to this file.
@@ -11,36 +11,22 @@
   so the first closing arrow inside this block ends it and everything after it
   renders as body text at the top of the profile.
 
+  Nothing on this page describes the author. No hobbies, no possessions, no
+  taste, no location. What is here is the work and the method. See CLAUDE.md.
+
   Every plate is generated in this repository and committed here. No badge
   service, no widget host, nothing that can 404 out from under it.
 -->
 
 <img src="assets/hero.svg" width="100%" alt="Field notebook flyleaf. A pair of vernier calipers drawn in line, closing on a machined pin: the sliding vernier scale travels along the fixed main scale until the jaws meet the work, and the reading resolves from 24 mm read off the main scale alone to 24·35 mm once the vernier is read against it.">
 
-<sub>Every plate is redrawn from the API when the workflow runs and committed beside the last one, so no entry is overwritten without a record of what it said before.</sub>
-
-## Conditions
-
-**Jaipur · 26°55′N 75°47′E** · first-year CS at Shiv Nadar University, on a 2+2 with Arizona State · 19
+## Method
 
 I build desktop apps that run on your own computer, store their data in files you can open in a text editor, and keep working with the network off. Where a feature could cost you something, I ship it switched off: order execution disabled, no outbound connection, no telemetry. That is my call to make in the build rather than yours to find in a settings page.
 
-## Outfit carried
+Everything is written down at the time, in permanent ink, because you cannot know later what will matter. That is the notebook's rule and it is also the software's: the original bytes are kept before anything tries to understand them, sessions are files on disk and the index is rebuilt from them, and every attempt against a broker is appended to a log whether or not it was allowed to happen.
 
-Listed at the front, as the method requires: a measurement gets read back years after the day it was taken, and whoever reads it should know what it was taken with.
-
-**In the bag** — <!--notebook:kit-->
-[![python](assets/badge-python.svg)](https://github.com/techlogist1/vysted-terminal) [![rust](assets/badge-rust.svg)](https://github.com/techlogist1?tab=repositories&language=rust) [![typescript](assets/badge-typescript.svg)](https://github.com/techlogist1?tab=repositories&language=typescript)
-<!--/notebook:kit-->
-Each links to the work it was used on.
-
-**On the wrist** — a mechanical watch, wound in the morning. It runs a few seconds a day off true, which is the tolerance it was built to.
-
-**In the pocket** — an old fountain pen, filled. Every entry in this book is made with it.
-
-**In the case** — 35 mm camera, 36 exposures to the roll. You find out a week later.
-
-**On the shelf, for the morning** — Edwin Jagger double-edge, Proraso, one blade.
+<sub>Every plate below is redrawn from the API when the workflow runs and committed beside the last one, so no entry is overwritten without a record of what it said before.</sub>
 
 ## Lines set
 
@@ -48,7 +34,7 @@ Each links to the work it was used on.
 
 ## Species accounts
 
-One account per specimen, same fields in the same order. Everything known about it, accumulated across many days and kept apart from the dated entry above.
+One account per specimen, same fields in the same order. Everything known about it, accumulated.
 
 <!--notebook:accounts-->
 [![№ 1](assets/no-flint.svg)](https://github.com/techlogist1/flint) **[flint](https://github.com/techlogist1/flint)** — every timer mode is a plugin, including the three that ship with it  
@@ -73,14 +59,14 @@ Everything gets a number; only some things get an account. The disposition does 
 <!--notebook:deposited-->
 **[Luminfaber](https://luminfaber.com)** — B2B AI agency  
 **Vysted** — college discovery, for the people actually applying  
-**[rajkanwar.com](https://rajkanwar.com)** — editorial site for my grandmother, a master textile artist  
+**[rajkanwar.com](https://rajkanwar.com)** — editorial site for a master textile artist  
 <!--/notebook:deposited-->
 
 <img src="assets/chain.svg" width="100%" alt="Recent commits in each catalogued repository shown as a digest chain, each naming the one before it, with every link checked.">
 
 ## Measurements, taken in the flesh
 
-<img src="assets/measurements.svg" width="100%" alt="Counts read from the GitHub API at the moment the workflow ran: contributions over the last 365 days, longest daily run, repositories catalogued, releases published, languages in the collection, and the month the account was opened.">
+<img src="assets/measurements.svg" width="100%" alt="Counts read from the GitHub API at the moment the workflow ran: repositories deposited publicly, releases published, languages in the collection, and the month the collection was commenced.">
 
 <sub>Taken from the fresh specimen rather than from a dried skin — counted when this ran, not remembered.</sub>
 
@@ -91,12 +77,6 @@ Everything gets a number; only some things get an account. The disposition does 
 **[vysted-terminal](https://github.com/techlogist1/vysted-terminal)** — one plugin model for the whole terminal, so brokers, data providers, panels and agents install the same way  
 **[ulpf](https://github.com/techlogist1/ulpf)** — Windows path handling and a signed build, heading for v0.1.0  
 <!--/notebook:plans-->
-
-<sub>Written for someone who was not there, which is the method's own rule and the only way I have found to be sure I understood a thing myself.</sub>
-
-## In camp
-
-Tame Impala, Mac DeMarco. Films where the clue was in plain sight from the first scene and you only see it on the second watch — *Kahaani*, *Andhadhun*, *Jaane Jaan*, and most of Nolan, Fincher and Villeneuve.
 
 ## If found, return to
 

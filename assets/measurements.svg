@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 556 238" width="556" height="238" role="img" aria-labelledby="t d" xml:space="preserve">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 556 174" width="556" height="174" role="img" aria-labelledby="t d" xml:space="preserve">
 <title id="t">Measurements, taken in the flesh</title>
-<desc id="d">Counts read from the API at the moment this was generated: deposited publicly 3; releases published 6; languages Python, Rust, TypeScript; contributions, last 365 days 4270; longest unbroken run 24 days; commenced 2022-02.</desc>
+<desc id="d">Counts read from the API at the moment this was generated: repositories deposited publicly 3; releases published 6; languages in the collection Python, Rust, TypeScript; collection commenced 2022-02.</desc>
 <style>
 .glass{fill:#16130F}
 .edge{fill:none;stroke:#3A3125;stroke-width:1}
@@ -17,18 +17,14 @@ text{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Cascadia 
   .q0{fill:#D6C9AF} .q1{fill:#9C8B6E} .q2{fill:#75664F} .q3{fill:#3F362A} .q4{fill:#1B1610}
 }
 </style>
-<rect class="glass" width="556" height="238" rx="8"/>
+<rect class="glass" width="556" height="174" rx="8"/>
 <text x="22" y="42" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">┌─ MEASUREMENTS ─────────────────────── TAKEN IN THE FLESH ─┐</tspan></text>
 <text x="22" y="58" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│                                                           │</tspan></text>
-<text x="22" y="74" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">THE COLLECTION                                         </tspan><tspan class="fr">  │</tspan></text>
-<text x="22" y="90" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="tx">deposited publicly </tspan><tspan class="fr">································</tspan><tspan class="hi"> 3</tspan><tspan class="fr">  │</tspan></text>
-<text x="22" y="106" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="tx">releases published </tspan><tspan class="fr">································</tspan><tspan class="hi"> 6</tspan><tspan class="fr">  │</tspan></text>
-<text x="22" y="122" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="tx">languages </tspan><tspan class="fr">··················</tspan><tspan class="hi"> Python, Rust, TypeScript</tspan><tspan class="fr">  │</tspan></text>
-<text x="22" y="138" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">THE OBSERVER, SAME PERIOD                              </tspan><tspan class="fr">  │</tspan></text>
-<text x="22" y="154" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="tx">contributions, last 365 days </tspan><tspan class="fr">···················</tspan><tspan class="hi"> 4270</tspan><tspan class="fr">  │</tspan></text>
-<text x="22" y="170" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="tx">longest unbroken run </tspan><tspan class="fr">························</tspan><tspan class="hi"> 24 days</tspan><tspan class="fr">  │</tspan></text>
-<text x="22" y="186" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="tx">commenced </tspan><tspan class="fr">···································</tspan><tspan class="hi"> 2022-02</tspan><tspan class="fr">  │</tspan></text>
-<text x="22" y="202" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│                                                           │</tspan></text>
-<text x="22" y="218" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">└─ NOT REMEMBERED ────────────────── COUNTED WHEN THIS RAN ─┘</tspan></text>
-<rect class="edge" x=".5" y=".5" width="555" height="237" rx="8"/>
+<text x="22" y="74" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="tx">repositories deposited publicly </tspan><tspan class="fr">·····················</tspan><tspan class="hi"> 3</tspan><tspan class="fr">  │</tspan></text>
+<text x="22" y="90" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="tx">releases published </tspan><tspan class="fr">··································</tspan><tspan class="hi"> 6</tspan><tspan class="fr">  │</tspan></text>
+<text x="22" y="106" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="tx">languages in the collection </tspan><tspan class="fr">··</tspan><tspan class="hi"> Python, Rust, TypeScript</tspan><tspan class="fr">  │</tspan></text>
+<text x="22" y="122" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="tx">collection commenced </tspan><tspan class="fr">··························</tspan><tspan class="hi"> 2022-02</tspan><tspan class="fr">  │</tspan></text>
+<text x="22" y="138" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│                                                           │</tspan></text>
+<text x="22" y="154" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">└─ NOT REMEMBERED ────────────────── COUNTED WHEN THIS RAN ─┘</tspan></text>
+<rect class="edge" x=".5" y=".5" width="555" height="173" rx="8"/>
 </svg>

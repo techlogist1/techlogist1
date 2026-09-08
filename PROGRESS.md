@@ -60,10 +60,21 @@ glyph carries the meaning and the colour only reinforces it.
   `width="100%"`. Same natural width, different display size — the exact
   stack-of-widgets look the shared grid exists to prevent.
 
-**Drink cut from "In camp".** A blind reader flagged it as a reason to discount
-the work above it; the author's own standing rule says cut such a line, and he
-did. Not replaced and not gestured at — see CLAUDE.md § What does not go on this
-page. The section carries music and films, which is a whole evening entry.
+**All biography stripped.** The page carries the work and the method and
+nothing about the person. "Outfit carried" (a kit list of possessions) and
+"In camp" (music and films) were cut outright rather than shrunk, because both
+existed only to hold personal material; the technology badges they held survive
+as field marks on each species account. The masthead lost its coordinates, the
+"Conditions" header lost city, age and university, and the section became
+**Method**, which states the software's rule and the notebook's rule as one
+thing. MEASUREMENTS lost the contribution total and the daily streak -- they
+measure the collector, not the collection -- which also removed the last GraphQL
+call and the token caveat with it. `verify.py` now carries a `PERSONAL` banlist
+so none of it returns by accident. See CLAUDE.md § Nothing on this page describes
+the author.
+
+**The page is shorter and that is the correct outcome.** Nine sections became
+seven, and nothing was invented to fill the space.
 
 ### Measured on the live site
 

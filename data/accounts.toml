@@ -40,5 +40,5 @@ plan = "Windows path handling and a signed build, heading for v0.1.0"
 entries = [
   { name = "Luminfaber", disposition = "in practice", url = "https://luminfaber.com", note = "B2B AI agency" },
   { name = "Vysted", disposition = "in the field", note = "college discovery, for the people actually applying" },
-  { name = "rajkanwar.com", disposition = "published", url = "https://rajkanwar.com", note = "editorial site for my grandmother, a master textile artist" },
+  { name = "rajkanwar.com", disposition = "published", url = "https://rajkanwar.com", note = "editorial site for a master textile artist" },
 ]

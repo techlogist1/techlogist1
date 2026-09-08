@@ -94,22 +94,45 @@ the author and the work *as a whole* rather than one repository or one tool. Whe
 in doubt about whether something belongs in the hero, **put it lower and say so**
 rather than deciding upward.
 
-### What does not go on this page
+### Nothing on this page describes the author
 
-Personal material supplied in conversation is context for decisions, not a
-queue of things to publish. Some of it has been **considered and ruled out**, and
-a later pass reading the same material would otherwise re-add it in good faith:
+**The page carries the work and the method. It carries no biography.** Not
+hobbies, not possessions, not taste in music or film, not rituals, not what is
+being read, not location, not age, not university. **If a line would sit
+comfortably in a bio, it does not belong here.**
 
-- **Drink.** Do not put alcohol on this page in any form — not in "In camp", not
-  in the outfit list, not as a measurement joke, not in a caption, alt string or
-  `<desc>`. A blind reader flagged it as a reason to discount the work above it,
-  which is precisely the test in the rule below, and it was cut. **Do not write a
-  substitute vice in its place and do not gesture at the removal.** "In camp"
-  carries music and films; that is a complete evening entry and it is not short
-  of anything.
+Cut, and not to be reintroduced in any form:
+
+| removed | where it was |
+|---|---|
+| a drink | "In camp" |
+| a razor and shaving soap, fountain pens, a wristwatch, a film camera | "Outfit carried" |
+| bands and film-makers | "In camp" |
+| coordinates, city, age, university | the hero masthead and the "Conditions" header |
+
+**Two whole sections went with them.** "Outfit carried" was a kit list of
+catalogued possessions and "In camp" was an evening entry of music and films;
+both existed only to hold personal material, so both were cut rather than
+shrunk to a tasteful subset or repurposed. The technology badges they had held
+survive as **field marks on each species account**, where they were already
+duplicated and where they say more.
+
+**Do not invent replacements to keep the section count up.** A shorter page is
+the correct outcome. If the last third feels thin, tighten what remains.
+
+The method survives and does the work the kit list was pretending to do:
+*everything is written down at the time, in permanent ink, because you cannot
+know later what will matter.* That is the notebook's rule and the software's
+rule at once — original bytes kept before anything parses them, sessions as
+files with the index rebuilt from them, every broker attempt appended to a log
+whether or not it was allowed. It never needed a kit list to say it.
+
+`verify.py` carries a `PERSONAL` banlist of the exact terms that were on the
+page, so they cannot return by accident; `write_readme()` refuses to write a
+README containing them.
 
 The general form: when something is cut for how it makes the author look, the
-page must read as though it was never there. A gap that advertises itself is
+page must read **as though it was never there**. A gap that advertises itself is
 worse than the line that was removed.
 
 **The intro must be plain, not aphoristic.** The first line a stranger reads has
@@ -188,7 +211,8 @@ real, named, still-taught standard, so every section is one a working notebook
 genuinely has: flyleaf, conditions header, outfit carried, lines set, species
 accounts, catalog, measurements taken in the flesh, plans for tomorrow, in camp,
 and the "if found, return to" flyleaf line. None of them is a project-page
-section under a new name.
+section under a new name. The sections that held personal material -- an outfit
+list and an evening entry -- were cut outright; see the rule above.
 
 **It was chosen over better-looking rivals on one property: it grows.** A
 species account *is* a catalog entry, and a real notebook runs to hundreds of
@@ -696,7 +720,7 @@ the browser. Rasterise at 847 and at 309, not at natural size.
 | `lines-set.svg` | Lines set — commits ahead of newest tag | REST `releases`, `tags`, `compare` | no | yes, column widths computed |
 | `catalog.svg` | Catalog — the numbered series | REST + `accounts.toml` | no | yes |
 | `chain.svg` | Provenance — the chain walked and verified | REST `commits` incl. parents | no | yes, links per repo shrink |
-| `measurements.svg` | Measurements, taken in the flesh | GraphQL calendar + REST | no | yes |
+| `measurements.svg` | Measurements, taken in the flesh | REST `users`, `releases`, `languages` | no | yes |
 | `badge-*.svg` | field marks, per language | REST `languages` | no | one per language |
 | `rel-*.svg` | release state, glyph-encoded | REST `releases`, `tags` | no | one per repo |
 | `no-*.svg` | the collector's number | derived | no | one per repo |
@@ -705,6 +729,12 @@ The hero takes **no API call at all** — hand-built geometry, and nothing on it
 claims to be live. That is deliberate: it removes the last failure surface from
 the one image that must never break. The live plates are `lines-set.svg` and
 `measurements.svg`.
+
+There is **no GraphQL call any more.** The contribution total and the daily
+streak were dropped from MEASUREMENTS with the rest of the biography -- they
+measure the collector rather than the collection, and GitHub already renders its
+own contribution calendar two screens below. That removed the last GraphQL
+dependency and the `PROFILE_TOKEN` caveat that came with it.
 
 `chain.svg` walks **fewer links per repository as the collection grows**
 (`per = max(2, min(4, 14 // n))`) so the plate stays about one screen whether

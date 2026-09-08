@@ -424,8 +424,7 @@ def gen_hero():
     defs = "".join('<path id="g%d" class="ln" d="%s"/>' % (i, d)
                    for i, d in enumerate(geoms))
 
-    body = [line(TOP, [("fr", rule("FIELD NOTEBOOK",
-                                   "L. SINGH · JAIPUR 26°55′N 75°47′E"))])]
+    body = [line(TOP, [("fr", rule("FIELD NOTEBOOK", "L. SINGH"))])]
     for r in range(1, BAND + 1):
         body.append(line(TOP + r * LH, [("fr", blank())]))
     for i, (gi, cls, cap) in enumerate(sl):
@@ -721,18 +720,15 @@ def gen_measure(repos):
     both an ordering claim and a second copy of the primary language GitHub
     prints on every pinned card.
     """
-    weeks = total = None
+    # Nothing here measures the person. A contribution count and a daily streak
+    # describe the collector's habits rather than anything in the collection,
+    # and GitHub already renders its own contribution calendar two screens below
+    # this, so the rows were both off-subject and a second copy. Dropping them
+    # also drops the only GraphQL call and the token caveat that came with it.
     created = ""
     try:
-        d = graphql(
-            '{ user(login:"%s"){ createdAt contributionsCollection{'
-            ' contributionCalendar{ totalContributions weeks{ contributionDays{'
-            ' date contributionCount } } } } } }' % USER)
-        u = d["user"]
-        created = u["createdAt"]
-        cal = u["contributionsCollection"]["contributionCalendar"]
-        total = cal["totalContributions"]
-        weeks = cal["weeks"]
+        u = rest("/users/%s" % USER) or {}
+        created = u.get("created_at") or ""
     except Exception:
         traceback.print_exc()
 
@@ -742,59 +738,36 @@ def gen_measure(repos):
         rel = rest("/repos/%s/%s/releases" % (USER, r["name"])) or []
         releases += len([x for x in rel if not x.get("draft")])
 
-    streak = 0
-    if weeks:
-        run = 0
-        for w in weeks:
-            for day in w["contributionDays"]:
-                if day["contributionCount"] > 0:
-                    run += 1
-                    streak = max(streak, run)
-                else:
-                    run = 0
-
-    # The collection first, then the observer. A measurements page records the
-    # specimen; a contribution count records the naturalist, and saying which is
-    # which is the honest version rather than mixing them in one column.
-    rows = [("THE COLLECTION", None)]
-    rows.append(("deposited publicly", "%d" % len(repos)))
+    rows = [("repositories deposited publicly", "%d" % len(repos))]
     if releases:
         rows.append(("releases published", "%d" % releases))
     if langs:
-        rows.append(("languages", ", ".join(langs)))
-    rows.append(("THE OBSERVER, SAME PERIOD", None))
-    if total is not None:
-        rows.append(("contributions, last 365 days", "%d" % total))
-    if streak:
-        rows.append(("longest unbroken run", "%d days" % streak))
+        rows.append(("languages in the collection", ", ".join(langs)))
     if created:
-        rows.append(("commenced", created[:7]))
-    if len([r for r in rows if r[1] is not None]) == 0:
+        rows.append(("collection commenced", created[:7]))
+
+    if not rows:
         return no_data("MEASUREMENTS", "the counts did not come back")
 
     parts = [line(PADY + LH, [("fr", rule("MEASUREMENTS", "TAKEN IN THE FLESH"))]),
              line(PADY + LH * 2, [("fr", blank())])]
     y = PADY + LH * 3
     for label, val in rows:
-        if val is None:                    # a sub-head inside the plate
-            parts.append(line(y, [("fr", "│  "), ("dm", label), ("fr", "  │")]))
-            y += LH
-            continue
         # Built to exactly COLS, so line() never has to pad or truncate. It folds
         # slack into the second-to-last cell, which here is the value -- and a
         # measurement clipped to "TypeScrip" is a wrong figure, not a tight one.
         # The dot leader absorbs the slack instead, which is its job on a ruled
         # page anyway.
-        room = COLS - 5 - len(label) - 1 - 1 - len(val) - 3
+        room = COLS - 3 - len(label) - 1 - 1 - len(val) - 3
         lab = label
         if room < 2:                       # a long value shortens the LABEL
             cut = label[:max(0, len(label) + room - 2)]
             lab = cut.rsplit(" ", 1)[0] if " " in cut else cut
-            room = COLS - 5 - len(lab) - 1 - 1 - len(val) - 3
+            room = COLS - 3 - len(lab) - 1 - 1 - len(val) - 3
             room = max(room, 1)
         # .hi, not .ox. Oxblood means a collector's number and nothing else; a
         # measurement is a second thing wanting it, and the answer is no.
-        parts.append(line(y, [("fr", "│    "), ("tx", lab + " "),
+        parts.append(line(y, [("fr", "│  "), ("tx", lab + " "),
                               ("fr", "·" * room), ("hi", " " + val),
                               ("fr", "  │")]))
         y += LH
@@ -805,7 +778,7 @@ def gen_measure(repos):
     return svg_doc(int(COLS * CH + PADX * 2), y + 20,
                    "Measurements, taken in the flesh",
                    "Counts read from the API at the moment this was generated: "
-                   + "; ".join("%s %s" % (a, b) for a, b in rows if b) + ".",
+                   + "; ".join("%s %s" % (a, b) for a, b in rows) + ".",
                    "", "\n".join(parts))
 
 
@@ -875,7 +848,6 @@ def write_atomic(path, svg, name):
 # project must take no edit to this repository. Push a repository and it appears
 # in the notebook with the next collector's number.
 
-KIT_OPEN, KIT_CLOSE = "<!--notebook:kit-->", "<!--/notebook:kit-->"
 ACC_OPEN, ACC_CLOSE = "<!--notebook:accounts-->", "<!--/notebook:accounts-->"
 PLN_OPEN, PLN_CLOSE = "<!--notebook:plans-->", "<!--/notebook:plans-->"
 DEP_OPEN, DEP_CLOSE = "<!--notebook:deposited-->", "<!--/notebook:deposited-->"
@@ -933,15 +905,6 @@ def account_md(r, hd, primary):
     return "\n".join(out)
 
 
-def kit_md(repos, primary):
-    langs = sorted({L for r in repos for L in r.get("_langs", [])})
-    if not langs:
-        return ""
-    return " ".join("[![%s](assets/badge-%s.svg)](%s)"
-                    % (L.lower(), L.lower(), lang_link(L, repos, primary))
-                    for L in langs)
-
-
 def splice(text, open_tag, close_tag, body):
     i, j = text.find(open_tag), text.find(close_tag)
     if i < 0 or j < 0 or j < i:
@@ -982,13 +945,17 @@ def write_readme(repos, hd, primary):
     """Rewrite the generated blocks in place, leaving all hand-written prose."""
     src = open(README, encoding="utf-8").read()
     accounts = "\n\n".join(account_md(r, hd, primary) for r in repos)
-    out = splice(src, KIT_OPEN, KIT_CLOSE, kit_md(repos, primary))
-    out = splice(out, ACC_OPEN, ACC_CLOSE, accounts)
+    out = splice(src, ACC_OPEN, ACC_CLOSE, accounts)
     out = splice(out, PLN_OPEN, PLN_CLOSE, plans_md(repos, hd))
     out = splice(out, DEP_OPEN, DEP_CLOSE, deposited_md(hd))
-    for banned in ("Claude", "copilot", "vibe cod"):
-        if banned.lower() in out.lower():
+    low = out.lower().replace("claude.md", "")   # the notes file is a filename
+    for banned in ("claude", "copilot", "vibe cod"):
+        if banned in low:
             raise ValueError("README names a tool -- see CLAUDE.md")
+    for personal in ("whisk", "glenlivet", "proraso", "edwin jagger",
+                     "tame impala", "mac demarco", "shiv nadar", "26°55"):
+        if personal in low:
+            raise ValueError("README describes the author rather than the work")
     if out != src:
         tmp = README + ".tmp"
         with open(tmp, "w", encoding="utf-8", newline="\n") as f:
