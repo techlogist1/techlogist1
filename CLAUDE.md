@@ -94,6 +94,24 @@ the author and the work *as a whole* rather than one repository or one tool. Whe
 in doubt about whether something belongs in the hero, **put it lower and say so**
 rather than deciding upward.
 
+### What does not go on this page
+
+Personal material supplied in conversation is context for decisions, not a
+queue of things to publish. Some of it has been **considered and ruled out**, and
+a later pass reading the same material would otherwise re-add it in good faith:
+
+- **Drink.** Do not put alcohol on this page in any form — not in "In camp", not
+  in the outfit list, not as a measurement joke, not in a caption, alt string or
+  `<desc>`. A blind reader flagged it as a reason to discount the work above it,
+  which is precisely the test in the rule below, and it was cut. **Do not write a
+  substitute vice in its place and do not gesture at the removal.** "In camp"
+  carries music and films; that is a complete evening entry and it is not short
+  of anything.
+
+The general form: when something is cut for how it makes the author look, the
+page must read as though it was never there. A gap that advertises itself is
+worse than the line that was removed.
+
 **The intro must be plain, not aphoristic.** The first line a stranger reads has
 to tell them what kind of software this is, in words they parse instantly. It
 previously read *"Local-first desktop software that keeps its receipts"*, which

@@ -60,6 +60,11 @@ glyph carries the meaning and the colour only reinforces it.
   `width="100%"`. Same natural width, different display size — the exact
   stack-of-widgets look the shared grid exists to prevent.
 
+**Drink cut from "In camp".** A blind reader flagged it as a reason to discount
+the work above it; the author's own standing rule says cut such a line, and he
+did. Not replaced and not gestured at — see CLAUDE.md § What does not go on this
+page. The section carries music and films, which is a whole evening entry.
+
 ### Measured on the live site
 
 - `<source media="(prefers-reduced-motion: reduce)">` **survives GitHub's HTML
@@ -69,10 +74,6 @@ glyph carries the meaning and the colour only reinforces it.
 
 ## Open / not done by me
 
-- **The whisky line in "In camp".** One of the six blind readers — the admissions
-  reader — flagged 90 ml of Glenlivet volunteered by a 19-year-old as a reason to
-  discount the work above it. It is true, it is his, and it is the best-anchored
-  personal line on the page, so it was left in and raised instead of cut.
 - **`chain.svg` is the weakest plate.** The adversarial read argues "12 links
   checked, 0 broken" is close to a tautology, since commits name their parents by
   construction. It does detect non-linear history, so it is not empty, but it is

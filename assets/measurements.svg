@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 556 238" width="556" height="238" role="img" aria-labelledby="t d" xml:space="preserve">
 <title id="t">Measurements, taken in the flesh</title>
-<desc id="d">Counts read from the API at the moment this was generated: deposited publicly 3; releases published 6; languages Python, Rust, TypeScript; contributions, last 365 days 4266; longest unbroken run 24 days; commenced 2022-02.</desc>
+<desc id="d">Counts read from the API at the moment this was generated: deposited publicly 3; releases published 6; languages Python, Rust, TypeScript; contributions, last 365 days 4270; longest unbroken run 24 days; commenced 2022-02.</desc>
 <style>
 .glass{fill:#16130F}
 .edge{fill:none;stroke:#3A3125;stroke-width:1}
@@ -25,7 +25,7 @@ text{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Cascadia 
 <text x="22" y="106" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="tx">releases published </tspan><tspan class="fr">································</tspan><tspan class="hi"> 6</tspan><tspan class="fr">  │</tspan></text>
 <text x="22" y="122" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="tx">languages </tspan><tspan class="fr">··················</tspan><tspan class="hi"> Python, Rust, TypeScript</tspan><tspan class="fr">  │</tspan></text>
 <text x="22" y="138" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│  </tspan><tspan class="dm">THE OBSERVER, SAME PERIOD                              </tspan><tspan class="fr">  │</tspan></text>
-<text x="22" y="154" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="tx">contributions, last 365 days </tspan><tspan class="fr">···················</tspan><tspan class="hi"> 4266</tspan><tspan class="fr">  │</tspan></text>
+<text x="22" y="154" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="tx">contributions, last 365 days </tspan><tspan class="fr">···················</tspan><tspan class="hi"> 4270</tspan><tspan class="fr">  │</tspan></text>
 <text x="22" y="170" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="tx">longest unbroken run </tspan><tspan class="fr">························</tspan><tspan class="hi"> 24 days</tspan><tspan class="fr">  │</tspan></text>
 <text x="22" y="186" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│    </tspan><tspan class="tx">commenced </tspan><tspan class="fr">···································</tspan><tspan class="hi"> 2022-02</tspan><tspan class="fr">  │</tspan></text>
 <text x="22" y="202" textLength="512.4" lengthAdjust="spacing"><tspan class="fr">│                                                           │</tspan></text>

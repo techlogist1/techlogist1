@@ -96,7 +96,7 @@ Everything gets a number; only some things get an account. The disposition does 
 
 ## In camp
 
-90 ml of Glenlivet 12, two or three drops of water, no ice. Tame Impala, Mac DeMarco. Films where the clue was in plain sight from the first scene and you only see it on the second watch — *Kahaani*, *Andhadhun*, *Jaane Jaan*, and most of Nolan, Fincher and Villeneuve.
+Tame Impala, Mac DeMarco. Films where the clue was in plain sight from the first scene and you only see it on the second watch — *Kahaani*, *Andhadhun*, *Jaane Jaan*, and most of Nolan, Fincher and Villeneuve.
 
 ## If found, return to
 
