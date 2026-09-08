@@ -58,6 +58,42 @@ for it. `gen_inflight()` prints **"released in full"** for a repository with zer
 commits ahead of its tag, because that is what zero means there -- printing a `0`
 next to a `157` would let the smallest number do the talking.
 
+### Never attribute the work to a tool — absolute
+
+**No line, image, alt text, `<title>`, `<desc>` or markdown comment on this page
+mentions an assistant, an agent, AI assistance, "vibe coding", or how the code
+was written.** Not as an easter egg in the source either. This is not a style
+preference; it is the same failure as § Balance, one level up.
+
+It happened: the hero animated a pair of sentences that split the credit for the
+work between the author and his tooling, the intro paragraph opened by naming
+that tooling, and both were repeated in the README alt text and in the hero's
+`<desc>` for screen readers. A supporting detail had been promoted to **the
+loudest position on the page**, and it hands a stranger a reason to discount
+everything below it before reading any of it. This file does not restate the
+lines, because a permanent record of the credit is the thing being removed.
+
+What is true and worth saying is **what the software does and what its author
+decided**: local-first desktop apps, data in files you can open, works with the
+network off, and the risky part deliberately switched off. Attribute the
+judgement to him, because it is his.
+
+**The general rule this is an instance of.** Personal material supplied in
+conversation is *context for making good decisions*, not automatically copy for
+the page. Before promoting any personal fact into visible text — especially into
+the hero — check that it makes the author look like someone worth taking
+seriously. If a line could give a stranger a reason to discount the work below
+it, cut it.
+
+Two elements have now been promoted to headline for the wrong reason: ulpf's log
+pipeline, because it was the easiest thing on the account to draw, and the tool
+line, because it came up repeatedly as background. **Both times a supporting
+detail became the headline.** Before finalising any hero, name what is in it and
+why that earns the most prominent position on the page, and confirm it is about
+the author and the work *as a whole* rather than one repository or one tool. When
+in doubt about whether something belongs in the hero, **put it lower and say so**
+rather than deciding upward.
+
 **The intro must be plain, not aphoristic.** The first line a stranger reads has
 to tell them what kind of software this is, in words they parse instantly. It
 previously read *"Local-first desktop software that keeps its receipts"*, which
@@ -245,8 +281,8 @@ reads as a slot machine.
 ### The hero is a rearrangement
 
 **One line of noise becoming two statements, with every intermediate legible.**
-Two true sentences — *"I decide what it should do"* and *"Claude Code does the
-typing"* — are interleaved character by character and then separated by merge
+Two true sentences — *"It runs on your own computer"* and *"Your data stays in
+your files"* — are interleaved character by character and then separated by merge
 rounds. A character drawn in `.hi` came from the first sentence and one in `.dm`
 from the second, so even the fully tangled frame reads as two things caught
 together rather than as noise. That colour is the mechanism made visible; it is
@@ -257,10 +293,10 @@ final frame is on screen in the first one, in a different place. That is what
 keeps this outside the banned text-reveal family: nothing accumulates and nothing
 is uncovered, only rearranged.
 
-It is deliberately **not about any one repository** — see § Balance. It is about
-the author, twice: the sentences say how the work actually gets made, and the
-mechanism is the thing that was in plain sight all along, which is his taste in
-films rather than a property of any project.
+It is deliberately **not about any one repository** — see § Balance. The two
+sentences are true of flint, vysted-terminal and ulpf equally, and the mechanism
+is the thing that was in plain sight all along, which is his taste in films
+rather than a property of any project. It names no tool — see the rule above.
 
 **Use merge rounds, not de-interleaving.** De-interleaving a block is *not* the
 inverse of interleaving it; built that way the frames never resolve, and the
