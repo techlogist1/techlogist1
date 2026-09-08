@@ -5,7 +5,84 @@ Newest first.
 
 ## Done
 
-## Sixth pass — in progress
+## Sixth pass — the field notebook. Shipped.
+
+The page is a **naturalist's field notebook kept in the Grinnell system**, in
+90s vintage warmth. Chosen over an owner's workshop manual, which scored higher
+on polish, on one property: **it grows**. See CLAUDE.md § The conceit.
+
+**It grows by itself. Open-sourcing a project takes no edit to this repo.**
+`species()` catalogues it, it takes the next collector's number, its badges are
+generated, and its species account, plans line, catalog row, provenance walk and
+LINES SET row are all written by the workflow. `data/accounts.toml` holds only
+what needs judgement and **is never required** — a repository absent from it
+renders a complete account from API data alone.
+
+**Exercised, not assumed.** `tools/growth.py` injects synthetic repositories and
+regenerates everything at **4 and at 10** entries: every row still lands on the
+61-character grid, every frame closes, no account exceeds three lines, and the
+whole page is 112 KB at ten entries against a 400 KB budget.
+`tools/degrade.py` runs seven failure paths, all passing.
+
+**Balance test passed.** Six blind readers, no context, one read each: all six
+described all three repositories and the local-first thesis, all six answered
+"none" to *does a single repository dominate*, all six recalled all six
+catalogued things.
+
+**The hero is vernier calipers**, real 3D built headless by `tools/caliper.py`
+and `tools/r3d.py` — hidden-line removal in **pure stdlib Python**, because this
+repo has no third-party dependency and the workflow has no pip step. 31 slots
+drawn from 12 geometries via `<defs>`/`<use>`, which took it from 109 KB to 46 KB
+while adding a frame.
+
+**Format chosen on measurement** — animated SVG 46 KB, APNG 752 KB (5x the
+per-file cap), GIF-64 124 KB. SVG also wins on density (a raster is 6.0% off at
+2x device pixels), on carrying both themes in one file, on keeping text as text,
+and on handling reduced motion internally. Full table in CLAUDE.md.
+
+**Oxblood means one thing:** a collector's number. It shipped broken once, with
+every measurement value in the accent, which emptied it of meaning. Now the `№`
+glyph carries the meaning and the colour only reinforces it.
+
+### Found by looking, not by reasoning
+
+- **The top HTML comment leaked two paragraphs of build notes onto the live
+  profile.** It quoted a marker name literally; comments do not nest, so the
+  first `-->` ended the block. Invisible in an editor and not reproduced by the
+  `/markdown` API. `verify.py` now walks every comment.
+- **Rows were letter-spread and content vanished** — `line()` folded padding
+  into an *unclassed* cell, which resvg emits as a bare run and loses. Every run
+  is wrapped now. `TypeScript` had also shipped as `TypeScrip`, from the same
+  helper truncating the value cell.
+- **`LH` was wrong.** Measured with an ink profile down the rule column: 100%
+  vertical continuity at 16, 98.1% at 17, which is what the page ran at.
+- **The panels rendered at half the hero's scale** because only the hero carried
+  `width="100%"`. Same natural width, different display size — the exact
+  stack-of-widgets look the shared grid exists to prevent.
+
+### Measured on the live site
+
+- `<source media="(prefers-reduced-motion: reduce)">` **survives GitHub's HTML
+  sanitizer verbatim**, including compound queries. A raster hero *could* have
+  frozen; it lost on other grounds.
+- `<table>` with `width`/`valign` survives, if a future layout needs columns.
+
+## Open / not done by me
+
+- **The whisky line in "In camp".** One of the six blind readers — the admissions
+  reader — flagged 90 ml of Glenlivet volunteered by a 19-year-old as a reason to
+  discount the work above it. It is true, it is his, and it is the best-anchored
+  personal line on the page, so it was left in and raised instead of cut.
+- **`chain.svg` is the weakest plate.** The adversarial read argues "12 links
+  checked, 0 broken" is close to a tautology, since commits name their parents by
+  construction. It does detect non-linear history, so it is not empty, but it is
+  the plate to cut first if the page ever needs the room.
+- **Pinned repositories cannot be set through any API.** `techlogist1` is still
+  pinned alongside the three projects and needs **unpinning by hand**.
+- **`vysted.com` has no A record**, so it is unlinked. Point the domain at its
+  deployment and restore the link.
+
+## Fifth pass and earlier
 
 **No line on this page attributes the work to a tool.** Shipped and live. The hero
 animated a pair of sentences splitting credit between the author and his tooling,

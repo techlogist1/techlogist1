@@ -565,7 +565,7 @@ def gen_lines(repos):
     # way three do.
     barw = COLS - 3 - 5 - (nw + 2) - cw - 2 - 3
     barw = max(0, min(barw, 20))
-    parts = [line(PADY + LH, [("fr", rule("LINES SET", "SET AND NOT YET CHECKED"))]),
+    parts = [line(PADY + LH, [("fr", rule("LINES SET", "OUT SINCE THE LAST TAG"))]),
              line(PADY + LH * 2, [("fr", blank())])]
     y = PADY + LH * 3
     for no, name, tag, ahead in rows:
@@ -753,38 +753,48 @@ def gen_measure(repos):
                 else:
                     run = 0
 
-    rows = []
-    if total is not None:
-        rows.append(("contributions, last 365 days", "%d" % total))
-    if streak:
-        rows.append(("longest daily run", "%d days" % streak))
-    rows.append(("repositories catalogued", "%d" % len(repos)))
+    # The collection first, then the observer. A measurements page records the
+    # specimen; a contribution count records the naturalist, and saying which is
+    # which is the honest version rather than mixing them in one column.
+    rows = [("THE COLLECTION", None)]
+    rows.append(("deposited publicly", "%d" % len(repos)))
     if releases:
         rows.append(("releases published", "%d" % releases))
     if langs:
-        rows.append(("languages in the collection", ", ".join(langs)))
+        rows.append(("languages", ", ".join(langs)))
+    rows.append(("THE OBSERVER, SAME PERIOD", None))
+    if total is not None:
+        rows.append(("contributions, last 365 days", "%d" % total))
+    if streak:
+        rows.append(("longest unbroken run", "%d days" % streak))
     if created:
-        rows.append(("collection commenced", created[:7]))
-    if not rows:
+        rows.append(("commenced", created[:7]))
+    if len([r for r in rows if r[1] is not None]) == 0:
         return no_data("MEASUREMENTS", "the counts did not come back")
 
     parts = [line(PADY + LH, [("fr", rule("MEASUREMENTS", "TAKEN IN THE FLESH"))]),
              line(PADY + LH * 2, [("fr", blank())])]
     y = PADY + LH * 3
     for label, val in rows:
+        if val is None:                    # a sub-head inside the plate
+            parts.append(line(y, [("fr", "│  "), ("dm", label), ("fr", "  │")]))
+            y += LH
+            continue
         # Built to exactly COLS, so line() never has to pad or truncate. It folds
         # slack into the second-to-last cell, which here is the value -- and a
         # measurement clipped to "TypeScrip" is a wrong figure, not a tight one.
         # The dot leader absorbs the slack instead, which is its job on a ruled
         # page anyway.
-        room = COLS - 3 - len(label) - 1 - 1 - len(val) - 3
+        room = COLS - 5 - len(label) - 1 - 1 - len(val) - 3
         lab = label
         if room < 2:                       # a long value shortens the LABEL
-            lab = label[:max(0, len(label) + room - 2)]
-            room = 2
+            cut = label[:max(0, len(label) + room - 2)]
+            lab = cut.rsplit(" ", 1)[0] if " " in cut else cut
+            room = COLS - 5 - len(lab) - 1 - 1 - len(val) - 3
+            room = max(room, 1)
         # .hi, not .ox. Oxblood means a collector's number and nothing else; a
         # measurement is a second thing wanting it, and the answer is no.
-        parts.append(line(y, [("fr", "│  "), ("tx", lab + " "),
+        parts.append(line(y, [("fr", "│    "), ("tx", lab + " "),
                               ("fr", "·" * room), ("hi", " " + val),
                               ("fr", "  │")]))
         y += LH
@@ -795,7 +805,7 @@ def gen_measure(repos):
     return svg_doc(int(COLS * CH + PADX * 2), y + 20,
                    "Measurements, taken in the flesh",
                    "Counts read from the API at the moment this was generated: "
-                   + "; ".join("%s %s" % (a, b) for a, b in rows) + ".",
+                   + "; ".join("%s %s" % (a, b) for a, b in rows if b) + ".",
                    "", "\n".join(parts))
 
 

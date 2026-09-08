@@ -24,7 +24,7 @@ observation = "Session files under ~/.flint/ are the record; the SQLite cache is
 plan = "signed macOS and Windows builds out of a single release workflow"
 
 [vysted-terminal]
-hook = "a finance terminal an AI agent can actually drive"
+hook = "a finance terminal an AI agent can drive"
 observation = "Three processes on one machine, loopback only. Keys live in the OS keychain. The broker connection reads; order execution is fitted, switched off, and every attempt is written to an append-only log."
 plan = "one plugin model for the whole terminal, so brokers, data providers, panels and agents install the same way"
 

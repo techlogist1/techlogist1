@@ -17,7 +17,7 @@
 
 <img src="assets/hero.svg" width="100%" alt="Field notebook flyleaf. A pair of vernier calipers drawn in line, closing on a machined pin: the sliding vernier scale travels along the fixed main scale until the jaws meet the work, and the reading resolves from 24 mm read off the main scale alone to 24·35 mm once the vernier is read against it.">
 
-<sub>Entries in permanent ink; nothing erased. Every plate in this book is drawn from the API when the workflow runs, and committed here beside it.</sub>
+<sub>Every plate is redrawn from the API when the workflow runs and committed beside the last one, so no entry is overwritten without a record of what it said before.</sub>
 
 ## Conditions
 
@@ -48,14 +48,14 @@ Each links to the work it was used on.
 
 ## Species accounts
 
-One account per specimen, same fields in the same order. Everything known about it, accumulated, kept apart from the day's journal.
+One account per specimen, same fields in the same order. Everything known about it, accumulated across many days and kept apart from the dated entry above.
 
 <!--notebook:accounts-->
 [![№ 1](assets/no-flint.svg)](https://github.com/techlogist1/flint) **[flint](https://github.com/techlogist1/flint)** — every timer mode is a plugin, including the three that ship with it  
 [![typescript](assets/badge-typescript.svg)](https://github.com/techlogist1?tab=repositories&language=typescript) [![rust](assets/badge-rust.svg)](https://github.com/techlogist1?tab=repositories&language=rust) [![■ v0.1.4 released](assets/rel-flint.svg)](https://github.com/techlogist1/flint/releases)  
 <sub>Session files under ~/.flint/ are the record; the SQLite cache is an index and rebuilds from them on request. A plugin handed undefined for window, fetch and localStorage is the sandbox working.</sub>  
 
-[![№ 2](assets/no-vysted-terminal.svg)](https://github.com/techlogist1/vysted-terminal) **[vysted-terminal](https://github.com/techlogist1/vysted-terminal)** — a finance terminal an AI agent can actually drive  
+[![№ 2](assets/no-vysted-terminal.svg)](https://github.com/techlogist1/vysted-terminal) **[vysted-terminal](https://github.com/techlogist1/vysted-terminal)** — a finance terminal an AI agent can drive  
 [![typescript](assets/badge-typescript.svg)](https://github.com/techlogist1?tab=repositories&language=typescript) [![python](assets/badge-python.svg)](https://github.com/techlogist1/vysted-terminal) [![□ v0.8.0 tagged](assets/rel-vysted-terminal.svg)](https://github.com/techlogist1/vysted-terminal/tags)  
 <sub>Three processes on one machine, loopback only. Keys live in the OS keychain. The broker connection reads; order execution is fitted, switched off, and every attempt is written to an append-only log.</sub>  
 

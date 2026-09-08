@@ -104,6 +104,36 @@ someone who has never heard of him can say what he builds after reading it once.
 The same pass applies to the paragraph beneath it and to the account bio, which
 carried the identical slogan and was changed with it.
 
+### Findings from the blind read — keep these fixed
+
+Six readers with no context each read the page once and answered *what does he
+build?* All six answered with **all three repositories and the local-first
+thesis**; all six answered **"none"** to *does a single repository dominate*; all
+six recalled all six catalogued things. § Balance passes. Re-run that test after
+any change to the hero, the accounts or Conditions.
+
+The same pass caught four things worth not reintroducing:
+
+- **`SET AND NOT YET CHECKED`** was a plate header carrying the banned hedge
+  *not yet* verbatim, in a generated string rather than in the README, which is
+  where nobody looks for one. It now reads `OUT SINCE THE LAST TAG`, which is
+  also what the bar actually measures. **Grep the generator, not just the
+  README, when sweeping for absence.**
+- **"Entries in permanent ink; nothing erased"** sat one line above "drawn from
+  the API when the workflow runs", which is an erasure mechanism — the two
+  sentences cancelled. The true and better version is that every version is
+  committed, so nothing is overwritten without a record.
+- **"kept apart from the day's journal"** pointed at a journal the page does not
+  have. Conditions *is* the dated entry; the line now points at it.
+- **"an AI agent can actually drive"** — *actually* was the only rhetorical word
+  in three otherwise structural hooks, and it is a claim about other people's
+  software. Cut.
+
+**MEASUREMENTS is split into `THE COLLECTION` and `THE OBSERVER, SAME PERIOD`.**
+Four of its six rows measured the collector's habits rather than anything in the
+collection, mixed into one column as though they were the same kind of figure. A
+real notebook separates them and so does this.
+
 ---
 
 ## Balance — three projects and a person, not one project
@@ -133,70 +163,107 @@ between showing a number and making a case.
 
 ---
 
+## The conceit: a field notebook, and why it is this one
+
+The page is a naturalist's **field notebook kept in the Grinnell system** — a
+real, named, still-taught standard, so every section is one a working notebook
+genuinely has: flyleaf, conditions header, outfit carried, lines set, species
+accounts, catalog, measurements taken in the flesh, plans for tomorrow, in camp,
+and the "if found, return to" flyleaf line. None of them is a project-page
+section under a new name.
+
+**It was chosen over better-looking rivals on one property: it grows.** A
+species account *is* a catalog entry, and a real notebook runs to hundreds of
+them without changing shape. The rival that scored highest on polish was an
+owner's workshop manual, whose back matter is prescribed and therefore cannot
+collapse — but a manual is printed for a fixed set of models, and ten projects
+would mean hand-writing new rows into its fault chart, specifications and
+lubricants tables. **If adding a project means editing this page, the conceit
+has failed however good it looks.**
+
+So: **nothing in this repository is written for three repositories.** Every
+section that enumerates work is built for an arbitrary count. See
+§ How an entry is composed.
+
 ## Aesthetic direction
 
-**Monochrome. White and greys on near-black.** A clean terminal, not a CRT
-effect. Off-white for primary text, mid-grey for secondary, dimmer grey for
-structure and box-drawing. Minimal and sharp.
+**90s vintage warmth: ivory, aged brass and oxblood on warm near-black.** The
+reference for judgement is a well-made mechanical watch face, not a developer
+portfolio template. Restrained and rich, never saturated.
 
-**There is no accent colour, deliberately.** An accent has to be justified by a
-meaning a reader can learn. Release state -- the one thing that genuinely needed
-encoding -- is carried by **glyph and value instead of hue**: filled square means
-downloadable now, half square means pre-release, hollow square means nothing cut
-yet. That keeps the page quiet and dodges a trap the previous palette fell into,
-where one colour meant both "Rust" and "pre-release" on the same line. If you add
-an accent, it must mean exactly one thing.
+**Every value was checked with a contrast ratio** against GitHub's own page
+grounds (`#0d1117` dark, `#ffffff` light) before shipping, because the previous
+warm pass was rejected partly for accents landing under 3:1. Re-check with
+`tools/palette.py` if you touch these.
 
-**Every panel and the hero share one width (`COLS = 61`) and one font size.**
-That is what makes the page read as a single object rather than a stack of
-differently-scaled widgets. Do not give a new panel its own width.
+| class | dark (base) | light | role | dark ratio |
+|---|---|---|---|---|
+| `.glass` | `#16130F` | `#FAF6EC` | plate ground | — |
+| `.edge` | `#3A3125` | `#D6C9AF` | plate border | — |
+| `text` / `.tx` | `#CEC2AD` | `#3F362A` | body ink | 10.5:1 |
+| `.hi` | `#F3EBDB` | `#1B1610` | primary, values | 15.6:1 |
+| `.dm` | `#AA9877` | `#75664F` | secondary, labels | 6.6:1 |
+| `.fr` | `#6E6047` | `#9C8B6E` | structure, box-drawing | 3.0:1 |
+| `.ox` | `#CF6A56` | `#8E241A` | **collector's number only** | 5.2:1 |
 
-| class | dark (base) | light | role |
-|---|---|---|---|
-| `.glass` | `#0E0E10` | `#FBFBFC` | panel ground |
-| `.edge` | `#26262B` | `#E2E2E6` | panel border |
-| `text` | `#B8B8BE` | `#45454C` | body |
-| `.hi` | `#EDEDEF` | `#16161A` | primary / emphasis |
-| `.dm` | `#7A7A82` | `#76767E` | secondary, labels |
-| `.fr` | `#4A4A52` | `#A8A8B0` | structure, box-drawing |
-| `.q0`-`.q4` | `#26262B` to `#EDEDEF` | `#EAEAEE` to `#16161A` | activity density |
-| `.g0`-`.g3` | `#1E1E22` to `#55555E` | `#F0F0F2` to `#B8B8C0` | automaton generation age |
+Light is a warm **rag-paper** ground with dark ink — ink on paper, not the dark
+values inverted and not a beige version of a white theme.
 
-Light is a **sensible inversion**, not the dark values ported across: a clean
-near-white ground with dark ink, not a beige one.
+### The accent means exactly one thing
 
-### Rejected: warm phosphor -- do not reintroduce
+**Oxblood marks a collector's number. Nothing else, ever.** It says *this was
+counted, and you can go and re-check it.* It is not used for emphasis, for a
+language, for release state, or in the hero — the caliper's resolved reading
+wanted it and did not get it, because a reading is a second thing wanting the
+accent and the answer to that is no.
 
-An earlier pass built this entire page in amber, ochre and cream on warm
-near-black, with oxblood, burnt orange, gold and plum accents -- "a CRT
-photographed on film in 1997". **It was tried, shipped, and rejected**: it read
-muddy and busy rather than warm, several accents fell under 3:1 on GitHub's dark
-background, and colour ended up meaning two things at once. Do not bring it back.
+Its luminance deliberately sits close to the body ink, so **the meaning is
+carried by the `№` glyph independently** and the colour only reinforces it. That
+is the same discipline that makes release state a glyph (`■` downloadable, `◧`
+pre-release, `□` tagged) rather than a hue.
+
+It shipped broken once: the measurements plate rendered every value in oxblood,
+which made the accent mean "a number" instead of "a collector's number" and
+emptied it of meaning. Caught by rasterising and looking.
+
+### Rejected: the earlier warm pass -- do not bring that one back
+
+An earlier attempt built the page in amber, ochre and cream with oxblood, burnt
+orange, gold **and** plum accents. It read muddy and busy, several accents fell
+under 3:1 on GitHub's dark ground, and colour meant two things at once. The
+present palette is not that: it is four values and **one** accent with one
+meaning. The lesson that survives is the discipline, not the monochrome.
+
+**Every plate shares one width (`COLS = 61`) and one font size**, and every
+`<img>` in the README carries `width="100%"`. Both halves matter — the natural
+widths were already identical once while the hero alone carried `width="100%"`,
+so the hero rendered at 847 px and everything under it at 556, which is exactly
+the stack-of-widgets look the shared grid exists to prevent.
 
 ## Badges
 
-Technology and release badges are **generated in this repo** (`gen_badges()`),
-one small SVG each, wrapped in markdown links so they are clickable. Not
-shields.io -- generating locally gives exact palette control at the same effort
-and keeps the page dependency-free.
+Generated here (`gen_badges()`), one small SVG each, wrapped in markdown links so
+they are clickable. Badges live in the **README, never inside an image**: an
+`<img>` cannot contain a clickable region, so a badge drawn into a plate is inert.
 
-Badges live in the **README, never inside an image**: an `<img>` cannot contain a
-clickable region, so a badge drawn into the hero SVG is inert.
+Three kinds, all produced per repository so they scale with the collection:
 
-**Link destinations, verified rather than assumed.** `?tab=repositories&language=X`
-works, but matches each repo's **primary language only**:
-
-| badge | destination | why |
+| file | what | class |
 |---|---|---|
-| `rust` | `?tab=repositories&language=rust` | resolves, returns ulpf |
-| `typescript` | `?tab=repositories&language=typescript` | resolves, returns vysted-terminal and flint |
-| `python` | `techlogist1/vysted-terminal` | the filter returns only this profile repo, whose Python is its own tooling -- misleading |
-| `svelte` | `techlogist1/ulpf` | the filter returns an **empty page**; ulpf is where the Svelte UI is |
-| `tauri` | `techlogist1/flint` | no language filter exists for frameworks |
+| `badge-<lang>.svg` | one per language in the collection | `.hi` |
+| `rel-<repo>.svg` | release state, glyph-encoded | `.dm` |
+| `no-<repo>.svg` | the collector's number | `.ox` |
 
-Check any new badge's destination against GitHub's empty-state string before
-shipping it. A badge that links to an empty filter page is worse than one that
-does not link at all.
+**Link destinations are derived, not hand-maintained.** `?tab=repositories&language=X`
+matches a repository's **primary language only**, so `lang_link()` uses the
+filter when at least one catalogued repository has that language as its primary
+and would actually come back, and otherwise points at the repository holding the
+most of that language. A badge linking to an empty filter page is worse than one
+that does not link at all.
+
+The same rule applies to release markers: a repository that is **tagged but has
+cut no release has an empty `/releases` page**, so `tagged` links to `/tags` and
+only a real release links to `/releases`. vysted-terminal is the live case.
 
 ## SVG constraints — all of these were found the hard way
 
@@ -228,10 +295,21 @@ Everything below follows from that, or from rasterising and looking at the resul
    somebody's machine no matter what value it holds. Every row goes through
    `line()`, which emits one `<text>` with `textLength` pinning it to the grid.
 
-6. **`textLength` padding must live inside a styled `<tspan>`.** Emitted as a bare
-   unstyled run, resvg loses it and the row's closing rule collapses back against
-   the content. Measured with a pixel diff, not guessed — `line()` folds padding
-   into the second-to-last cell for exactly this reason.
+6. **`textLength` padding must live inside a `<tspan>` — every run, including
+   unclassed ones.** `line()` folds padding into the second-to-last cell; if that
+   cell was emitted as a bare run because it had no class, resvg loses the
+   padding, the row's natural width collapses, and `lengthAdjust` then spreads
+   the surviving glyphs across the full width. On the plates that looked like
+   `d e p o s i t e d   p u b l i c l y`, and on MEASUREMENTS the values vanished
+   entirely. `line()` now wraps every run; an unclassed `<tspan>` still inherits
+   the text fill, so it costs nothing.
+
+   6b. **Build rows to exactly `COLS` where a cell must not be clipped.** `line()`
+   folds slack into the *second-to-last* cell and truncates from the right, so if
+   that cell is the value, a long one gets clipped — `TypeScript` shipped as
+   `TypeScrip`. On MEASUREMENTS the dot leader absorbs the slack instead; on
+   LINES SET the bar is placed **after** the count so overflow can only ever eat
+   bar, never a figure.
 
 7. **Anything on the character grid needs `textLength`, including the automaton.**
    The hero's field rows once had none while the framed rows were pinned to the
@@ -240,9 +318,12 @@ Everything below follows from that, or from rasterising and looking at the resul
    vignette had been hiding it. Measured with a column ink profile, not spotted
    by eye.
 
-8. **Line advance ~1.18em.** At `LH: 24` against a 17px font every vertical
-   box-drawing rule was visibly broken between rows. Box-drawing glyphs tile at
-   roughly the line spacing a terminal uses; `LH = 20` at 17px, `LH = 16` at 13px.
+8. **Line advance: `LH = 16` at `FS = 14`. Measured, not chosen.** Box-drawing
+   glyphs tile at roughly the line spacing a terminal uses, so a vertical rule
+   breaks between rows if the advance is wrong. Rendering eight framed rows and
+   taking an ink profile down the rule column gives **100% vertical continuity at
+   16 and 98.1% at 17**, which is what the page ran at before. Re-measure rather
+   than reason if you change `FS`.
 
 9. **Fonts: generic monospace stack only.** A webfont referenced by URL fails
    silently and breaks the layout for every visitor. Nothing is embedded, so no
@@ -259,9 +340,16 @@ Everything below follows from that, or from rasterising and looking at the resul
 ### Verifying a change
 
 ```
-python tools/verify.py "assets/*.svg"     # static constraints, no deps, runs in CI
-python tools/check.py assets/hero.svg        # rasterises both palettes with resvg
+python tools/verify.py "assets/*.svg"   # static constraints + README guards; no deps, runs in CI
+python tools/palette.py                 # every colour vs the ground it is drawn on
+python tools/growth.py                  # regenerate at 4 and 10 entries; nothing may assume 3
+python tools/degrade.py                 # generator raises, empty source, banned URL, missing marker
+python tools/check.py assets/hero.svg   # rasterise both palettes with resvg
 ```
+
+`growth.py` and `degrade.py` are the two that catch the failures this page
+actually has: a section quietly written for three repositories, and a
+degradation path that was designed but never run.
 
 `resvg` honours neither `@media` nor `@keyframes`, which is exactly what makes it
 useful: it shows the *base* state. To see the light branch, `check.py` appends the
@@ -278,41 +366,87 @@ reads as a slot machine.
 - **At most one element animates continuously**, and it is the hero. The commit
   ticker was cut and the activity graph was cut.
 
-### The hero is a rearrangement
+### The hero is a pair of vernier calipers, drawn in 3D and rendered here
 
-**One line of noise becoming two statements, with every intermediate legible.**
-Two true sentences — *"It runs on your own computer"* and *"Your data stays in
-your files"* — are interleaved character by character and then separated by merge
-rounds. A character drawn in `.hi` came from the first sentence and one in `.dm`
-from the second, so even the fully tangled frame reads as two things caught
-together rather than as noise. That colour is the mechanism made visible; it is
-the only emphasis on the panel and it means exactly one thing.
+**What is in the loudest position on the page, and why it earns it.** A measuring
+instrument closing on a machined pin, and a reading resolving: the main scale
+alone says `24 mm`, and once the vernier is read against it the figure becomes
+`24·35 mm`. The mechanism is the **vernier principle** — ten slider divisions
+spanning nine beam divisions, so exactly one slider tick lines up and *which one
+it is* is the fractional digit. **A second scale makes a number exact.**
 
-**Nothing is added and nothing is removed.** Every character needed to read the
-final frame is on screen in the first one, in a different place. That is what
-keeps this outside the banned text-reveal family: nothing accumulates and nothing
-is uncovered, only rearranged.
+That is this page's own claim about every count on it — measured when the
+workflow ran, not remembered — and it belongs to **no single repository and no
+tool**. Both of the page's previous heroes failed that test: one animated log
+parsing because it was the easiest thing on the account to draw, the other split
+credit with tooling. Before changing this hero, re-read § Never attribute the
+work to a tool and § Balance, and be able to say what the new one is *about*.
 
-It is deliberately **not about any one repository** — see § Balance. The two
-sentences are true of flint, vysted-terminal and ulpf equally, and the mechanism
-is the thing that was in plain sight all along, which is his taste in films
-rather than a property of any project. It names no tool — see the rule above.
+**No oxblood in the hero.** The reading is a counted figure and wanted the
+accent; it is not a collector's number, so it did not get it.
 
-**Use merge rounds, not de-interleaving.** De-interleaving a block is *not* the
-inverse of interleaving it; built that way the frames never resolve, and the
-first version of this shipped-looking animation ended on gibberish. Two adjacent
-blocks that are each already `[A-part, B-part]` merge into one such block by
-swapping their middle two quarters. `gen_hero()` asserts that round `ROUNDS-1`
-reproduces `SAY_A` exactly and raises if it does not, which keeps the last good
-hero committed rather than publishing nonsense.
+**The geometry is real 3D**, built headless: `tools/caliper.py` builds the solid,
+`tools/r3d.py` projects it and removes hidden lines, and the visible runs are
+emitted as SVG paths. There is no GL, no browser and — deliberately — **no
+numpy**. This repository has no third-party dependency and `verify.py` advertises
+that it runs in CI with nothing installed; the workflow has no pip step, so a
+renderer needing numpy would fail the daily run on the one image that must never
+break. The meshes are about 100 vertices and a screen-space bounding-box reject
+makes twelve frames take 0.09 s in plain Python.
+
+Occlusion is **winding-independent**: every triangle is z-tested with the depth
+interpolated at the sample point, and back-facing triangles are by construction
+farther than the front surface at that pixel so they never occlude wrongly. The
+first version culled by winding and **ate its own silhouette**.
+
+**31 slots drawn from 12 geometries.** The jaws sit shut for eight slots while
+the reading resolves, and the opening stroke is the closing stroke played
+backwards, so both reuse paths already in `<defs>` through `<use href="#gN">`.
+That took the file from **109 KB to 46 KB while adding a frame**. Internal `#`
+references pass `verify.py`, which only rejects external ones.
 
 Mechanically it is N discrete slots sharing **one** keyframe, separated by
-`animation-delay`. Cheaper than N keyframe blocks, and the **hard cut** at the
-slot boundary is what keeps it a substitution rather than a crossfade — an
-interpolated blend would make the middle of the transformation a smear instead of
-a state you can read. Delays are **negative** so the cycle is already under way
-at t=0; a positive delay leaves every group in its base state until its first
+`animation-delay`. The **hard cut** at the slot boundary keeps it a substitution
+rather than a crossfade. Delays are **negative** so the cycle is already under
+way at t=0; a positive delay leaves every group in its base state until its first
 turn, which flashes the finished frame on load.
+
+The reduced-motion still is slot `STILL` — **jaws shut, reading resolved**.
+Frozen, the plate still says what it is for, which is the test a hero concept has
+to pass to be a candidate at all.
+
+### Why the hero is an animated SVG and not APNG or GIF
+
+Chosen on measurement, at the real 847 px column, not on preference:
+
+| format | bytes | fidelity at 847 | notes |
+|---|---|---|---|
+| **animated SVG (vector)** | **46 KB** | reference | re-renders at any density |
+| APNG | 752 KB | pixel-identical | **5× the per-file cap, ~2× the whole-page budget** |
+| GIF, 64 colours | 124 KB | 0.005/255 mean error | viable but see below |
+| GIF, 16 colours | 189 KB | 0.138/255, 0.96% of pixels off | larger *and* worse |
+
+APNG is disqualified on size alone. GIF is genuinely close on bytes, and loses on
+four other counts:
+
+1. **Density.** A raster is pinned to 847 px. At 2× device pixels — an ordinary
+   laptop — 6.0% of pixels differ visibly from a true vector render. The SVG just
+   re-renders.
+2. **Themes.** One SVG carries light and dark in a `@media` block. A raster needs
+   **two files**, so 124 KB becomes ~248 KB before any other plate is counted.
+3. **Text stays text.** The plate's captions are rendered in the viewer's own
+   monospace stack. Rasterising bakes in whichever font the build machine had,
+   which is the opposite of every rule in § SVG constraints.
+4. **Reduced motion is internal.** The SVG honours `prefers-reduced-motion`
+   itself. A raster depends on `<picture><source media="(prefers-reduced-motion:
+   reduce)">` surviving GitHub's sanitizer.
+
+That last point was **measured on the live site rather than assumed**: the
+sanitizer *does* preserve `media="(prefers-reduced-motion: reduce)"` verbatim,
+including compound queries like `(prefers-reduced-motion: reduce) and
+(prefers-color-scheme: dark)`. So a raster hero *would* have been able to freeze.
+It lost on the other four counts, not on accessibility. `<table>` with `width`
+and `valign` survives too, if a future layout needs columns.
 
 ### Rejected: rule 110 — it read as texture
 
@@ -427,32 +561,101 @@ days there are no commits and it can be switched off. Re-enable from the Actions
 
 ---
 
-## The open-source section must scale
+## How an entry is composed
 
-One hook per project, then a generated metadata strip. **Roughly one line each**
-— a stranger should take in the whole section in about five seconds and know
-which repo to click.
+### What I do when I open-source something new
+
+**Nothing.**
+
+Push the repository. The next workflow run catalogues it, gives it the next
+collector's number, generates its badges, writes its species account into the
+README, adds it to the catalog plate and the provenance walk, and — if it has a
+tag — gives it a row on LINES SET. No file in this repository needs an edit.
+
+Optionally, later, add an `[<repo-name>]` block to `data/accounts.toml` with an
+`observation` and a `plan`. That is the only hand-kept content on the page, and
+**it is never required**.
+
+### The inclusion rule, explicit rather than incidental
+
+`species()` catalogues a repository when **all** of these hold:
+
+| test | why |
+|---|---|
+| public | the notebook is the public record |
+| not a fork | someone else collected it |
+| not archived | withdrawn from the collection |
+| `size > 0` | nothing to catalogue |
+| not `techlogist1/techlogist1` | **a notebook does not catalogue itself** |
+
+### Where each field comes from
+
+| field | source | if it is missing |
+|---|---|---|
+| collector's number | **creation date, ascending, over the included set** | n/a, always derivable |
+| name | API `name` | n/a |
+| hook | `accounts.toml` `hook`, else API `description` | the line is omitted |
+| field marks (languages) | API `/languages`, cut at a tenth of the repo's bytes | omitted |
+| release marker | API `/releases`, else `/tags` | shows `in progress` |
+| observation | `accounts.toml` `observation` | **the line is omitted** |
+| plan | `accounts.toml` `plan` | the repo does not appear under Plans |
+| commits ahead | API `/compare`, using `ahead_by` | the repo has no LINES SET row |
+
+**Numbers are assigned by creation date** — the order things entered the
+collection. That order never changes, a new repository always takes the next
+number, and sorting by it carries **no ranking claim**, which matters because an
+activity sort would both shuffle daily and rank one project above another.
+
+**A field with nothing behind it is omitted, never printed empty.** No entry ever
+renders `unknown`, `n/a`, a blank cell or a dangling em dash. This is the § Voice
+rule applied at the data layer, and `tools/degrade.py` tests it.
+
+### The shape of an account
 
 ```
-**[name](url)** — the single most interesting true thing about it.␣␣
-[![lang](assets/badge-<lang>.svg)](<where that work actually lives>)␣␣
-[![<tag> <state>](assets/rel-<name>.svg)](<releases or tags>)
+[![№ 3](assets/no-<name>.svg)](<repo>) **[<name>](<repo>)** — <hook>␣␣
+[![<lang>](assets/badge-<lang>.svg)](<derived>) … [![<glyph> <tag> <state>](assets/rel-<name>.svg)](<derived>)␣␣
+<sub><observation></sub>␣␣
 ```
 
-The two trailing spaces are **load-bearing**: GitHub's profile README does not
-render a soft newline as a break, so without them the strip renders inline and
-the section collapses. Verified on the live page — the `/markdown` API renders
-soft breaks differently and will not reproduce this.
+Two lines without an observation, three with. **The trailing double spaces are
+load-bearing**: GitHub's profile README does not render a soft newline as a
+break, so without them the entry collapses onto one line. Verified on the live
+page — the `/markdown` API renders soft breaks differently and will not
+reproduce it.
 
-**It scales because each entry is independent.** Verified by mocking the section
-at eight entries in a real 390px viewport: still two lines each, no overflow,
-still scans. Adding a repo adds one markdown line; `gen_badges()` produces its
-release marker automatically. Do not replace this with a table or a card grid — both need
-horizontal room that a phone does not have.
+**Structure does the balancing, not prose restraint.** Every account gets the
+same fields in the same order at the same length, so no entry can be argued into
+prominence over another. That was the explicit fix for this conceit's one
+identified weakness.
 
-Depth belongs in each repo's own README, which is where a curious reader goes
-next. The sandbox details, the three-process architecture, the test counts and
-the notarisation caveats were **relocated, not deleted**.
+Do not replace this with a table or a card grid: both need horizontal room a
+phone does not have.
+
+### The generated blocks in README.md
+
+Four marker pairs are rewritten in place by `write_readme()` —
+`notebook:kit`, `notebook:accounts`, `notebook:plans`, `notebook:deposited`.
+Do not hand-edit between a pair; the next run overwrites it. `verify.py` fails
+if a pair is not intact, because a missing marker makes the rewrite raise and the
+page would silently stop growing.
+
+**Never name a marker literally inside an HTML comment.** Comments do not nest,
+so the first `-->` inside the block ends it and everything after renders as body
+text at the top of the profile. That shipped once — two paragraphs of build notes
+above the hero — and was found by screenshotting the live page, not in review.
+`verify.py` now walks every comment and fails on one containing another opener.
+
+### Verified at ten entries, not assumed
+
+`tools/growth.py` injects synthetic repositories, regenerates every plate and the
+README, and asserts that nothing assumed a count of three: every row still lands
+on the 61-character grid, every frame still closes, and no account exceeds three
+lines. Run at **4 and at 10**. At ten the whole page is 112 KB against the 400 KB
+budget and the plates still scan.
+
+Depth belongs in each repository's own README, which is where a curious reader
+goes next.
 
 ## Mobile is a hard constraint
 
@@ -469,19 +672,26 @@ the browser. Rasterise at 847 and at 309, not at natural size.
 
 ## The panels
 
-| file | what it is | data source | animates |
-|---|---|---|---|
-| `hero.svg` | terminal frame; one interleaved line separating into two | none — hand-authored | the rearrangement (continuous) |
-| `inflight.svg` | commits ahead of each repo's newest tag | REST `releases`, `tags`, `compare` | bars grow once |
-| `stats.svg` | real counts from the API | REST `stats/contributors`, `languages`, `releases` | no |
-| `chain.svg` | PROVENANCE — recent commits as a verified hash chain | REST `commits` incl. parents | no |
-| `badge-*.svg` | clickable technology pills | none, static | no |
-| `rel-*.svg` | release state per repo, glyph-encoded | REST `releases`, `tags` | no |
+| file | section | data source | animates | scales with N |
+|---|---|---|---|---|
+| `hero.svg` | Flyleaf — vernier calipers | none, hand-built geometry | the closing stroke (continuous) | fixed |
+| `lines-set.svg` | Lines set — commits ahead of newest tag | REST `releases`, `tags`, `compare` | no | yes, column widths computed |
+| `catalog.svg` | Catalog — the numbered series | REST + `accounts.toml` | no | yes |
+| `chain.svg` | Provenance — the chain walked and verified | REST `commits` incl. parents | no | yes, links per repo shrink |
+| `measurements.svg` | Measurements, taken in the flesh | GraphQL calendar + REST | no | yes |
+| `badge-*.svg` | field marks, per language | REST `languages` | no | one per language |
+| `rel-*.svg` | release state, glyph-encoded | REST `releases`, `tags` | no | one per repo |
+| `no-*.svg` | the collector's number | derived | no | one per repo |
 
-The hero takes **no API call at all** — it is hand-authored sample records, and
-nothing on it claims to be live. That is deliberate: it removes the last failure
-surface from the one image that must never break. The live panel is
-`inflight.svg`.
+The hero takes **no API call at all** — hand-built geometry, and nothing on it
+claims to be live. That is deliberate: it removes the last failure surface from
+the one image that must never break. The live plates are `lines-set.svg` and
+`measurements.svg`.
+
+`chain.svg` walks **fewer links per repository as the collection grows**
+(`per = max(2, min(4, 14 // n))`) so the plate stays about one screen whether
+there are three entries or thirty. The footer always reports the true totals, so
+a smaller sample is visible in the count rather than silently dropped.
 
 `chain.svg` is the one that isn't a standard profile widget. Git is already a
 digest-chained provenance store — every commit names its parent's hash — and the
