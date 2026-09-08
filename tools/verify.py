@@ -76,6 +76,25 @@ def check_readme(path="README.md"):
     for b in BANNED:
         if b in low:
             bad.append("README.md: names a tool (%r) -- see CLAUDE.md" % b)
+
+    # HTML comments do not nest. A "<!--" inside a comment body means the first
+    # "-->" closes the block early and everything after it renders as body text
+    # at the top of the profile -- which is exactly what shipped once, because
+    # the explanatory comment quoted a marker name literally. Found on the live
+    # page, not in review, so it is checked here now.
+    i = 0
+    while True:
+        a = raw.find("<!--", i)
+        if a < 0:
+            break
+        b = raw.find("-->", a + 4)
+        if b < 0:
+            bad.append("README.md: an HTML comment is never closed")
+            break
+        if "<!--" in raw[a + 4:b]:
+            bad.append("README.md: a comment at offset %d contains '<!--', so it "
+                       "closes early and leaks body text" % a)
+        i = b + 3
     return bad
 
 

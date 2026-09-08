@@ -2,10 +2,14 @@
   A field notebook, kept in the Grinnell system: a dated journal, a set of
   running species accounts, and one numbered catalog covering everything.
 
-  The accounts, the kit list, the plans and the deposited list between the
-  <!--notebook:*--> markers are WRITTEN BY tools/generate.py from the GitHub API
-  and data/accounts.toml. Do not hand-edit inside a marker pair: the next run
-  overwrites it. Open-sourcing a new project needs no edit to this file.
+  The accounts, the kit list, the plans and the deposited list are WRITTEN BY
+  tools/generate.py from the GitHub API and data/accounts.toml, each between a
+  pair of notebook marker comments. Do not hand-edit between a marker pair: the
+  next run overwrites it. Open-sourcing a new project needs no edit to this file.
+
+  Do not name a marker literally in here either. An HTML comment cannot nest,
+  so the first closing arrow inside this block ends it and everything after it
+  renders as body text at the top of the profile.
 
   Every plate is generated in this repository and committed here. No badge
   service, no widget host, nothing that can 404 out from under it.
